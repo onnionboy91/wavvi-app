@@ -1,9 +1,15 @@
 {
   "development": {
-    "username": "postgres",
-    "password": 123,
-    "database": "wavviApp",
-    "host": "127.0.0.1",
-    "dialect": "postgres"
+    "username": "wavviapp_user",
+    "password": "7oiZ9fPPo5ct00T2PM4Hj3pyaEpsT9GT",
+    "database": "wavviapp",
+    "host": "dpg-cn2fk32cn0vc73904d1g-a.frankfurt-postgres.render.com",
+    "dialect": "postgres",
+    "ssl": true,
+    "dialectOptions": {
+      "ssl": {
+        "require": true
+      }
+    }
   }
 }

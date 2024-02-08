@@ -1,0 +1,1 @@
+//postgres://wavviapp_user:7oiZ9fPPo5ct00T2PM4Hj3pyaEpsT9GT@dpg-cn2fk32cn0vc73904d1g-a.frankfurt-postgres.render.com/wavviapp
