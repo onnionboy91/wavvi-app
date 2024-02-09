@@ -42,6 +42,7 @@ const NavBar = (): JSX.Element => {
             <NavLink className="nav-link" to="/logout">
               Выйти
             </NavLink>
+            <Outlet />
           </div>
         </div>
       </div>

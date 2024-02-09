@@ -6,6 +6,8 @@ import AuthorizationPage from '../features/auth/AuthorizationPage';
 import { useAppDispatch } from '../redux/store';
 import { checkUser } from '../features/auth/authSlice';
 import { User } from '../features/auth/types';
+import InstructorsPage from '../features/instructors/InstructorsPage';
+
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -23,10 +25,12 @@ function App(): JSX.Element {
     // setTimeout(() => dispatch(stopLoading()), 1000);
   }, []);
 
+
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<NavBar />}>
+          <Route path="/instructors" element={<InstructorsPage />} />
           <Route path="/sign-in" element={<AuthorizationPage />} />
           <Route path="/sign-up" element={<RegistrationPage />} />
           <Route
