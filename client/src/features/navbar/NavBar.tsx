@@ -1,63 +1,52 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
-import './styles/navbar.scss';
+import './styles/style.css';
 
-import { NavLink, Outlet, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { type RootState, useAppDispatch } from '../../redux/store';
-import { logOut } from '../auth/authSlice';
+import { NavLink, Outlet } from 'react-router-dom';
 
 const NavBar = (): JSX.Element => {
-  const user = useSelector((store: RootState) => store.auth.auth);
-  const navigate = useNavigate();
-
-  const dispatch = useAppDispatch();
-
   return (
-    <>
-      <ul className="nav__container">
-        {user && <li>Hello, {user.password}!</li>}
-        <li className="nav__item">
-          <NavLink className="nav__link" to="/">
-            Main
-          </NavLink>
-        </li>
-        <li className="nav__item">
-          <NavLink className="nav__link" to="/users">
-            Users
-          </NavLink>
-        </li>
-        <li className="nav__item">
-          <NavLink className="nav__link" to="/heroes">
-            Heroes
-          </NavLink>
-        </li>
-        <li className="nav__item">
-          <NavLink className="nav__link" to="/sign-in">
-            Authorization
-          </NavLink>
-        </li>
-        <li className="nav__item">
-          <NavLink className="nav__link" to="/sign-up">
-            Registration
-          </NavLink>
-        </li>
-        <li
-          onClick={() => {
-            dispatch(logOut()).catch(console.log);
-            navigate('/');
-          }}
-          className="nav__item"
+    <nav className="navbar navbar-expand-lg navbar navbar-dark bg-primary">
+      <div className="container-fluid">
+        <a className="navbar-brand" href="#">
+          WaVVi
+        </a>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
-          <NavLink className="nav__link" to="/logout">
-            LogOut
-          </NavLink>
-        </li>
-      </ul>
-      <Outlet />
-      <h1 style={{ fontSize: '100px', color: 'red', textAlign: 'center' }}>Footer</h1>
-    </>
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div className="navbar-nav">
+            <NavLink className="nav-link active" aria-current="page" to="/categories">
+              Категории
+            </NavLink>
+            <NavLink className="nav-link" to="/instructors">
+              Инструкторы
+            </NavLink>
+            <NavLink className="nav-link" to="/saved">
+              Избранное
+            </NavLink>
+            <NavLink className="nav-link" to="/sign-in">
+              Войти
+            </NavLink>
+            <NavLink className="nav-link" to="/sign-up">
+              Зарегистроваться
+            </NavLink>
+            <NavLink className="nav-link" to="/logout">
+              Выйти
+            </NavLink>
+          </div>
+        </div>
+      </div>
+    </nav>
   );
 };
 
