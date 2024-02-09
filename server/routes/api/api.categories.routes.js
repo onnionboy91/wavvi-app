@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Category } = require('../../db/models');
+const { Video } = require('../../db/models');
 
 router.get('/', async (req, res) => {
   try {
@@ -7,6 +7,16 @@ router.get('/', async (req, res) => {
     res.json({ categories });
   } catch ({ message }) {
     res.json({ type: 'categories router', message });
+  }
+});
+
+router.get('/:categoryId', async (req, res) => {
+  try {
+    
+    const videos = await Video.findAll({where: {category_id: categoryId} });
+    res.json({ videos });
+  } catch ({ message }) {
+    res.json({ type: 'videos router', message });
   }
 });
 

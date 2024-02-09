@@ -1,0 +1,26 @@
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid white;
+  border-radius: 15px;
+  padding: 30px;
+  width: 600px;
+  margin: 0 auto;
+  margin-top: 100px;
+  margin-bottom: 30px;
+  box-shadow: 10px 10px 20px 3px rgba($color: grey, $alpha: 0.5);
+  gap: 3px;
+  // background-color: rgb(36, 54, 245);
+  background: white;
+
+  // backdrop-filter: blur(10px);
+}
+
+.input {
+  display: flex;
+  justify-content: center;
+  width: 535px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}

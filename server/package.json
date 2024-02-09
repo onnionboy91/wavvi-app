@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=production node app.js",
-    "dev": "nodemon app.js -e js,json,jsx"
+    "dev": "nodemon app.js -e js,json,jsx",
+    "dbr": "npx sequelize db:migrate:undo:all && npx sequelize db:migrate && npx sequelize db:seed:all"
   },
   "keywords": [],
   "author": "",
