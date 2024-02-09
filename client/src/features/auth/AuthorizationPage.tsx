@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useAppDispatch } from '../../redux/store';
 import { signIn } from './authSlice';
+import './styles/auth.scss';
 
 const AuthorizationPage = (): JSX.Element => {
   const [name, setName] = useState('');
@@ -10,16 +11,31 @@ const AuthorizationPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
   return (
-    <div>
-      <h1>AuthorizationPage</h1>
+    <div className="auth-container">
+      {/* <h1>AuthorizationPage</h1> */}
       <form
+        className="sign-in"
         onSubmit={(e) => {
           e.preventDefault();
           dispatch(signIn({ name, password })).catch(console.log);
         }}
       >
-        <input value={name} onChange={(e) => setName(e.target.value)} type="text" />
-        <input value={password} onChange={(e) => setPasssword(e.target.value)} type="text" />
+        <input
+          className="form-control"
+          placeholder="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          type="text"
+          required
+        />
+        <input
+          className="form-control"
+          placeholder="password"
+          value={password}
+          onChange={(e) => setPasssword(e.target.value)}
+          type="text"
+          required
+        />
         <button type="submit">Войти</button>
       </form>
     </div>

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { fetchCheckUser, fetchLogOut, fetchSignIn, fetchSignUp } from '../../App/api';
-import type { AuthState, UserSignIn, UserSignUp, UserWithOutId } from './types';
+import type { AuthState, UserSignIn, UserSignUp } from './types';
 
 const initialState: AuthState = {
   auth: undefined,
