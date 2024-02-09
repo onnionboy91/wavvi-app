@@ -13,6 +13,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.TEXT,
       },
+      content: {
+        allowNull: false,
+        type: Sequelize.TEXT,
+      },
       level: {
         allowNull: false,
         type: Sequelize.TEXT,

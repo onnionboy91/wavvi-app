@@ -7,7 +7,7 @@ export const fetchLoadCategories = async (): Promise<Category[]> => {
     const res = await fetch('/api/categories');
     const data: {categories: Category[]} = (await res.json()) as {categories: Category[]}
     return data.categories
-
+}
 export const fetchLoadInstructors = async (): Promise<Instructor[]> => {
   const res = await fetch('/api/instructors');
   const data: { Instructors: Instructor[] } = (await res.json()) as { Instructors: Instructor[] };
