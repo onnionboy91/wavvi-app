@@ -1,1 +1,70 @@
 //postgres://wavviapp_user:7oiZ9fPPo5ct00T2PM4Hj3pyaEpsT9GT@dpg-cn2fk32cn0vc73904d1g-a.frankfurt-postgres.render.com/wavviapp
+
+
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import React from 'react';
+import './styles/style.css';
+import { NavLink, Outlet } from 'react-router-dom';
+
+const NavBar = (): JSX.Element => {
+  return (
+    <>
+      <nav className="navbar navbar-expand-lg navbar navbar-dark bg-primary">
+        <div className="container-fluid">
+          <a className="navbar-brand" href="#">
+            WaVVi
+          </a>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div className="navbar-nav">
+              <li>
+                <NavLink className="nav-link active" aria-current="page" to="/categories">
+                  Категории
+                </NavLink>
+              </li>
+              <li>
+                <NavLink className="nav-link" to="/instructors">
+                  Инструкторы
+                </NavLink>
+              </li>
+              <li>
+                <NavLink className="nav-link" to="/saved">
+                  Избранное
+                </NavLink>
+              </li>
+              <li>
+                <NavLink className="nav-link" to="/sign-in">
+                  Войти
+                </NavLink>
+              </li>
+              <li>
+                <NavLink className="nav-link" to="/sign-up">
+                  Зарегистроваться
+                </NavLink>
+              </li>
+              <li>
+                <NavLink className="nav-link" to="/logout">
+                  Выйти
+                </NavLink>
+              </li>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <Outlet />
+    </>
+  );
+};
+
+export default NavBar;
