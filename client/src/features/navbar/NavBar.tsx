@@ -2,10 +2,11 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import './styles/style.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 
 const NavBar = (): JSX.Element => {
   return (
+    <>
     <nav className="navbar navbar-expand-lg navbar navbar-dark bg-primary">
       <div className="container-fluid">
         <a className="navbar-brand" href="#">
@@ -42,11 +43,12 @@ const NavBar = (): JSX.Element => {
             <NavLink className="nav-link" to="/logout">
               Выйти
             </NavLink>
-            <Outlet />
           </div>
         </div>
       </div>
     </nav>
+    <Outlet />
+    </>
   );
 };
 

@@ -1,12 +1,13 @@
 /* eslint-disable import/prefer-default-export */
 import type { User, UserSignIn, UserSignUp, UserWithOutId } from '../features/auth/types';
 import type { Instructor, InstructorId, InstructorWithOutId } from '../features/instructors/types';
-import { Category } from "../features/categories/types";
+import type { Category } from '../features/categories/types';
 
 export const fetchLoadCategories = async (): Promise<Category[]> => {
     const res = await fetch('/api/categories');
     const data: {categories: Category[]} = (await res.json()) as {categories: Category[]}
     return data.categories
+}
 
 export const fetchLoadInstructors = async (): Promise<Instructor[]> => {
   const res = await fetch('/api/instructors');
@@ -85,7 +86,8 @@ export const fetchLogOut = async (): Promise<void> => {
   const data: { message: string } = (await res.json()) as { message: string };
   if (data.message !== 'success') {
     throw new Error(data.message);
-  };
+  }
+}
 
 
 

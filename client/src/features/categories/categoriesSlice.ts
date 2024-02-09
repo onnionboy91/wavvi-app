@@ -8,7 +8,7 @@ const initialState: CategoriesState = {
     loading: true
 }
 
-export const loadCategories = createAsyncThunk('categories/load', () => fetchLoadCategories)
+export const loadCategories = createAsyncThunk('categories/load', () => fetchLoadCategories())
 
 const categoriesSlice = createSlice({
     name: 'categories',

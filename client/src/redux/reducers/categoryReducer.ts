@@ -1,4 +1,9 @@
-import type {Action, State} from './types'
+import type { Category } from '../../features/categories/types';
+import type {Action} from './types'
+
+type State = {
+    categories: Category[]
+}
 
 const initialState = {
     categories: []
