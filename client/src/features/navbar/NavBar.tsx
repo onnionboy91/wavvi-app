@@ -24,12 +24,12 @@ const NavBar = (): JSX.Element => {
                   </NavLink>
                 </li>
                 <li className="nav__item">
-                  <NavLink className="nav__link" to="/game">
+                  <NavLink className="nav__link" to="/instructors">
                     Инструкторы
                   </NavLink>
                 </li>
                 <li className="nav__item">
-                  <NavLink className="nav__link" to="/game">
+                  <NavLink className="nav__link" to="/saved">
                     Избранное
                   </NavLink>
                 </li>
