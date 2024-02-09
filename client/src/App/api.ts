@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import type { User, UserSignIn, UserSignUp, UserWithOutId } from '../features/auth/types';
+import type { User, UserSignIn, UserSignUp } from '../features/auth/types';
 import type { Instructor, InstructorId, InstructorWithOutId } from '../features/instructors/types';
 import { Category } from '../features/categories/types';
 
@@ -78,6 +78,7 @@ export const fetchSignUp = async (user: UserSignUp): Promise<User> => {
     message: string;
     user: User;
   };
+  console.log(data, 77);
   return data.user;
 };
 

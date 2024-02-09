@@ -5,23 +5,19 @@ import RegistrationPage from '../features/auth/RegistrationPage';
 import AuthorizationPage from '../features/auth/AuthorizationPage';
 import { useAppDispatch } from '../redux/store';
 import { checkUser } from '../features/auth/authSlice';
-// import { User } from '../features/auth/types';
 import InstructorsPage from '../features/instructors/InstructorsPage';
 import { loadInstructors } from '../features/instructors/instructorsSlice';
+import InstructorsPage from '../features/instructors/InstructorsPage';
+import { loadCategories } from '../features/categories/categoriesSlice';
+import CategoriesPage from '../features/categories/CategoriesPage';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
 
-  // const loadUsers = async (): Promise<void> => {
-  //   const res = await fetch('/api/users');
-  //   const data: { users: User[] } = (await res.json()) as { users: User[] };
-  //   // dispatch({ type: 'heroes/load', payload: data.heroes });
-  //   dispatch({ type: 'users/load', payload: data.users });
-  // };
-
   useEffect(() => {
     dispatch(checkUser()).catch(console.log);
     dispatch(loadInstructors()).catch(console.log);
+    dispatch(loadCategories()).catch(console.log)
   }, []);
 
   return (
@@ -29,6 +25,7 @@ function App(): JSX.Element {
       <Routes>
         <Route path="/" element={<NavBar />}>
           <Route path="/instructors" element={<InstructorsPage />} />
+          <Route path="/categories" element={<CategoriesPage />} />
           <Route path="/sign-in" element={<AuthorizationPage />} />
           <Route path="/sign-up" element={<RegistrationPage />} />
           <Route
