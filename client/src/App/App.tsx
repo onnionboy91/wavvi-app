@@ -5,26 +5,24 @@ import RegistrationPage from '../features/auth/RegistrationPage';
 import AuthorizationPage from '../features/auth/AuthorizationPage';
 import { useAppDispatch } from '../redux/store';
 import { checkUser } from '../features/auth/authSlice';
-import { User } from '../features/auth/types';
+// import { User } from '../features/auth/types';
 import InstructorsPage from '../features/instructors/InstructorsPage';
-
+import { loadInstructors } from '../features/instructors/instructorsSlice';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
 
-  const loadUsers = async (): Promise<void> => {
-    const res = await fetch('/api/users');
-    const data: { users: User[] } = (await res.json()) as { users: User[] };
-    // dispatch({ type: 'heroes/load', payload: data.heroes });
-    dispatch({ type: 'users/load', payload: data.users });
-  };
+  // const loadUsers = async (): Promise<void> => {
+  //   const res = await fetch('/api/users');
+  //   const data: { users: User[] } = (await res.json()) as { users: User[] };
+  //   // dispatch({ type: 'heroes/load', payload: data.heroes });
+  //   dispatch({ type: 'users/load', payload: data.users });
+  // };
 
   useEffect(() => {
     dispatch(checkUser()).catch(console.log);
-    loadUsers().catch(console.log);
-    // setTimeout(() => dispatch(stopLoading()), 1000);
+    dispatch(loadInstructors()).catch(console.log);
   }, []);
-
 
   return (
     <div className="App">

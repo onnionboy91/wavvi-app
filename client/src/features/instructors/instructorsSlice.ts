@@ -8,7 +8,7 @@ const initialState: InstructorsState = {
   loading: true,
 };
 
-export const loadInstructors = createAsyncThunk('Instructors/load', () => fetchLoadInstructors());
+export const loadInstructors = createAsyncThunk('instructors/load', () => fetchLoadInstructors());
 
 export const addInstructor = createAsyncThunk(
   'Instructors/add',

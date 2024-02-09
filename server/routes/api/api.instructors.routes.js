@@ -3,8 +3,8 @@ const { User } = require('../../db/models');
 
 router.get('/', async (req, res) => {
   try {
-    const instructors = await User.findAll({ where: { role: 'Instructor' } }); //доделать
-    res.json({ instructors });
+    const instructors = await User.findAll({ where: { role: 'Instructor' } });
+    res.json(instructors);
   } catch ({ message }) {
     res.json({ type: 'instructors router', message });
   }
