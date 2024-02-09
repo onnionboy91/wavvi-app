@@ -6,13 +6,20 @@ import AuthorizationPage from '../features/auth/AuthorizationPage';
 import { useAppDispatch } from '../redux/store';
 import { checkUser } from '../features/auth/authSlice';
 import InstructorsPage from '../features/instructors/InstructorsPage';
+import { loadCategories } from '../features/categories/categoriesSlice';
+import CategoriesPage from '../features/categories/CategoriesPage';
 import { stopLoading } from '../features/instructors/instructorsSlice';
+
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(checkUser()).catch(console.log);
+
+    dispatch(loadCategories()).catch(console.log)
+    loadUsers().catch(console.log);
+    // setTimeout(() => dispatch(stopLoading()), 1000);
     setTimeout(() => dispatch(stopLoading()), 1000);
   }, []);
 
@@ -21,6 +28,7 @@ function App(): JSX.Element {
       <Routes>
         <Route path="/" element={<NavBar />}>
           <Route path="/instructors" element={<InstructorsPage />} />
+          <Route path="/categories" element={<CategoriesPage />} />
           <Route path="/sign-in" element={<AuthorizationPage />} />
           <Route path="/sign-up" element={<RegistrationPage />} />
           <Route
