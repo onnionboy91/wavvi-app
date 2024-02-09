@@ -1,9 +1,12 @@
 import React from 'react';
+
+import './styles/style.css';
 import './styles/navbar.scss';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom'; // без перезагрузки можем менять страницу
 import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../redux/store';
 import { logOut } from '../auth/authSlice';
+
 
 const NavBar = (): JSX.Element => {
   const user = useSelector((store: RootState) => store.auth.auth);
@@ -12,6 +15,7 @@ const NavBar = (): JSX.Element => {
 
   return (
     <>
+
       <div className="container-Navbar">
         <ul className="nav__container">
           {user && user.name ? (
