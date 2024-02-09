@@ -1,11 +1,11 @@
-'use strict';
-const { Model } = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate({ Like, Comment, Galery }) {
-      this.hasMany(Like, { foreignKey: 'user_id' });
-      this.hasMany(Comment, { foreignKey: 'user_id' });
-      this.hasMany(Galery, { foreignKey: 'user_id' });
+      this.hasMany(Like, { foreignKey: "user_id" });
+      this.hasMany(Comment, { foreignKey: "user_id" });
+      this.hasMany(Galery, { foreignKey: "user_id" });
     }
   }
   User.init(
@@ -28,21 +28,21 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.TEXT,
       },
       styleDance: {
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.TEXT,
       },
       level: {
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.TEXT,
       },
       description: {
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.TEXT,
       },
     },
     {
       sequelize,
-      modelName: 'User',
+      modelName: "User",
     }
   );
   return User;

@@ -4,7 +4,6 @@ import type { Instructor, InstructorId, InstructorWithOutId } from '../features/
 import { Category } from '../features/categories/types';
 
 export const fetchLoadCategories = async (): Promise<Category[]> => {
-
   const res = await fetch('/api/categories');
   const data: { categories: Category[] } = (await res.json()) as { categories: Category[] };
   return data.categories;
@@ -71,7 +70,6 @@ export const fetchSignUp = async (user: UserSignUp): Promise<User> => {
     },
     body: JSON.stringify(user),
   });
-  console.log(user, 77);
   if (res.status >= 400) {
     const data: { message: string } = (await res.json()) as { message: string };
     throw new Error(data.message);
@@ -80,6 +78,7 @@ export const fetchSignUp = async (user: UserSignUp): Promise<User> => {
     message: string;
     user: User;
   };
+  console.log(data, 77);
   return data.user;
 };
 

@@ -47,7 +47,7 @@ router.post("/sign-up", async (req, res) => {
   let user;
   try {
     const { name, email, password, rpassword, role } = req.body;
-    // console.log(name, email, password, rpassword, role, 666);
+    console.log(name, email, password, rpassword, role, 666);
 
     if (!isValidEmail(email)) {
       res.json({ type: "blabla", message: "Некорректный формат почты!" });
@@ -65,10 +65,10 @@ router.post("/sign-up", async (req, res) => {
       return;
     }
     const hash = await bcrypt.hash(password, 10);
-    user = await User.create({ name, email, password: hash });
+    user = await User.create({ name, email, password: hash, role });
 
     const { accessToken, refreshToken } = generateTokens({
-      user: { id: user.id, name: user.name, img: user.img, role },
+      user: { id: user.id, name: user.name, img: user.img },
     });
 
     // устанавливаем куки
