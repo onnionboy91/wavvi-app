@@ -1,22 +1,27 @@
-const router = require('express').Router();
-const bcrypt = require('bcrypt');
-const { User } = require('../../db/models');
-const generateTokens = require('../../utils/authUtils');
-const configJWT = require('../../middleware/configJWT');
+const router = require("express").Router();
+const bcrypt = require("bcrypt");
+const { User } = require("../../db/models");
+const generateTokens = require("../../utils/authUtils");
+const configJWT = require("../../middleware/configJWT");
 
-router.post('/sign-in', async (req, res) => {
+function isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+router.post("/sign-in", async (req, res) => {
   let user;
   try {
     const { name, password } = req.body;
 
     user = await User.findOne({ where: { name } });
     if (!user) {
-      res.json({ message: 'Такого пользователя нет или пароль неверный' });
+      res.json({ message: "Такого пользователя нет или пароль неверный!" });
       return;
     }
     const isSame = await bcrypt.compare(password, user.password);
     if (!isSame) {
-      res.json({ message: 'Такого пользователя нет или пароль неверный' });
+      res.json({ message: "Такого пользователя нет или пароль неверный!" });
       return;
     }
     const { accessToken, refreshToken } = generateTokens({
@@ -24,58 +29,65 @@ router.post('/sign-in', async (req, res) => {
     });
 
     // устанавливаем куки
-    res.cookie('access', accessToken, {
+    res.cookie("access", accessToken, {
       maxAge: 1000 * 60 * 5,
       httpOnly: true,
     });
-    res.cookie('refresh', refreshToken, {
+    res.cookie("refresh", refreshToken, {
       maxAge: 1000 * 60 * 60 * 12,
       httpOnly: true,
     });
-    res.json({ message: 'success', user });
+    res.json({ message: "success", user });
   } catch ({ message }) {
     res.json({ message });
   }
 });
 
-router.post('/sign-up', async (req, res) => {
+router.post("/sign-up", async (req, res) => {
   let user;
   try {
-    const { name, img, password, rpassword } = req.body;
+    const { name, email, password, rpassword } = req.body;
+    // console.log(name, img, password, rpassword, 666);
 
-    if (password !== rpassword) {
-      res.status(400).json({ message: 'Пароли не совпадают!' });
+    if (!isValidEmail(email)) {
+      res.json({ type: "blabla", message: "Некорректный формат почты!" });
       return;
     }
+
+    if (password !== rpassword) {
+      res.json({ message: "Пароли не совпадают!" });
+      return;
+    }
+
     user = await User.findOne({ where: { name } });
     if (user) {
-      res.status(400).json({ message: 'Такой пользователь уже есть!' });
+      res.json({ message: "Такой пользователь уже есть!" });
       return;
     }
     const hash = await bcrypt.hash(password, 10);
-    user = await User.create({ name, password: hash, img });
+    user = await User.create({ name, email, password: hash, score: 0 });
 
     const { accessToken, refreshToken } = generateTokens({
       user: { id: user.id, name: user.name, img: user.img },
     });
 
     // устанавливаем куки
-    res.cookie('access', accessToken, {
+    res.cookie("access", accessToken, {
       maxAge: 1000 * 60 * 5,
       httpOnly: true,
     });
-    res.cookie('refresh', refreshToken, {
+    res.cookie("refresh", refreshToken, {
       maxAge: 1000 * 60 * 60 * 12,
       httpOnly: true,
     });
 
-    res.status(200).json({ message: 'success', user });
+    res.json({ message: "success", user });
   } catch ({ message }) {
-    res.status(500).json({ message });
+    res.json({ message });
   }
 });
 
-router.get('/check', async (req, res) => {
+router.get("/check", async (req, res) => {
   console.log(res.locals.user);
   if (res.locals.user) {
     const user = await User.findOne({ where: { id: res.locals.user.id } });
@@ -85,9 +97,9 @@ router.get('/check', async (req, res) => {
   res.json({});
 });
 
-router.get('/logout', (req, res) => {
+router.get("/logout", (req, res) => {
   res.clearCookie(configJWT.access.type).clearCookie(configJWT.refresh.type);
-  res.json({ message: 'success' });
+  res.json({ message: "success" });
 });
 
 module.exports = router;
