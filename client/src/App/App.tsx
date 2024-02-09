@@ -1,10 +1,16 @@
 import React  from 'react';
+import { Route, Routes } from 'react-router-dom';
+import NavBar from '../features/navbar/NavBar';
 
 function App(): JSX.Element {
  
   return (
     <div className="App">
-      <h1>WaVVi-app</h1>
+      <Routes>
+        <Route path='/' element={<NavBar/>}>
+    
+        </Route>
+      </Routes>
     </div>
   );
 }
