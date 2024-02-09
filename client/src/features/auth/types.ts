@@ -3,6 +3,7 @@ export type User = {
   name: string;
   email: string;
   password: string;
+  role: string;
 };
 
 export type AuthState = {
@@ -10,7 +11,7 @@ export type AuthState = {
   error: string | undefined;
 };
 
-export type UserSignIn = Omit<User, 'id' | 'email'>;
+export type UserSignIn = Omit<User, 'id' | 'email' | 'role'>;
 
 export type UserSignUp = Omit<User, 'id'> & { rpassword: string };
 

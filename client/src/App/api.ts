@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import type { User, UserSignIn, UserSignUp, UserWithOutId } from '../features/auth/types';
+import type { User, UserSignIn, UserSignUp } from '../features/auth/types';
 import type { Instructor, InstructorId, InstructorWithOutId } from '../features/instructors/types';
 import { Category } from '../features/categories/types';
 
@@ -70,6 +70,7 @@ export const fetchSignUp = async (user: UserSignUp): Promise<User> => {
     },
     body: JSON.stringify(user),
   });
+  console.log(user, 77);
   if (res.status >= 400) {
     const data: { message: string } = (await res.json()) as { message: string };
     throw new Error(data.message);
