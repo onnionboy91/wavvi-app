@@ -1,7 +1,7 @@
 export type User = {
   id: number;
   name: string;
-  img: string;
+  email: string;
   password: string;
 };
 
@@ -10,7 +10,7 @@ export type AuthState = {
   error: string | undefined;
 };
 
-export type UserSignIn = Omit<User, 'id' | 'img'>;
+export type UserSignIn = Omit<User, 'id' | 'email'>;
 
 export type UserSignUp = Omit<User, 'id'> & { rpassword: string };
 
