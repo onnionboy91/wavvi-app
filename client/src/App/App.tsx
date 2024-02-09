@@ -6,6 +6,8 @@ import AuthorizationPage from '../features/auth/AuthorizationPage';
 import { useAppDispatch } from '../redux/store';
 import { checkUser } from '../features/auth/authSlice';
 import InstructorsPage from '../features/instructors/InstructorsPage';
+import { loadInstructors } from '../features/instructors/instructorsSlice';
+import InstructorsPage from '../features/instructors/InstructorsPage';
 import { loadCategories } from '../features/categories/categoriesSlice';
 import CategoriesPage from '../features/categories/CategoriesPage';
 
@@ -14,7 +16,7 @@ function App(): JSX.Element {
 
   useEffect(() => {
     dispatch(checkUser()).catch(console.log);
-
+    dispatch(loadInstructors()).catch(console.log);
     dispatch(loadCategories()).catch(console.log)
   }, []);
 

@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../redux/store';
 import { logOut } from '../auth/authSlice';
 
-
 const NavBar = (): JSX.Element => {
   const user = useSelector((store: RootState) => store.auth.auth);
   const navigate = useNavigate();
@@ -15,7 +14,6 @@ const NavBar = (): JSX.Element => {
 
   return (
     <>
-
       <div className="container-Navbar">
         <ul className="nav__container">
           {user && user.name ? (
