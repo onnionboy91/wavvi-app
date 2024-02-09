@@ -1,52 +1,71 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
-import './styles/style.css';
-import { NavLink } from 'react-router-dom';
+import './styles/navbar.scss';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom'; // без перезагрузки можем менять страницу
+import { useSelector } from 'react-redux';
+import { RootState, useAppDispatch } from '../../redux/store';
+import { logOut } from '../auth/authSlice';
 
 const NavBar = (): JSX.Element => {
+  const user = useSelector((store: RootState) => store.auth.auth);
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
   return (
-    <nav className="navbar navbar-expand-lg navbar navbar-dark bg-primary">
-      <div className="container-fluid">
-        <a className="navbar-brand" href="#">
-          WaVVi
-        </a>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div className="navbar-nav">
-            <NavLink className="nav-link active" aria-current="page" to="/categories">
-              Категории
-            </NavLink>
-            <NavLink className="nav-link" to="/instructors">
-              Инструкторы
-            </NavLink>
-            <NavLink className="nav-link" to="/saved">
-              Избранное
-            </NavLink>
-            <NavLink className="nav-link" to="/sign-in">
-              Войти
-            </NavLink>
-            <NavLink className="nav-link" to="/sign-up">
-              Зарегистроваться
-            </NavLink>
-            <NavLink className="nav-link" to="/logout">
-              Выйти
-            </NavLink>
-            <Outlet />
-          </div>
-        </div>
+    <>
+      <div className="container-Navbar">
+        <ul className="nav__container">
+          {user && user.name ? (
+            <>
+              <div className="nav__list">
+                <li className="hello">Hello, {user.name}!</li>
+                <li className="nav__item">
+                  <NavLink className="nav__link" to="/">
+                    Категории
+                  </NavLink>
+                </li>
+                <li className="nav__item">
+                  <NavLink className="nav__link" to="/game">
+                    Инструкторы
+                  </NavLink>
+                </li>
+                <li className="nav__item">
+                  <NavLink className="nav__link" to="/game">
+                    Избранное
+                  </NavLink>
+                </li>
+                <li
+                  onClick={() => {
+                    dispatch(logOut()).catch(console.log);
+                    navigate('/');
+                  }}
+                  className="nav__item"
+                >
+                  <NavLink className="nav__link" to="/logout">
+                    Выйти
+                  </NavLink>
+                </li>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="nav__list">
+                <li className="nav__item">
+                  <NavLink className="nav__link" to="/sign-in">
+                    Войти
+                  </NavLink>
+                </li>
+                <li className="nav__item">
+                  <NavLink className="nav__link" to="/sign-up">
+                    Регистрация
+                  </NavLink>
+                </li>
+              </div>
+            </>
+          )}
+        </ul>
       </div>
-    </nav>
+      <Outlet />
+    </>
   );
 };
 
