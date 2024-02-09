@@ -8,8 +8,6 @@ import { checkUser } from '../features/auth/authSlice';
 import InstructorsPage from '../features/instructors/InstructorsPage';
 import { loadCategories } from '../features/categories/categoriesSlice';
 import CategoriesPage from '../features/categories/CategoriesPage';
-import { stopLoading } from '../features/instructors/instructorsSlice';
-
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -18,9 +16,6 @@ function App(): JSX.Element {
     dispatch(checkUser()).catch(console.log);
 
     dispatch(loadCategories()).catch(console.log)
-    loadUsers().catch(console.log);
-    // setTimeout(() => dispatch(stopLoading()), 1000);
-    setTimeout(() => dispatch(stopLoading()), 1000);
   }, []);
 
   return (

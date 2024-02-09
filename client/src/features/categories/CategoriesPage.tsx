@@ -6,7 +6,7 @@ import CategoryCard from './CategoryCard'
 const CategoriesPage = (): JSX.Element => {
 
     const categories = useSelector((store: RootState) => store.categories.categories)
-
+console.log(categories, 11111)
   return (
     <>
     <div>CategoriesPage</div>

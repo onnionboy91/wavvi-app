@@ -23,7 +23,7 @@ const NavBar = (): JSX.Element => {
               <div className="nav__list">
                 <li className="hello">Hello, {user.name}!</li>
                 <li className="nav__item">
-                  <NavLink className="nav__link" to="/">
+                  <NavLink className="nav__link" to="/categories">
                     Категории
                   </NavLink>
                 </li>
