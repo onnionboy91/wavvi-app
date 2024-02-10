@@ -6,6 +6,8 @@ export type Category = {
 
 export type CategoryId = Category['id']
 
+export type CategoryWithOutId = Omit<Category, 'id'>;
+
 export type CategoriesState = {
     categories: Category[],
     error: string | undefined,

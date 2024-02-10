@@ -21,4 +21,32 @@ router.get('/:categoryId', async (req, res) => {
   }
 });
 
+router.post('/', async (req, res) => {
+  try {
+    const { name, img } = req.body;
+    const category = await Category.create({
+      name, img
+    });
+    res.json({
+      category
+    });
+  } catch ({ message }) {
+    res.json({ type: 'categories router', message });
+  }
+});
+
+router.delete('/:categoryId', async (req, res) => {
+  try {
+    const { categoryId } = req.params;
+    const result = await Category.destroy({ where: { id: categoryId } });
+    if (result > 0) {
+      res.json({ message: 'success', categoryId });
+      return;
+    }
+    res.json({ message: 'Нет прав для удаления' });
+  } catch ({ message }) {
+    res.json({ message });
+  }
+});
+
 module.exports = router;

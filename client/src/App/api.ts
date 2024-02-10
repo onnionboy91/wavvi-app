@@ -1,12 +1,38 @@
 /* eslint-disable import/prefer-default-export */
 import type { User, UserSignIn, UserSignUp } from '../features/auth/types';
 import type { Instructor, InstructorId, InstructorWithOutId } from '../features/instructors/types';
-import { Category } from '../features/categories/types';
+import { Category, CategoryId, CategoryWithOutId } from '../features/categories/types';
 
 export const fetchLoadCategories = async (): Promise<Category[]> => {
   const res = await fetch('/api/categories');
   const data: { categories: Category[] } = (await res.json()) as { categories: Category[] };
   return data.categories;
+};
+
+export const fetchAddCategory = async (hero: CategoryWithOutId): Promise<Category> => {
+  const res = await fetch('/api/heroes', {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify(hero),
+  });
+  const data: { hero: Category } = (await res.json()) as { hero: Category };
+  return data.hero;
+};
+
+export const fetchCategoryRemove = async (id: CategoryId): Promise<CategoryId> => {
+  const res = await fetch(`/api/categories/${id}`, {
+    method: 'DELETE',
+  });
+  const data: { message: string; categoryId: CategoryId } = (await res.json()) as {
+    message: string;
+    categoryId:CategoryId;
+  };
+  if (data.message !== 'success') {
+    throw new Error(data.message);
+  }
+  return data.categoryId
 };
 
 export const fetchLoadInstructors = async (): Promise<Instructor[]> => {

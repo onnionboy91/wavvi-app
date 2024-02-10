@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchLoadCategories } from "../../App/api";
-import type {  CategoriesState } from "./types";
+import { fetchAddCategory, fetchCategoryRemove, fetchLoadCategories } from "../../App/api";
+import type {  CategoriesState, CategoryId, CategoryWithOutId } from "./types";
 
 const initialState: CategoriesState = {
     categories: [],
@@ -9,6 +9,10 @@ const initialState: CategoriesState = {
 }
 
 export const loadCategories = createAsyncThunk('categories/load', () => fetchLoadCategories())
+
+export const addCategory = createAsyncThunk('categories/add', (category: CategoryWithOutId) => fetchAddCategory(category))
+
+export const removeCategory = createAsyncThunk('categories/remove', (categoryId: CategoryId) => fetchCategoryRemove(categoryId))
 
 const categoriesSlice = createSlice({
     name: 'categories',
@@ -28,6 +32,18 @@ const categoriesSlice = createSlice({
           })
           .addCase(loadCategories.rejected, (state, action) => {
             state.error = action.error.message;
+          })
+          .addCase(addCategory.fulfilled, (state, action) => {
+            state.categories.push(action.payload)
+          })
+          .addCase(addCategory.rejected, (state, action) => {
+            state.error = action.error.message
+          })
+          .addCase(removeCategory.fulfilled, (state, action) => {
+            state.categories = state.categories.filter((category) => category.id !== +action.payload)
+          })
+          .addCase(removeCategory.rejected, (state, action) => {
+            state.error = action.error.message
           })
     }
 })
