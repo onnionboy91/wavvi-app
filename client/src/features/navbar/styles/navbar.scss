@@ -16,7 +16,7 @@
     background: rgba(255, 255, 255, 0.3);
     padding: 0 80px;
     gap: 30px;
-    justify-content: space-between;
+    z-index: 100;
   }
   &__list {
     display: flex;
