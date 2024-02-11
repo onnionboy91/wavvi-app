@@ -2,6 +2,7 @@
 import type { User, UserSignIn, UserSignUp } from '../features/auth/types';
 import type { Instructor, InstructorId, InstructorWithOutId } from '../features/instructors/types';
 import { Category, CategoryId, CategoryWithOutId } from '../features/categories/types';
+import { Video } from "../features/videos/types";
 
 export const fetchLoadCategories = async (): Promise<Category[]> => {
   const res = await fetch('/api/categories');
@@ -114,4 +115,13 @@ export const fetchLogOut = async (): Promise<void> => {
   if (data.message !== 'success') {
     throw new Error(data.message);
   }
+};
+
+export const fetchLoadVideos = async (id: number): Promise<Video[]> => {
+  console.log(id)
+  const res = await fetch(`/api/categories/${id}`);
+  const data: { videos: Video[] } = (await res.json()) as { videos: Video[] };
+  console.log(data, 'data');
+  
+  return data.videos;
 };
