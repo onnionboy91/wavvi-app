@@ -33,7 +33,7 @@ const AuthorizationPage = (): JSX.Element => {
           placeholder="password"
           value={password}
           onChange={(e) => setPasssword(e.target.value)}
-          type="text"
+          type="password"
           required
         />
         <button type="submit" className="form-control input submit">
