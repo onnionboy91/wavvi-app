@@ -133,7 +133,7 @@ export const fetchLoadLikes = async (): Promise<Like[]> => {
   return data;
 };
 
-export const fetchAddLike = async (like: LikeWithOutId): Promise<string> => {
+export const fetchAddLike = async (like: LikeWithOutId): Promise<Like> => {
   const res = await fetch('/api/likes', {
     method: 'POST',
     headers: {
@@ -141,7 +141,21 @@ export const fetchAddLike = async (like: LikeWithOutId): Promise<string> => {
     },
     body: JSON.stringify(like),
   });
-  const data: { message: string } = (await res.json()) as { message: string };
-  return data.message;
+  const data: { like: Like } = (await res.json()) as { like: Like };
+  return data.like;
 };
+
+// export const fetchLikeRemove = async (like: LikeWithOutId): Promise<string> => {
+//   const res = await fetch(`/api/instructors/${id}`, {
+//     method: 'DELETE',
+//   });
+//   const data: { message: string; instructorId: InstructorId } = (await res.json()) as {
+//     message: string;
+//     instructorId: InstructorId;
+//   };
+//   if (data.message !== 'success') {
+//     throw new Error(data.message);
+//   }
+//   return data.instructorId;
+// };
 

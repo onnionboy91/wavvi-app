@@ -13,8 +13,8 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const { user_id, video_id } = req.body;
-    await Like.create({ user_id: user_id, video_id: video_id });
-    res.json({ message: 'success' });
+    const like = await Like.create({ user_id: user_id, video_id: video_id });
+    res.json({ like });
   } catch ({ message }) {
     res.json({ message });
   }

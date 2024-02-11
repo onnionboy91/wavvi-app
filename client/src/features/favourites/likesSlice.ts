@@ -12,6 +12,10 @@ export const loadLikes = createAsyncThunk('likes/load', () => fetchLoadLikes());
 
 export const addLike = createAsyncThunk('likes/add', (like: LikeWithOutId) => fetchAddLike(like));
 
+// export const removeLike = createAsyncThunk('likes/remove', (like: LikeWithOutId) =>
+//   fetchLikeRemove(like),
+// );
+
 const LikesSlice = createSlice({
   name: 'likes',
   initialState,
@@ -32,11 +36,18 @@ const LikesSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(addLike.fulfilled, (state, action) => {
-        state.likes;
+        state.likes.push(action.payload);
       })
       .addCase(addLike.rejected, (state, action) => {
         state.error = action.error.message;
       });
+    //     .addCase(removeLike.fulfilled, (state, action) => {
+    //       state.likes = state.likes;
+    //     })
+    //     .addCase(removeLike.rejected, (state, action) => {
+    //       state.error = action.error.message;
+    //     });
+    // },
   },
 });
 
