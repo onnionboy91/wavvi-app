@@ -9,6 +9,7 @@ import { loadInstructors } from '../features/instructors/instructorsSlice';
 import InstructorsPage from '../features/instructors/InstructorsPage';
 import { loadCategories } from '../features/categories/categoriesSlice';
 import CategoriesPage from '../features/categories/CategoriesPage';
+import { loadComments } from '../features/comments/commentsSlice';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -17,6 +18,7 @@ function App(): JSX.Element {
     dispatch(checkUser()).catch(console.log);
     dispatch(loadInstructors()).catch(console.log);
     dispatch(loadCategories()).catch(console.log)
+    dispatch(loadComments()).catch(console.log)
   }, []);
 
   return (

@@ -3,9 +3,13 @@ import { Category } from './types'
 import { Link } from 'react-router-dom'
 import { removeCategory } from './categoriesSlice'
 import { useAppDispatch } from '../../redux/store'
+import FormAddComment from '../comments/FormAddComment'
+
 
 const CategoryCard = ({category}: {category: Category}): JSX.Element => {
+
 const dispatch = useAppDispatch()
+
   return (
     <>
     <div className="card" style={{margin: '50px'}} >
@@ -17,6 +21,7 @@ const dispatch = useAppDispatch()
     <button className="btn btn-danger" onClick={() => dispatch(removeCategory(category.id))} type='button'>Удалить</button>
   </div>
 </div>
+<FormAddComment/>
 </>
   )
 }
