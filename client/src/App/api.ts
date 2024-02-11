@@ -78,7 +78,7 @@ export const fetchSignUp = async (user: UserSignUp): Promise<User> => {
     message: string;
     user: User;
   };
-  console.log(data, 77);
+  // console.log(data, 77);
   return data.user;
 };
 

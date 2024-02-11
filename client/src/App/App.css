@@ -43,3 +43,14 @@
 .read-the-docs {
   color: #888;
 }
+
+.app {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.error {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+}
