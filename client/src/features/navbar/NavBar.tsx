@@ -31,7 +31,7 @@ const NavBar = (): JSX.Element => {
                   </NavLink>
                 </li>
                 <li className="nav__item">
-                  <NavLink className="nav__link" to="/saved">
+                  <NavLink className="nav__link" to="/favourites">
                     Избранное
                   </NavLink>
                 </li>

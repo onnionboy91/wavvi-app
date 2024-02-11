@@ -9,6 +9,8 @@ import { loadInstructors } from '../features/instructors/instructorsSlice';
 import InstructorsPage from '../features/instructors/InstructorsPage';
 import { loadCategories } from '../features/categories/categoriesSlice';
 import CategoriesPage from '../features/categories/CategoriesPage';
+import FavouritesPage from '../features/favourites/FavouritesPage';
+import { loadLikes } from '../features/favourites/likesSlice';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -16,7 +18,8 @@ function App(): JSX.Element {
   useEffect(() => {
     dispatch(checkUser()).catch(console.log);
     dispatch(loadInstructors()).catch(console.log);
-    dispatch(loadCategories()).catch(console.log)
+    dispatch(loadCategories()).catch(console.log);
+    dispatch(loadLikes()).catch(console.log);
   }, []);
 
   return (
@@ -27,6 +30,7 @@ function App(): JSX.Element {
           <Route path="/categories" element={<CategoriesPage />} />
           <Route path="/sign-in" element={<AuthorizationPage />} />
           <Route path="/sign-up" element={<RegistrationPage />} />
+          <Route path="/favourites" element={<FavouritesPage />} />
           <Route
             path="*"
             element={
