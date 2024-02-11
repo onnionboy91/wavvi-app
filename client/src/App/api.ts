@@ -2,6 +2,7 @@
 import type { User, UserSignIn, UserSignUp } from '../features/auth/types';
 import type { Instructor, InstructorId, InstructorWithOutId } from '../features/instructors/types';
 import { Category, CategoryId, CategoryWithOutId } from '../features/categories/types';
+import type { Comment, CommentId, CommentWithOutId } from '../features/comments/types';
 import { Video } from "../features/videos/types";
 import { Like, LikeWithOutId } from '../features/favourites/types';
 
@@ -19,8 +20,8 @@ export const fetchAddCategory = async (hero: CategoryWithOutId): Promise<Categor
     },
     body: JSON.stringify(hero),
   });
-  const data: { hero: Category } = (await res.json()) as { hero: Category };
-  return data.hero;
+  const data: { categories: Category } = (await res.json()) as { categories: Category };
+  return data.categories;
 };
 
 export const fetchCategoryRemove = async (id: CategoryId): Promise<CategoryId> => {
@@ -116,6 +117,38 @@ export const fetchLogOut = async (): Promise<void> => {
   if (data.message !== 'success') {
     throw new Error(data.message);
   }
+};
+
+export const fetchLoadComments = async (): Promise<Comment[]> => {
+  const res = await fetch('/api/comments')
+  const data: {comments: Comment[]} = (await res.json()) as {comments: Comment[]}
+  return data.comments
+}
+
+export const fetchAddComment = async (comment: CommentWithOutId): Promise<Comment> => {
+  const res = await fetch('/api/comments', {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json'
+    },
+    body: JSON.stringify(comment)
+  })
+  const data: {comments: Comment} = (await res.json()) as {comments: Comment}
+  return data.comments
+}
+
+export const fetchCommentRemove = async (id: CommentId): Promise<CommentId> => {
+  const res = await fetch(`/api/comments/${id}`, {
+    method: 'DELETE',
+  });
+  const data: { message: string; commentId: CommentId } = (await res.json()) as {
+    message: string;
+    commentId:CommentId;
+  };
+  if (data.message !== 'success') {
+    throw new Error(data.message);
+  }
+  return data.commentId
 };
 
 export const fetchLoadVideos = async (id: number): Promise<Video[]> => {

@@ -9,10 +9,10 @@ import { loadInstructors } from '../features/instructors/instructorsSlice';
 import InstructorsPage from '../features/instructors/InstructorsPage';
 import { loadCategories } from '../features/categories/categoriesSlice';
 import CategoriesPage from '../features/categories/CategoriesPage';
+import { loadComments } from '../features/comments/commentsSlice';
 import CategoryVideos from "../features/videos/CategoryVideos";
 import FavouritesPage from '../features/favourites/FavouritesPage';
 import { loadLikes } from '../features/favourites/likesSlice';
-
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -20,6 +20,7 @@ function App(): JSX.Element {
   useEffect(() => {
     dispatch(checkUser()).catch(console.log);
     dispatch(loadInstructors()).catch(console.log);
+    dispatch(loadComments()).catch(console.log)
     dispatch(loadCategories()).catch(console.log);
     dispatch(loadLikes()).catch(console.log);
   }, []);
