@@ -1,10 +1,32 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { fetchCheckUser, fetchLogOut, fetchSignIn, fetchSignUp } from '../../App/api';
 import type { AuthState, UserSignIn, UserSignUp } from './types';
 
 const initialState: AuthState = {
   auth: undefined,
   error: undefined,
+  passwordError: undefined, // добавили
+  password: '', // Добавлено поле password
+  rpassword: '',
+};
+
+export const validatePassword = (password: string): string | undefined => {
+  if (password.length < 6) {
+    return 'Пароль должен быть не менее 6 символов.';
+  } else {
+    return undefined; // Если пароль прошел валидацию, возвращаем undefined
+  }
+};
+
+export const validatePasswordsMatchs = (
+  password: string,
+  rpassword: string,
+): string | undefined => {
+  if (password !== rpassword) {
+    return 'Пароли не совпадают!';
+  } else {
+    return undefined; // Если пароли совпадают, возвращаем undefined
+  }
 };
 
 export const checkUser = createAsyncThunk('auth/check', () => fetchCheckUser());
@@ -21,6 +43,14 @@ const authSlice = createSlice({
   reducers: {
     clearError: (state) => {
       state.error = undefined;
+    },
+    setPasswordError: (state, action: PayloadAction<string | undefined>) => {
+      state.passwordError = action.payload;
+    },
+    validatePasswordsMatchs(state, action: PayloadAction<string | undefined>) {
+      const rpassword = action.payload || '';
+      const passwordError = validatePasswordsMatchs(state.password, rpassword);
+      state.passwordError = passwordError;
     },
   },
   extraReducers: (builder) => {
@@ -51,5 +81,5 @@ const authSlice = createSlice({
       });
   },
 });
-export const { clearError } = authSlice.actions;
+export const { clearError, setPasswordError } = authSlice.actions;
 export default authSlice.reducer;

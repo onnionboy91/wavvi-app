@@ -26,6 +26,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.TEXT,
       },
+      img: {
+        allowNull: false,
+        type: Sequelize.TEXT,
+      },
       styleDance: {
         allowNull: true,
         type: Sequelize.TEXT,

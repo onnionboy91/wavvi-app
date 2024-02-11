@@ -21,6 +21,11 @@ const NavBar = (): JSX.Element => {
               <div className="nav__list">
                 <li className="hello">Hello, {user.name}!</li>
                 <li className="nav__item">
+                  <a>
+                    <img src={user.img} className="avatar" />
+                  </a>
+                </li>
+                <li className="nav__item">
                   <NavLink className="nav__link" to="/categories">
                     Категории
                   </NavLink>
