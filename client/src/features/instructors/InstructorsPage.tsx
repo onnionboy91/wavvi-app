@@ -10,7 +10,7 @@ function InstructorsPage(): JSX.Element {
   return (
     <>
       <h1>Instructors</h1>
-      <div style={{ display: 'flex' }}>
+      <div className="card-container">
         {instructors.map((instructor) => (
           <InstructorCard key={instructor.id} instructor={instructor} />
         ))}
