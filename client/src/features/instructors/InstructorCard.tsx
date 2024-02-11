@@ -13,13 +13,13 @@ function InstructorCard({ instructor }: { instructor: Instructor }): JSX.Element
 
   const dispatch = useAppDispatch();
 
-  const onHandleLike = (): void => {
-    
-   const res = dispatch(addLike({user_id: ???, video_id: instructor.id})).catch(console.log);
-   if(res) {
-    setLike((prev) => (prev === likeImg ? likeImgRed : likeImg));
-   }    
-  };
+  // const onHandleLike = (): void => {
+
+  //  const res = dispatch(addLike({user_id: ???, video_id: instructor.id})).catch(console.log);
+  //  if(res) {
+  //   setLike((prev) => (prev === likeImg ? likeImgRed : likeImg));
+  //  }
+  // };
 
   const onHandleRemove = (): void => {
     dispatch(removeInstructor(instructor.id)).catch(console.log);
