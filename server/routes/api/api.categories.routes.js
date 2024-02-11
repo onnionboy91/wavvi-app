@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
 
 router.get('/:categoryId', async (req, res) => {
   try {
-    
+    const {categoryId} = req.params;
     const videos = await Video.findAll({where: {category_id: categoryId} });
     res.json({ videos });
   } catch ({ message }) {

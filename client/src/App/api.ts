@@ -3,6 +3,8 @@ import type { User, UserSignIn, UserSignUp } from '../features/auth/types';
 import type { Instructor, InstructorId, InstructorWithOutId } from '../features/instructors/types';
 import { Category, CategoryId, CategoryWithOutId } from '../features/categories/types';
 import type { Comment, CommentId, CommentWithOutId } from '../features/comments/types';
+import { Video } from "../features/videos/types";
+import { Like, LikeWithOutId } from '../features/favourites/types';
 
 export const fetchLoadCategories = async (): Promise<Category[]> => {
   const res = await fetch('/api/categories');
@@ -28,12 +30,12 @@ export const fetchCategoryRemove = async (id: CategoryId): Promise<CategoryId> =
   });
   const data: { message: string; categoryId: CategoryId } = (await res.json()) as {
     message: string;
-    categoryId:CategoryId;
+    categoryId: CategoryId;
   };
   if (data.message !== 'success') {
     throw new Error(data.message);
   }
-  return data.categoryId
+  return data.categoryId;
 };
 
 export const fetchLoadInstructors = async (): Promise<Instructor[]> => {
@@ -105,7 +107,7 @@ export const fetchSignUp = async (user: UserSignUp): Promise<User> => {
     message: string;
     user: User;
   };
-  console.log(data, 77);
+  // console.log(data, 77);
   return data.user;
 };
 
@@ -148,3 +150,45 @@ export const fetchCommentRemove = async (id: CommentId): Promise<CommentId> => {
   }
   return data.commentId
 };
+
+export const fetchLoadVideos = async (id: number): Promise<Video[]> => {
+  console.log(id)
+  const res = await fetch(`/api/categories/${id}`);
+  const data: { videos: Video[] } = (await res.json()) as { videos: Video[] };
+  console.log(data, 'data');
+  
+  return data.videos;
+};
+
+export const fetchLoadLikes = async (): Promise<Like[]> => {
+  const result = await fetch('/api/likes');
+  const data: Like[] = await result.json();
+  return data;
+};
+
+export const fetchAddLike = async (like: LikeWithOutId): Promise<Like> => {
+  const res = await fetch('/api/likes', {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify(like),
+  });
+  const data: { like: Like } = (await res.json()) as { like: Like };
+  return data.like;
+};
+
+// export const fetchLikeRemove = async (like: LikeWithOutId): Promise<string> => {
+//   const res = await fetch(`/api/instructors/${id}`, {
+//     method: 'DELETE',
+//   });
+//   const data: { message: string; instructorId: InstructorId } = (await res.json()) as {
+//     message: string;
+//     instructorId: InstructorId;
+//   };
+//   if (data.message !== 'success') {
+//     throw new Error(data.message);
+//   }
+//   return data.instructorId;
+// };
+

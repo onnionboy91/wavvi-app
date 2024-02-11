@@ -4,6 +4,8 @@ import authSlice from '../features/auth/authSlice';
 import instructorsSlice from '../features/instructors/instructorsSlice';
 import categoriesSlice from '../features/categories/categoriesSlice';
 import commentsSlice from '../features/comments/commentsSlice';
+import videosSlice from "../features/videos/videosSlice";
+import likesSlice from '../features/favourites/likesSlice';
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +13,8 @@ export const store = configureStore({
     instructors: instructorsSlice,
     categories: categoriesSlice,
     comments: commentsSlice
+    videos: videosSlice,
+    likes: likesSlice,
   },
 });
 

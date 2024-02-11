@@ -1,19 +1,37 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import React, { useState } from 'react';
+import React from 'react';
 import { Instructor } from './types';
-import likeImg from '../../../assets/img/party_13739378.png';
-import likeImgRed from '../../../assets/img/heart_2107845.png';
+// import likeImg from '../../../assets/img/party_13739378.png';
+// import likeImgRed from '../../../assets/img/heart_2107845.png';
 import { removeInstructor } from './instructorsSlice';
 import { useAppDispatch } from '../../redux/store';
+import './styles/style.css';
+// import { addLike } from '../favourites/likesSlice';
 
 function InstructorCard({ instructor }: { instructor: Instructor }): JSX.Element {
-  const [like, setLike] = useState(likeImg);
+  // const [likeState, setLike] = useState(likeImg); //все закоменченое перенесу в карточку видоса
 
   const dispatch = useAppDispatch();
 
-  const onHandleLike = (): void => {
-    setLike((prev) => (prev === likeImg ? likeImgRed : likeImg));
-  };
+  // const onHandleLikeVideo = (): void => {
+  // let LikeId;
+  // if(likeState === likeImg) {
+  // const result = dispatch(addLike({user_id: ???, video_id: video.id})).catch(console.log);
+  // console.log(result); //что возвращает диспатч?
+  // LikeId = result.like.id
+  // if(result) {
+  //    setLike((prev) => (prev === likeImg ? likeImgRed : likeImg));
+  //   }
+  // } else {
+  // const result = dispatch(removeLike(LikeId)).catch(console.log);
+  // console.log(result);
+  // if(result.message === "success") {
+  //    setLike((prev) => (prev === likeImg ? likeImgRed : likeImg));
+  //   }
+  // }
+  //
+  //
+  //  };
 
   const onHandleRemove = (): void => {
     dispatch(removeInstructor(instructor.id)).catch(console.log);
@@ -21,25 +39,29 @@ function InstructorCard({ instructor }: { instructor: Instructor }): JSX.Element
 
   return (
     <>
-      <div className="card" style={{ width: '12rem', margin: '10px' }}>
-        <img
-          src="https://images.unsplash.com/photo-1495791185843-c73f2269f669?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          className="card-img-top"
-          alt="nice guy"
-        />
-        <div className="card-body">
-          <h5 className="card-title">{instructor.name}</h5>
-          <p className="card-text">{instructor.styleDance}</p>
-          <a href="#" className="btn btn-primary">
-            Подробнее
-          </a>
+      <div className="card">
+        <div className="card-flex">
+          <img
+            className="card-photo"
+            src="https://images.unsplash.com/photo-1601128426315-7a1d9168f163?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzZ8fGhpcCUyMGhvcHxlbnwwfHwwfHx8MA%3D%3D"
+            alt="Nice dancer"
+          />
+          <h2>{instructor.name}</h2>
+          <h3>{instructor.styleDance}</h3>
+          <p className="card-text">{instructor.description}</p>
+        </div>
+        <div className="card-btns">
           <button type="button" onClick={onHandleRemove} className="btn btn-danger">
             Удоли
           </button>
-          <button onClick={onHandleLike} type="button">
-            <img style={{ width: '30px', margin: '8px' }} src={like}></img>
+          <button type="button" className="btn btn-warning">
+            Измени
           </button>
         </div>
+        {/* <button onClick={onHandleLikeVideo} type="button">
+          <img className="btn-like-img" src={likeState}></img>
+        </button> */}
+        <button className="details-button">Подробнее</button>
       </div>
     </>
   );

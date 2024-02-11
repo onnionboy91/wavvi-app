@@ -12,9 +12,9 @@ function isValidEmail(email) {
 router.post("/sign-in", async (req, res) => {
   let user;
   try {
-    const { name, password } = req.body;
+    const { email, password } = req.body;
 
-    user = await User.findOne({ where: { name } });
+    user = await User.findOne({ where: { email } });
     if (!user) {
       res.json({ message: "Такого пользователя нет или пароль неверный!" });
       return;
@@ -46,8 +46,8 @@ router.post("/sign-in", async (req, res) => {
 router.post("/sign-up", async (req, res) => {
   let user;
   try {
-    const { name, email, password, rpassword, role } = req.body;
-    console.log(name, email, password, rpassword, role, 666);
+    const { name, email, password, rpassword, img, role } = req.body;
+    // console.log(name, email, password, rpassword, role, 666);
 
     if (!isValidEmail(email)) {
       res.json({ type: "blabla", message: "Некорректный формат почты!" });
@@ -55,17 +55,17 @@ router.post("/sign-up", async (req, res) => {
     }
 
     if (password !== rpassword) {
-      res.json({ message: "Пароли не совпадают!" });
+      res.status(400).json({ message: "Пароли не совпадают!" });
       return;
     }
 
     user = await User.findOne({ where: { name } });
     if (user) {
-      res.json({ message: "Такой пользователь уже есть!" });
+      res.status(400).json({ message: "Такой пользователь уже есть!" });
       return;
     }
     const hash = await bcrypt.hash(password, 10);
-    user = await User.create({ name, email, password: hash, role });
+    user = await User.create({ name, email, password: hash, img, role });
 
     const { accessToken, refreshToken } = generateTokens({
       user: { id: user.id, name: user.name, img: user.img },
@@ -81,7 +81,7 @@ router.post("/sign-up", async (req, res) => {
       httpOnly: true,
     });
 
-    res.json({ message: "success", user });
+    res.status(200).json({ message: "success", user });
   } catch ({ message }) {
     res.json({ message });
   }
@@ -94,7 +94,7 @@ router.get("/check", async (req, res) => {
     res.json({ user });
     return;
   }
-  res.json({});
+  res.status(500).json({});
 });
 
 router.get("/logout", (req, res) => {

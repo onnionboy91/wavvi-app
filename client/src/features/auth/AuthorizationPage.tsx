@@ -5,38 +5,45 @@ import { signIn } from './authSlice';
 import './styles/auth.scss';
 
 const AuthorizationPage = (): JSX.Element => {
-  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPasssword] = useState('');
 
   const dispatch = useAppDispatch();
 
   return (
     <div className="auth-container">
-      {/* <h1>AuthorizationPage</h1> */}
+      <h4 className="auth">Авторизация</h4>
       <form
         className="sign-in"
         onSubmit={(e) => {
           e.preventDefault();
-          dispatch(signIn({ name, password })).catch(console.log);
+          dispatch(signIn({ email, password })).catch(console.log);
         }}
       >
         <input
-          className="form-control"
-          placeholder="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          className="form-control input"
+          placeholder="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           type="text"
           required
         />
         <input
-          className="form-control"
+          className="form-control input"
           placeholder="password"
           value={password}
           onChange={(e) => setPasssword(e.target.value)}
-          type="text"
+          type="password"
           required
         />
-        <button type="submit">Войти</button>
+        <button type="submit" className="form-control input submit">
+          Войти
+        </button>
+        <div className="reg">
+          <p>
+            У вас ещё нет аккаунта? <a href="/sign-up">Зарегистрироваться</a>
+          </p>
+        </div>
       </form>
     </div>
   );

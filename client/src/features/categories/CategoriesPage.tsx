@@ -1,7 +1,7 @@
-import { RootState } from '../../redux/store'
-import React from 'react'
-import { useSelector } from 'react-redux'
-import CategoryCard from './CategoryCard'
+import { RootState } from '../../redux/store';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import CategoryCard from './CategoryCard';
 
 const CategoriesPage = (): JSX.Element => {
 
@@ -13,7 +13,7 @@ const CategoriesPage = (): JSX.Element => {
         <CategoryCard key={category.id} category={category}/>
     ))}
     </>
-  )
-}
+  );
+};
 
-export default CategoriesPage
+export default CategoriesPage;
