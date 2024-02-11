@@ -2,6 +2,7 @@
 import type { User, UserSignIn, UserSignUp } from '../features/auth/types';
 import type { Instructor, InstructorId, InstructorWithOutId } from '../features/instructors/types';
 import { Category, CategoryId, CategoryWithOutId } from '../features/categories/types';
+import { Video } from "../features/videos/types";
 import { Like, LikeWithOutId } from '../features/favourites/types';
 
 export const fetchLoadCategories = async (): Promise<Category[]> => {
@@ -117,6 +118,15 @@ export const fetchLogOut = async (): Promise<void> => {
   }
 };
 
+export const fetchLoadVideos = async (id: number): Promise<Video[]> => {
+  console.log(id)
+  const res = await fetch(`/api/categories/${id}`);
+  const data: { videos: Video[] } = (await res.json()) as { videos: Video[] };
+  console.log(data, 'data');
+  
+  return data.videos;
+};
+
 export const fetchLoadLikes = async (): Promise<Like[]> => {
   const result = await fetch('/api/likes');
   const data: Like[] = await result.json();
@@ -134,3 +144,4 @@ export const fetchAddLike = async (like: LikeWithOutId): Promise<string> => {
   const data: { message: string } = (await res.json()) as { message: string };
   return data.message;
 };
+
