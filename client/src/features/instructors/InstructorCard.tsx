@@ -6,15 +6,20 @@ import likeImgRed from '../../../assets/img/heart_2107845.png';
 import { removeInstructor } from './instructorsSlice';
 import { useAppDispatch } from '../../redux/store';
 import './styles/style.css';
+import { addLike } from '../favourites/likesSlice';
 
 function InstructorCard({ instructor }: { instructor: Instructor }): JSX.Element {
-  const [like, setLike] = useState(likeImg);
+  const [likeState, setLike] = useState(likeImg);
 
   const dispatch = useAppDispatch();
 
-  const onHandleLike = (): void => {
-    setLike((prev) => (prev === likeImg ? likeImgRed : likeImg));
-  };
+  // const onHandleLike = (): void => {
+
+  //  const res = dispatch(addLike({user_id: ???, video_id: instructor.id})).catch(console.log);
+  //  if(res) {
+  //   setLike((prev) => (prev === likeImg ? likeImgRed : likeImg));
+  //  }
+  // };
 
   const onHandleRemove = (): void => {
     dispatch(removeInstructor(instructor.id)).catch(console.log);
@@ -42,7 +47,7 @@ function InstructorCard({ instructor }: { instructor: Instructor }): JSX.Element
           </button>
         </div>
         <button onClick={onHandleLike} type="button">
-          <img className="btn-like-img" src={like}></img>
+          <img className="btn-like-img" src={likeState}></img>
         </button>
         <button className="details-button">Подробнее</button>
       </div>
