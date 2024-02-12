@@ -13,17 +13,16 @@ const CategoryVideos = () => {
   const videos = useSelector((store: RootState) => store.videos.videos)
 
   useEffect(() => {
-    dispatch(loadVideos(+categoryId!)).catch(console.log)
-  },[])
+    dispatch(loadVideos(+categoryId!)).catch(console.log);
+  }, []);
 
   return (
     <div className='cards-videos'>
       {videos.map((video) => (
-        <CategoryVideosItem key={video.id} video={video}/>
-    ))}
+        <CategoryVideosItem key={video.id} video={video} />
+      ))}
     </div>
+  );
+};
 
-  )
-}
-
-export default CategoryVideos
+export default CategoryVideos;
