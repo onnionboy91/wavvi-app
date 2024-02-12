@@ -4,6 +4,7 @@ import { Instructor } from './types';
 import { removeInstructor } from './instructorsSlice';
 import { useAppDispatch } from '../../redux/store';
 import './styles/style.css';
+import { Link } from 'react-router-dom';
 
 function InstructorCard({ instructor }: { instructor: Instructor }): JSX.Element {
   const dispatch = useAppDispatch();
@@ -23,7 +24,6 @@ function InstructorCard({ instructor }: { instructor: Instructor }): JSX.Element
           />
           <h2>{instructor.name}</h2>
           <h3>{instructor.styleDance}</h3>
-          <p className="card-text">{instructor.description}</p>
         </div>
         <div className="card-btns">
           <button type="button" onClick={onHandleRemove} className="btn btn-danger">
@@ -33,7 +33,9 @@ function InstructorCard({ instructor }: { instructor: Instructor }): JSX.Element
             Измени
           </button>
         </div>
-        <button className="details-button">Подробнее</button>
+        <Link className="details-button" to={`/instructors/${instructor.id}`}>
+          Подробнее
+        </Link>
       </div>
     </>
   );
