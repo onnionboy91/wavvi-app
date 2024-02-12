@@ -7,8 +7,6 @@ import type { Comment, CommentId, CommentWithOutId } from '../features/comments/
 import { Video } from '../features/videos/types';
 import { Like, LikeWithOutId } from '../features/favourites/types';
 import { UserInfo, UserInfoId, UserRole } from '../features/profile/types';
-import { Video } from "../features/videos/types";
-
 
 export const fetchLoadCategories = async (): Promise<Category[]> => {
   const res = await fetch('/api/categories');
