@@ -127,7 +127,7 @@ export const fetchSignUp = async (user: UserSignUp): Promise<User> => {
   formData.append('rpassword', user.rpassword);
   formData.append('img', user.img);
   formData.append('role', user.role);
-
+//
   const res = await fetch('/api/auth/sign-up', {
     method: 'post',
     body: formData,
