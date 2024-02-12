@@ -9,6 +9,7 @@ import { loadInstructors } from '../features/instructors/instructorsSlice';
 import InstructorsPage from '../features/instructors/InstructorsPage';
 import { loadCategories } from '../features/categories/categoriesSlice';
 import CategoriesPage from '../features/categories/CategoriesPage';
+import './App.css';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -30,16 +31,19 @@ function App(): JSX.Element {
           <Route
             path="*"
             element={
-              <div>
+              <div className="container-four">
                 <img
                   src="https://w-dog.ru/wallpapers/13/13/398770840645436/ne-najden-oshibka-404-ferror-fon.jpg"
-                  // src="https://www.bbitrix.ru/upload/medialibrary/1d4/1d4bc838a0107b1b52418ce53e6715e8.png"
                   alt="img"
-                  className="error"
-                  style={{ position: 'relative', width: '100%', height: '100%' }}
+                  className="error-image"
+                  // style={{ position: 'relative', width: '100%', height: '100%' }}
                 />
-                <button type="submit" className="">
-                  <a href="/categories">НА ГЛАВНУЮ</a>
+                <button
+                  type="button"
+                  className="button"
+                  onClick={() => (window.location.href = '/categories')}
+                >
+                  ВЕРНУТЬСЯ НА ГЛАВНУЮ
                 </button>
               </div>
             }

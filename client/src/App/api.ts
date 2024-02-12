@@ -27,12 +27,12 @@ export const fetchCategoryRemove = async (id: CategoryId): Promise<CategoryId> =
   });
   const data: { message: string; categoryId: CategoryId } = (await res.json()) as {
     message: string;
-    categoryId:CategoryId;
+    categoryId: CategoryId;
   };
   if (data.message !== 'success') {
     throw new Error(data.message);
   }
-  return data.categoryId
+  return data.categoryId;
 };
 
 export const fetchLoadInstructors = async (): Promise<Instructor[]> => {
