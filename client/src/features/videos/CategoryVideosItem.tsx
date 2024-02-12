@@ -1,3 +1,8 @@
+
+import React, { useState } from 'react'
+import { Video } from "./types"
+import Modal from "./Modal"
+import FormAddComment from '../comments/FormAddComment'
 import React, { useState } from 'react';
 import { Video } from './types';
 import Modal from './Modal';
@@ -42,15 +47,16 @@ const CategoryVideosItem = ({ video }: VideosItemProps) => {
 
   return (
     <>
-    <div className="card" style={{margin: '50px'}} >
-    <img src={video.img} className="card-img-top" alt="..."/>
-    <button onClick={openModal}>Open Modal</button>
+    <div className="card-videos" style={{margin: '50px'}} >
+    <img src={video.img} className="card-img-videos" alt="..."/>
+    <button className='card-modal-videos' onClick={openModal}>PLAY</button>
       <Modal isOpen={modalOpen} onClose={closeModal}>
         <iframe width="560" height="315" src={video.content} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <FormAddComment key={video.id} video={video}/>
       </Modal>
   <div className="card-body">
-    <h5 className="card-title">{video.name}</h5>
-    <h5 className="card-title">{video.level}</h5>
+    <h5 className="card-title-videos">{video.name}</h5>
+    <h5 className="card-title-level">{video.level}</h5>
     <p className="card-text">Description</p>
     <button onClick={onHandleLike} type="button">
       <img className="btn-like-img" src={likeState}></img>
