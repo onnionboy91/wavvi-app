@@ -126,6 +126,8 @@ export const fetchLoadComments = async (): Promise<Comment[]> => {
 }
 
 export const fetchAddComment = async (comment: CommentWithOutId): Promise<Comment> => {
+  console.log(comment);
+  
   const res = await fetch('/api/comments', {
     method: 'POST',
     headers: {
@@ -133,7 +135,9 @@ export const fetchAddComment = async (comment: CommentWithOutId): Promise<Commen
     },
     body: JSON.stringify(comment)
   })
+  
   const data: {comments: Comment} = (await res.json()) as {comments: Comment}
+  console.log(data, 1111111111111);
   return data.comments
 }
 

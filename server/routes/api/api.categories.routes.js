@@ -1,9 +1,11 @@
 const router = require('express').Router();
-const { Video, Category } = require('../../db/models');
+const { Video, Category, Comment } = require('../../db/models');
 
 router.get('/', async (req, res) => {
   try {
-    const categories = await Category.findAll();
+    const categories = await Category.findAll(
+    {include: {model:Video}}
+    );
     res.json({ categories });
   } catch ({ message }) {
     res.json({ type: 'categories router', message });
