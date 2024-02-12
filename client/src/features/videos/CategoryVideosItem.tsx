@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Video } from "./types"
 import Modal from "./Modal"
+import FormAddComment from '../comments/FormAddComment'
 
 type VideosItemProps = {
   video: Video
