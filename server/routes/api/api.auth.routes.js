@@ -16,12 +16,17 @@ router.post("/sign-in", async (req, res) => {
 
     user = await User.findOne({ where: { email } });
     if (!user) {
-      res.json({ message: "Такого пользователя нет или пароль неверный!" });
+      res.json({
+        message: "Такой пользователь не существует или пароль неверный!",
+      });
       return;
+      d;
     }
     const isSame = await bcrypt.compare(password, user.password);
     if (!isSame) {
-      res.json({ message: "Такого пользователя нет или пароль неверный!" });
+      res.json({
+        message: "Такой пользователь не существует или пароль неверный!",
+      });
       return;
     }
     const { accessToken, refreshToken } = generateTokens({
@@ -50,7 +55,10 @@ router.post("/sign-up", async (req, res) => {
     // console.log(name, email, password, rpassword, role, 666);
 
     if (!isValidEmail(email)) {
-      res.json({ type: "blabla", message: "Некорректный формат почты!" });
+      res.status(400).json({
+        type: "blabla",
+        message: "Некорректный формат электронной почты!",
+      });
       return;
     }
 
@@ -61,7 +69,9 @@ router.post("/sign-up", async (req, res) => {
 
     user = await User.findOne({ where: { name } });
     if (user) {
-      res.status(400).json({ message: "Такой пользователь уже есть!" });
+      res
+        .status(400)
+        .json({ message: "Пользователь с такими данными уже существует!" });
       return;
     }
     const hash = await bcrypt.hash(password, 10);
