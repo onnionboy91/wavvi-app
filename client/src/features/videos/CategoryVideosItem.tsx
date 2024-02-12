@@ -22,6 +22,7 @@ const CategoryVideosItem = ({video}:VideosItemProps) => {
   return (
     <>
     <div className="card" style={{margin: '50px'}} >
+    <img src={video.img} className="card-img-top" alt="..."/>
     <button onClick={openModal}>Open Modal</button>
       <Modal isOpen={modalOpen} onClose={closeModal}>
         <iframe src={video.content}></iframe>

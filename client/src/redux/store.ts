@@ -12,7 +12,7 @@ export const store = configureStore({
     auth: authSlice,
     instructors: instructorsSlice,
     categories: categoriesSlice,
-    comments: commentsSlice
+    comments: commentsSlice,
     videos: videosSlice,
     likes: likesSlice,
   },
