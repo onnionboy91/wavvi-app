@@ -2,9 +2,13 @@
 import type { User, UserSignIn, UserSignUp } from '../features/auth/types';
 import type { Instructor, InstructorId, InstructorWithOutId } from '../features/instructors/types';
 import { Category, CategoryId, CategoryWithOutId } from '../features/categories/types';
+import { Like, LikeId, LikeWithOutId } from '../features/favourites/types';
 import type { Comment, CommentId, CommentWithOutId } from '../features/comments/types';
-import { Video } from "../features/videos/types";
+import { Video } from '../features/videos/types';
 import { Like, LikeWithOutId } from '../features/favourites/types';
+import { UserInfo, UserInfoId, UserRole } from '../features/profile/types';
+import { Video } from "../features/videos/types";
+
 
 export const fetchLoadCategories = async (): Promise<Category[]> => {
   const res = await fetch('/api/categories');
@@ -120,10 +124,10 @@ export const fetchLogOut = async (): Promise<void> => {
 };
 
 export const fetchLoadComments = async (): Promise<Comment[]> => {
-  const res = await fetch('/api/comments')
-  const data: {comments: Comment[]} = (await res.json()) as {comments: Comment[]}
-  return data.comments
-}
+  const res = await fetch('/api/comments');
+  const data: { comments: Comment[] } = (await res.json()) as { comments: Comment[] };
+  return data.comments;
+};
 
 export const fetchAddComment = async (comment: CommentWithOutId): Promise<Comment> => {
   console.log(comment);
@@ -131,15 +135,13 @@ export const fetchAddComment = async (comment: CommentWithOutId): Promise<Commen
   const res = await fetch('/api/comments', {
     method: 'POST',
     headers: {
-      'Content-type': 'application/json'
+      'Content-type': 'application/json',
     },
-    body: JSON.stringify(comment)
-  })
-  
-  const data: {comments: Comment} = (await res.json()) as {comments: Comment}
-  console.log(data, 1111111111111);
-  return data.comments
-}
+    body: JSON.stringify(comment),
+  });
+  const data: { comments: Comment } = (await res.json()) as { comments: Comment };
+  return data.comments;
+};
 
 export const fetchCommentRemove = async (id: CommentId): Promise<CommentId> => {
   const res = await fetch(`/api/comments/${id}`, {
@@ -147,20 +149,20 @@ export const fetchCommentRemove = async (id: CommentId): Promise<CommentId> => {
   });
   const data: { message: string; commentId: CommentId } = (await res.json()) as {
     message: string;
-    commentId:CommentId;
+    commentId: CommentId;
   };
   if (data.message !== 'success') {
     throw new Error(data.message);
   }
-  return data.commentId
+  return data.commentId;
 };
 
 export const fetchLoadVideos = async (id: number): Promise<Video[]> => {
-  console.log(id)
+  console.log(id);
   const res = await fetch(`/api/categories/${id}`);
   const data: { videos: Video[] } = (await res.json()) as { videos: Video[] };
   console.log(data, 'data');
-  
+
   return data.videos;
 };
 
@@ -195,4 +197,33 @@ export const fetchAddLike = async (like: LikeWithOutId): Promise<Like> => {
 //   }
 //   return data.instructorId;
 // };
+
+// export const fetchUserProfile = async (id: UserInfoId): Promise<UserRole> => {
+//   try {
+//     const response = await fetch(`/api/profile/${id}`);
+//     if (!response.ok) {
+//       throw new Error('Ошибка запроса личного кабинета');
+//     }
+//     const data = await response.json();
+//     // console.log(data, 555);
+//     return data;
+//   } catch (error) {
+//     console.error(error);
+//     throw error;
+//   }
+// };
+
+export const fetchLikeRemove = async (like: LikeWithOutId): Promise<number> => {
+  const result = await fetch(`/api/likes/${like.user_id}/${like.video_id}`, {
+    method: 'DELETE',
+  });
+  const data: { message: string; likeId: LikeId } = (await result.json()) as {
+    message: string;
+    likeId: LikeId;
+  };
+  if (data.message !== 'success') {
+    throw new Error(data.message);
+  }
+  return data.likeId;
+};
 

@@ -1,0 +1,23 @@
+.container-profile {
+  margin-top: 100px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 30px;
+  width: 1500px;
+  height: 100%;
+  margin: 0 auto;
+  margin-top: 100px;
+  margin-bottom: 30px;
+  // backdrop-filter: blur(10px);
+  box-shadow: 10px 10px 20px 3px rgba($color: black, $alpha: 0.5);
+  gap: 3px;
+}
+
+.image {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+}
