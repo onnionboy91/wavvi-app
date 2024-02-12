@@ -1,0 +1,11 @@
+.video1 {
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+video__media1 {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
