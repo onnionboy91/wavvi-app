@@ -1,37 +1,12 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import React from 'react';
 import { Instructor } from './types';
-// import likeImg from '../../../assets/img/party_13739378.png';
-// import likeImgRed from '../../../assets/img/heart_2107845.png';
 import { removeInstructor } from './instructorsSlice';
 import { useAppDispatch } from '../../redux/store';
 import './styles/style.css';
-// import { addLike } from '../favourites/likesSlice';
 
 function InstructorCard({ instructor }: { instructor: Instructor }): JSX.Element {
-  // const [likeState, setLike] = useState(likeImg); //все закоменченое перенесу в карточку видоса
-
   const dispatch = useAppDispatch();
-
-  // const onHandleLikeVideo = (): void => {
-  // let LikeId;
-  // if(likeState === likeImg) {
-  // const result = dispatch(addLike({user_id: ???, video_id: video.id})).catch(console.log);
-  // console.log(result); //что возвращает диспатч?
-  // LikeId = result.like.id
-  // if(result) {
-  //    setLike((prev) => (prev === likeImg ? likeImgRed : likeImg));
-  //   }
-  // } else {
-  // const result = dispatch(removeLike(LikeId)).catch(console.log);
-  // console.log(result);
-  // if(result.message === "success") {
-  //    setLike((prev) => (prev === likeImg ? likeImgRed : likeImg));
-  //   }
-  // }
-  //
-  //
-  //  };
 
   const onHandleRemove = (): void => {
     dispatch(removeInstructor(instructor.id)).catch(console.log);
@@ -58,9 +33,6 @@ function InstructorCard({ instructor }: { instructor: Instructor }): JSX.Element
             Измени
           </button>
         </div>
-        {/* <button onClick={onHandleLikeVideo} type="button">
-          <img className="btn-like-img" src={likeState}></img>
-        </button> */}
         <button className="details-button">Подробнее</button>
       </div>
     </>
