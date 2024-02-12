@@ -4,7 +4,7 @@ import authSlice from '../features/auth/authSlice';
 import instructorsSlice from '../features/instructors/instructorsSlice';
 import categoriesSlice from '../features/categories/categoriesSlice';
 import commentsSlice from '../features/comments/commentsSlice';
-import videosSlice from "../features/videos/videosSlice";
+import videosSlice from '../features/videos/videosSlice';
 import likesSlice from '../features/favourites/likesSlice';
 
 export const store = configureStore({
@@ -12,7 +12,7 @@ export const store = configureStore({
     auth: authSlice,
     instructors: instructorsSlice,
     categories: categoriesSlice,
-    comments: commentsSlice
+    comments: commentsSlice,
     videos: videosSlice,
     likes: likesSlice,
   },

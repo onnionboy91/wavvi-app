@@ -5,6 +5,9 @@ export type User = {
   password: string;
   img: string;
   role: string;
+  level?: string;
+  styleDance?: string;
+  description?: string;
 };
 
 export type AuthState = {

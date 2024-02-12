@@ -54,6 +54,7 @@ const AuthorizationPage = (): JSX.Element => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           type="text"
+          autoComplete="username"
           required
         />
 
