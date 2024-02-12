@@ -2,9 +2,10 @@ import React from 'react';
 import type { Comment } from './types';
 import { useAppDispatch } from '../../redux/store';
 import { removeComment } from './commentsSlice';
+import type { Video } from '../videos/types';
 
-const CommentCard = ({ comment }: { comment: Comment}): JSX.Element => {
-
+const CommentCard = ({ comment, video }: { comment: Comment, video: number}): JSX.Element => {
+  
   const dispatch = useAppDispatch()
   return (
     <>

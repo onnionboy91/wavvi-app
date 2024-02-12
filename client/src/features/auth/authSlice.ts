@@ -4,6 +4,7 @@ import type { AuthState, UserSignIn, UserSignUp } from './types';
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Регулярное выражение для проверки формата электронной почты
 /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 const initialState: AuthState = {
   auth: undefined,
   error: undefined,

@@ -40,6 +40,11 @@ const NavBar = (): JSX.Element => {
                     Избранное
                   </NavLink>
                 </li>
+                <li className="nav__item">
+                  <NavLink className="nav__link" to="/profile">
+                    Личный кабинет
+                  </NavLink>
+                </li>
                 <li
                   onClick={() => {
                     dispatch(logOut()).catch(console.log);
