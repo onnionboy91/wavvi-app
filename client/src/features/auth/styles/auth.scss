@@ -1,4 +1,7 @@
+// @import '~bx-icons/font/bx-icons';
+
 .auth-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   border: 1px solid white;
@@ -13,6 +16,7 @@
 }
 
 .input {
+  position: relative;
   display: flex;
   justify-content: center;
   // width: 500px;
@@ -37,3 +41,28 @@
   display: flex;
   justify-content: center;
 }
+
+.errorForm {
+  color: red;
+  display: flex;
+  justify-content: center;
+  // font-size: 30px;
+}
+
+.errorPassword {
+  color: red;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+}
+
+.bx {
+  margin-top: 10px;
+}
+
+// .bx {
+//   position: absolute;
+//   top: 10%;
+//   transform: translateY(-50%);
+//   left: 10px; /* измените значение в соответствии с вашим дизайном */
+// }

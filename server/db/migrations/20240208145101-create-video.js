@@ -21,6 +21,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.TEXT,
       },
+      img: {
+        allowNull: false,
+        type: Sequelize.TEXT,
+      },
       category_id: {
         allowNull: false,
         type: Sequelize.INTEGER,

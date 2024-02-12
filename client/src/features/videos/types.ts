@@ -4,6 +4,7 @@ export type Video = {
     content: string,
     level: string,
     category_id: number,
+    img: string,
 }
 
 export type VideoId = Video['id']

@@ -9,6 +9,10 @@ module.exports = (sequelize, DataTypes) => {
   }
   Comment.init(
     {
+      title: {
+        allowNull: false,
+        type: DataTypes.TEXT,
+      },
       user_id: {
         allowNull: false,
         type: DataTypes.INTEGER,
