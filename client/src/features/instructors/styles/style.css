@@ -1,5 +1,6 @@
 .card-container {
   display: flex;
+  flex-wrap: wrap;
 }
 .card {
   position: relative;
@@ -8,7 +9,7 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #fff;
-  margin: 10px;
+  margin: 5px;
   overflow: hidden;
 }
 .card-flex {
@@ -66,4 +67,46 @@
 }
 .card:hover .details-button {
   opacity: 1;
+}
+
+.instr-container {
+  margin-top: 10%;
+  margin-left: 5%;
+}
+
+.instr-img {
+  height: 200px;
+  width: auto;
+  margin: 5px;
+}
+
+.instr-networks {
+  display: flex;
+  justify-content: space-around;
+}
+
+.instr-profile {
+  display: flex;
+}
+
+.instr-podrobnee {
+  display: flex;
+}
+
+.instr-video {
+  width: 50%;
+}
+.instr-descr {
+  width: 50%;
+}
+
+.instr-border {
+  border: 2px solid rgba(0, 0, 0, 0.172);
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+}
+
+.instr-description {
+  text-align: start;
 }

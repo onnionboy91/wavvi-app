@@ -13,27 +13,27 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const { user_id, video_id } = req.body;
-    const like = await Like.create({ user_id: user_id, video_id: video_id });
+    const like = await Like.create({ user_id, video_id });
     res.json({ like });
+  } catch ({ message }) {
+    res.json({ type: 'like router', message });
+  }
+});
+
+router.delete('/:userId/:videoId', async (req, res) => {
+  try {
+    const { userId, videoId } = req.params;
+    const like = await Like.destroy({
+      where: { user_id: userId, video_id: videoId },
+    });
+    if (result > 0) {
+      res.json({ message: 'success', like });
+      return;
+    }
+    res.json({ message: 'Не твоя вот ты и бесишься' });
   } catch ({ message }) {
     res.json({ message });
   }
 });
-
-// router.delete('/:heroId', async (req, res) => {
-//   try {
-//     const { heroId } = req.params;
-//     const result = await Like.destroy({
-//       where: { user_id: res.locals.user.id, hero_id: heroId },
-//     });
-//     if (result > 0) {
-//       res.json({ message: 'success' });
-//       return;
-//     }
-//     res.json({ message: 'Не твоя вот ты и бесишься' });
-//   } catch ({ message }) {
-//     res.json({ message });
-//   }
-// });
 
 module.exports = router;

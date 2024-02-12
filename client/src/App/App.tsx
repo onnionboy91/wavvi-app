@@ -17,6 +17,7 @@ import CategoryVideos from '../features/videos/CategoryVideos';
 import FavouritesPage from '../features/favourites/FavouritesPage';
 import { loadLikes } from '../features/favourites/likesSlice';
 import ProfilePage from '../features/profile/ProfilePage';
+import InstructorPage from '../features/instructors/InstructorPage';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -34,6 +35,7 @@ function App(): JSX.Element {
       <Routes>
         <Route path="/" element={<NavBar />}>
           <Route path="/instructors" element={<InstructorsPage />} />
+          <Route path="/instructors/:instructorId" element={<InstructorPage />} />
           <Route path="/categories" element={<CategoriesPage />} />
           <Route path="/categories/:categoryId" element={<CategoryVideos />} />
           <Route path="/sign-in" element={<AuthorizationPage />} />

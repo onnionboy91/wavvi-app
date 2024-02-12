@@ -2,10 +2,13 @@
 import type { User, UserSignIn, UserSignUp } from '../features/auth/types';
 import type { Instructor, InstructorId, InstructorWithOutId } from '../features/instructors/types';
 import { Category, CategoryId, CategoryWithOutId } from '../features/categories/types';
+import { Like, LikeId, LikeWithOutId } from '../features/favourites/types';
 import type { Comment, CommentId, CommentWithOutId } from '../features/comments/types';
 import { Video } from '../features/videos/types';
 import { Like, LikeWithOutId } from '../features/favourites/types';
 import { UserInfo, UserInfoId, UserRole } from '../features/profile/types';
+import { Video } from "../features/videos/types";
+
 
 export const fetchLoadCategories = async (): Promise<Category[]> => {
   const res = await fetch('/api/categories');
@@ -207,3 +210,18 @@ export const fetchAddLike = async (like: LikeWithOutId): Promise<Like> => {
 //     throw error;
 //   }
 // };
+
+export const fetchLikeRemove = async (like: LikeWithOutId): Promise<number> => {
+  const result = await fetch(`/api/likes/${like.user_id}/${like.video_id}`, {
+    method: 'DELETE',
+  });
+  const data: { message: string; likeId: LikeId } = (await result.json()) as {
+    message: string;
+    likeId: LikeId;
+  };
+  if (data.message !== 'success') {
+    throw new Error(data.message);
+  }
+  return data.likeId;
+};
+
