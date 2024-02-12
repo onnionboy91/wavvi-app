@@ -12,8 +12,8 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    const { title } = req.body;
-    const comment = await Comment.create({ title, user_id: 1, video_id: 1 });
+    const { title, user_id, video_id } = req.body;
+    const comment = await Comment.create({ title, user_id, video_id });
     // const currentcomment = await Comment.findOne({where: {id: comment.id}, include: User})
     res.json({ comment });
   } catch ({ message }) {

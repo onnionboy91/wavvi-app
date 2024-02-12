@@ -4,12 +4,15 @@ import { addComment } from './commentsSlice';
 import './styles/style.css';
 import { useSelector } from 'react-redux';
 import CommentCard from './CommentCard';
+import type { Video } from '../videos/types';
 
-const FormAddComment = (): JSX.Element => {
+
+const FormAddComment = ({video}: {video: Video}): JSX.Element => {
   const [title, setTitle] = useState('');
   const dispatch = useAppDispatch();
   const comment = useSelector((store: RootState) => store.comments.comments)
-
+  const user = useSelector((store: RootState) => store.auth.auth)
+  
   return (
     <>
     <form
@@ -17,10 +20,12 @@ const FormAddComment = (): JSX.Element => {
       className="input-group"
       onSubmit={(e) => {
         e.preventDefault();
+        console.log(user);
+        
         dispatch(addComment({
           title,
-          user_id: 1,
-          video_id: 1
+          user_id: user?.id,
+          video_id: video.id
         })).catch(console.log);
       }}
     >
@@ -41,7 +46,8 @@ const FormAddComment = (): JSX.Element => {
     </form>
   <div>
 {comment.map((comment) => (
-  <CommentCard key={comment.id} comment={comment} />
+   comment.video_id === video.id &&
+    <CommentCard key={comment.id} comment={comment} video={video.id}/>
 ))}
   </div>
   </>

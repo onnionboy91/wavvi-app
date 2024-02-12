@@ -5,9 +5,14 @@ import { Category, CategoryId, CategoryWithOutId } from '../features/categories/
 import { Like, LikeId, LikeWithOutId } from '../features/favourites/types';
 import type { Comment, CommentId, CommentWithOutId } from '../features/comments/types';
 import { Video } from '../features/videos/types';
+
 // import { useNavigate } from 'react-router-dom';
 
 // const navigate = useNavigate();
+
+import { Like, LikeWithOutId } from '../features/favourites/types';
+import { UserInfo, UserInfoId, UserRole } from '../features/profile/types';
+
 
 export const fetchLoadCategories = async (): Promise<Category[]> => {
   const res = await fetch('/api/categories');
@@ -155,6 +160,8 @@ export const fetchLoadComments = async (): Promise<Comment[]> => {
 };
 
 export const fetchAddComment = async (comment: CommentWithOutId): Promise<Comment> => {
+  console.log(comment);
+  
   const res = await fetch('/api/comments', {
     method: 'POST',
     headers: {
