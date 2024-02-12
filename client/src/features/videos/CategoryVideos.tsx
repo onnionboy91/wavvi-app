@@ -15,7 +15,6 @@ const CategoryVideos = () => {
 
 
   useEffect(() => {
-    console.log('wefbwehfbweujfbewufbweuyfbewyufweuyfbweu')
     dispatch(loadVideos(+categoryId!)).catch(console.log)
   },[])
 
