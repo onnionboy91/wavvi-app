@@ -5,10 +5,9 @@ import { Category, CategoryId, CategoryWithOutId } from '../features/categories/
 import { Like, LikeId, LikeWithOutId } from '../features/favourites/types';
 import type { Comment, CommentId, CommentWithOutId } from '../features/comments/types';
 import { Video } from '../features/videos/types';
-import { Like, LikeWithOutId } from '../features/favourites/types';
-import { UserInfo, UserInfoId, UserRole } from '../features/profile/types';
-import { Video } from "../features/videos/types";
+// import { useNavigate } from 'react-router-dom';
 
+// const navigate = useNavigate();
 
 export const fetchLoadCategories = async (): Promise<Category[]> => {
   const res = await fetch('/api/categories');
@@ -95,23 +94,49 @@ export const fetchSignIn = async (user: UserSignIn): Promise<User> => {
   return data.user;
 };
 
+// export const fetchSignUp = async (user: UserSignUp): Promise<User> => {
+//   const res = await fetch('/api/auth/sign-up', {
+//     method: 'post',
+//     headers: {
+//       'content-type': 'application/json',
+//     },
+//     body: JSON.stringify(user),
+//   });
+//   if (res.status >= 400) {
+//     const data: { message: string } = (await res.json()) as { message: string };
+//     throw new Error(data.message);
+//   }
+//   const data: { message: string; user: User } = (await res.json()) as {
+//     message: string;
+//     user: User;
+//   };
+//   // console.log(data, 77);
+//   return data.user;
+// };
+
 export const fetchSignUp = async (user: UserSignUp): Promise<User> => {
+  const formData = new FormData();
+  formData.append('name', user.name);
+  formData.append('email', user.email);
+  formData.append('password', user.password);
+  formData.append('rpassword', user.rpassword);
+  formData.append('img', user.img);
+  formData.append('role', user.role);
+
   const res = await fetch('/api/auth/sign-up', {
     method: 'post',
-    headers: {
-      'content-type': 'application/json',
-    },
-    body: JSON.stringify(user),
+    body: formData,
   });
+
   if (res.status >= 400) {
     const data: { message: string } = (await res.json()) as { message: string };
     throw new Error(data.message);
   }
+
   const data: { message: string; user: User } = (await res.json()) as {
     message: string;
     user: User;
   };
-  // console.log(data, 77);
   return data.user;
 };
 
@@ -196,20 +221,24 @@ export const fetchAddLike = async (like: LikeWithOutId): Promise<Like> => {
 //   return data.instructorId;
 // };
 
-// export const fetchUserProfile = async (id: UserInfoId): Promise<UserRole> => {
-//   try {
-//     const response = await fetch(`/api/profile/${id}`);
-//     if (!response.ok) {
-//       throw new Error('Ошибка запроса личного кабинета');
-//     }
-//     const data = await response.json();
-//     // console.log(data, 555);
-//     return data;
-//   } catch (error) {
-//     console.error(error);
-//     throw error;
-//   }
-// };
+export const fetchProfileUpdate = async (user: User): Promise<User> => {
+  const res = await fetch('/api/profile', {
+    method: 'PUT',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify(user),
+  });
+  const data: { user: User; message: string } = (await res.json()) as {
+    user: User;
+    message: string;
+  };
+  if (data.message !== 'success') {
+    throw new Error(data.message);
+  }
+  // navigate('/profile');
+  return data.user;
+};
 
 export const fetchLikeRemove = async (like: LikeWithOutId): Promise<number> => {
   const result = await fetch(`/api/likes/${like.user_id}/${like.video_id}`, {
@@ -224,4 +253,3 @@ export const fetchLikeRemove = async (like: LikeWithOutId): Promise<number> => {
   }
   return data.likeId;
 };
-

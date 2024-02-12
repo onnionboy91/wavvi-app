@@ -3,6 +3,18 @@ const bcrypt = require("bcrypt");
 const { User } = require("../../db/models");
 const generateTokens = require("../../utils/authUtils");
 const configJWT = require("../../middleware/configJWT");
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "public/img");
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+
+const upload = multer({ storage });
 
 function isValidEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -48,7 +60,8 @@ router.post("/sign-in", async (req, res) => {
   }
 });
 
-router.post("/sign-up", async (req, res) => {
+router.post("/sign-up", upload.single("img"), async (req, res) => {
+  // router.post("/sign-up", async (req, res) => {
   let user;
   try {
     const { name, email, password, rpassword, img, role } = req.body;
