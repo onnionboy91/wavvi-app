@@ -77,12 +77,18 @@
 .instr-img {
   height: 200px;
   width: auto;
-  margin: 5px;
+  margin-bottom: 5px;
 }
 
 .instr-networks {
+  width: 200px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+}
+
+.netw {
+  width: 25px;
+  height: 25px;
 }
 
 .instr-profile {
@@ -109,4 +115,8 @@
 
 .instr-description {
   text-align: start;
+}
+
+.instr-contacts {
+  margin-left: 10px;
 }
