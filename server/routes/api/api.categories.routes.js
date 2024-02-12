@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Video, Category } = require('../../db/models');
+const { Video, Category, Like } = require('../../db/models');
 
 router.get('/', async (req, res) => {
   try {
@@ -12,8 +12,12 @@ router.get('/', async (req, res) => {
 
 router.get('/:categoryId', async (req, res) => {
   try {
-    const {categoryId} = req.params;
-    const videos = await Video.findAll({where: {category_id: categoryId} });
+    const { categoryId } = req.params;
+    console.log(res.locals.user.id);
+    const videos = await Video.findAll({
+      where: { category_id: categoryId },
+      // include: { model: Like, where: { user_id: res.locals.user.id } },
+    });
     res.json({ videos });
   } catch ({ message }) {
     res.json({ type: 'videos router', message });
@@ -24,10 +28,11 @@ router.post('/', async (req, res) => {
   try {
     const { name, img } = req.body;
     const category = await Category.create({
-      name, img
+      name,
+      img,
     });
     res.json({
-      category
+      category,
     });
   } catch ({ message }) {
     res.json({ type: 'categories router', message });
