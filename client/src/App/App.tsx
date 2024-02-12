@@ -9,7 +9,14 @@ import { loadInstructors } from '../features/instructors/instructorsSlice';
 import InstructorsPage from '../features/instructors/InstructorsPage';
 import { loadCategories } from '../features/categories/categoriesSlice';
 import CategoriesPage from '../features/categories/CategoriesPage';
+
 import './App.css';
+
+import { loadComments } from '../features/comments/commentsSlice';
+import CategoryVideos from "../features/videos/CategoryVideos";
+import FavouritesPage from '../features/favourites/FavouritesPage';
+import { loadLikes } from '../features/favourites/likesSlice';
+
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -17,7 +24,9 @@ function App(): JSX.Element {
   useEffect(() => {
     dispatch(checkUser()).catch(console.log);
     dispatch(loadInstructors()).catch(console.log);
+    dispatch(loadComments()).catch(console.log)
     dispatch(loadCategories()).catch(console.log);
+    dispatch(loadLikes()).catch(console.log);
   }, []);
 
   return (
@@ -26,8 +35,10 @@ function App(): JSX.Element {
         <Route path="/" element={<NavBar />}>
           <Route path="/instructors" element={<InstructorsPage />} />
           <Route path="/categories" element={<CategoriesPage />} />
+          <Route path="/categories/:categoryId" element={<CategoryVideos />} />
           <Route path="/sign-in" element={<AuthorizationPage />} />
           <Route path="/sign-up" element={<RegistrationPage />} />
+          <Route path="/favourites" element={<FavouritesPage />} />
           <Route
             path="*"
             element={
