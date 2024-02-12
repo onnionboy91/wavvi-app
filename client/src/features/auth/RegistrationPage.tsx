@@ -6,9 +6,11 @@ import {
   clearError,
   signUp,
   validatePassword,
-  setPasswordError,
-  validatePasswordsMatchs,
-  // validatePasswordsMatch,
+  setPasswordErrorLength,
+  setPasswordMatchError,
+  validateEmailFormat,
+  setEmailError,
+  validatePasswordsMatch,
 } from './authSlice';
 import './styles/auth.scss';
 
@@ -29,19 +31,26 @@ const RegistrationPage = (): JSX.Element => {
     const newPassword = e.target.value;
     setPassword(newPassword);
     const passwordError = validatePassword(newPassword); // Вызов функции для валидации пароля
-    dispatch(setPasswordError(passwordError)); // Вызов action для задания ошибки пароля в хранилище
+    dispatch(setPasswordErrorLength(passwordError)); // Вызов action для задания ошибки пароля в хранилище
   };
 
   const handleConfirmPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newRpassword = e.target.value;
     setRpassword(newRpassword);
-    const passwordsMatchError = validatePasswordsMatchs(password, newRpassword);
-    setPasswordError(passwordsMatchError);
+    const passwordsMatchError = validatePasswordsMatch(password, newRpassword);
+    setPasswordMatchError(passwordsMatchError);
+  };
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newEmail = e.target.value;
+    setEmail(newEmail);
+    const emailError = validateEmailFormat(newEmail); // Проверяем формат email
+    dispatch(setEmailError(emailError)); // Вызываем action для задания ошибки email в хранилище
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(signUp({ name, email, password, rpassword, img, role })).catch(console.log);
+    dispatch(signUp({ name, email, password, rpassword, img, role }));
   };
 
   return (
@@ -64,8 +73,9 @@ const RegistrationPage = (): JSX.Element => {
           className="form-control input"
           placeholder="email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={handleEmailChange}
           type="text"
+          autoComplete="username"
           required
         />
         <input
@@ -74,6 +84,7 @@ const RegistrationPage = (): JSX.Element => {
           value={password}
           onChange={handlePasswordChange}
           type="password"
+          autoComplete="new-password"
           required
         />
 
@@ -88,6 +99,7 @@ const RegistrationPage = (): JSX.Element => {
           value={rpassword}
           onChange={handleConfirmPasswordChange}
           type="password"
+          autoComplete="new-password"
           required
         />
         <input

@@ -2,12 +2,16 @@ import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { fetchCheckUser, fetchLogOut, fetchSignIn, fetchSignUp } from '../../App/api';
 import type { AuthState, UserSignIn, UserSignUp } from './types';
 
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Регулярное выражение для проверки формата электронной почты
+/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const initialState: AuthState = {
   auth: undefined,
   error: undefined,
-  passwordError: undefined, // добавили
-  password: '', // Добавлено поле password
+  passwordError: undefined,
+  emailError: undefined,
+  password: '',
   rpassword: '',
+  email: '',
 };
 
 export const validatePassword = (password: string): string | undefined => {
@@ -18,14 +22,28 @@ export const validatePassword = (password: string): string | undefined => {
   }
 };
 
-export const validatePasswordsMatchs = (
-  password: string,
-  rpassword: string,
-): string | undefined => {
+export const validatePasswordsMatch = (password: string, rpassword: string): string | undefined => {
   if (password !== rpassword) {
     return 'Пароли не совпадают!';
   } else {
     return undefined; // Если пароли совпадают, возвращаем undefined
+  }
+};
+
+export const validateEmailFormat = (email: string): string | undefined => {
+  // console.log(email, 'ee');
+  if (!emailRegex.test(email)) {
+    return 'Некорректный формат электронной почты!';
+  } else {
+    return undefined;
+  }
+};
+
+export const validateEmailAuthorization = (email: string): string | undefined => {
+  if (!emailRegex.test(email)) {
+    return 'Такой пользователь не существует или пароль неверный!';
+  } else {
+    return undefined;
   }
 };
 
@@ -44,13 +62,23 @@ const authSlice = createSlice({
     clearError: (state) => {
       state.error = undefined;
     },
-    setPasswordError: (state, action: PayloadAction<string | undefined>) => {
+    setPasswordErrorLength: (state, action: PayloadAction<string | undefined>) => {
       state.passwordError = action.payload;
     },
-    validatePasswordsMatchs(state, action: PayloadAction<string | undefined>) {
+    setPasswordMatchError(state, action: PayloadAction<string | undefined>) {
       const rpassword = action.payload || '';
-      const passwordError = validatePasswordsMatchs(state.password, rpassword);
+      // console.log(state.password, rpassword);
+      const passwordError = validatePasswordsMatch(state.password, rpassword);
       state.passwordError = passwordError;
+    },
+    setEmailError(state, action: PayloadAction<string | undefined>) {
+      state.error = action.payload;
+    },
+    setPasswordErrorAuth: (state, action) => {
+      state.passwordError = action.payload;
+    },
+    setEmailErrorAuth: (state, action) => {
+      state.emailError = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -81,5 +109,12 @@ const authSlice = createSlice({
       });
   },
 });
-export const { clearError, setPasswordError } = authSlice.actions;
+export const {
+  clearError,
+  setPasswordErrorLength,
+  setEmailError,
+  setPasswordMatchError,
+  setEmailErrorAuth,
+  setPasswordErrorAuth,
+} = authSlice.actions;
 export default authSlice.reducer;

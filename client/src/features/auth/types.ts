@@ -13,9 +13,11 @@ export type AuthState = {
   passwordError: string | undefined;
   password: string;
   rpassword: string;
+  email: string;
+  emailError: string | undefined;
 };
 
-export type UserSignIn = Omit<User, 'id' | 'name' | 'role'>;
+export type UserSignIn = Omit<User, 'id' | 'name' | 'role' | 'img'>;
 
 export type UserSignUp = Omit<User, 'id'> & { rpassword: string };
 
