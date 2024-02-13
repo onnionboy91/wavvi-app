@@ -115,18 +115,10 @@ export const fetchSignIn = async (user: UserSignIn): Promise<User> => {
 //   return data.user;
 // };
 
-export const fetchSignUp = async (user: UserSignUp): Promise<User> => {
-  const formData = new FormData();
-  formData.append('name', user.name);
-  formData.append('email', user.email);
-  formData.append('password', user.password);
-  formData.append('rpassword', user.rpassword);
-  formData.append('img', user.img);
-  formData.append('role', user.role);
-  //
+export const fetchSignUp = async (user: FormData): Promise<User> => {
   const res = await fetch('/api/auth/sign-up', {
     method: 'post',
-    body: formData,
+    body: user,
   });
 
   if (res.status >= 400) {
@@ -239,7 +231,6 @@ export const fetchProfileUpdate = async (user: User): Promise<User> => {
   if (data.message !== 'success') {
     throw new Error(data.message);
   }
-  // navigate('/profile');
   return data.user;
 };
 

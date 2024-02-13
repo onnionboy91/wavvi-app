@@ -19,7 +19,7 @@ const RegistrationPage = (): JSX.Element => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rpassword, setRpassword] = useState('');
-  const [img, setImg] = useState('');
+  const [img, setImg] = useState<FileList | null>(null);
   const [role, setRole] = useState('Instructor');
 
   const error = useSelector((store: RootState) => store.auth.error);
@@ -49,17 +49,24 @@ const RegistrationPage = (): JSX.Element => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(signUp({ name, email, password, rpassword, img, role }));
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('password', password);
+    formData.append('rpassword', rpassword);
+    formData.append('img', img);
+    formData.append('role', role);
+    dispatch(signUp(formData));
   };
 
   return (
     <div className="auth-container">
       <h4 className="auth">Регистрация</h4>
       <div className="errorForm">{error && <h6>{error}</h6>}</div>
-      <form className="sign-up" onSubmit={handleSubmit}>
+      <form className="sign-up" encType="multipart/form-data" onSubmit={handleSubmit}>
         <input
           className="form-control input"
-          placeholder="name"
+          placeholder="Введите имя"
           value={name}
           onChange={(e) => {
             setName(e.target.value);
@@ -71,7 +78,7 @@ const RegistrationPage = (): JSX.Element => {
         <i className="bx bxs-user"></i>
         <input
           className="form-control input"
-          placeholder="email"
+          placeholder="Почта"
           value={email}
           onChange={handleEmailChange}
           type="text"
@@ -81,7 +88,7 @@ const RegistrationPage = (): JSX.Element => {
         <i className="bx bxs-envelope"></i>
         <input
           className="form-control input"
-          placeholder="password"
+          placeholder="Введите пароль"
           value={password}
           onChange={handlePasswordChange}
           type="password"
@@ -97,7 +104,7 @@ const RegistrationPage = (): JSX.Element => {
         )}
         <input
           className="form-control input"
-          placeholder="rpassword"
+          placeholder="Повторите пароль"
           value={rpassword}
           onChange={handleConfirmPasswordChange}
           type="password"
@@ -112,6 +119,7 @@ const RegistrationPage = (): JSX.Element => {
           value={img}
           onChange={(e) => setImg(e.target.value)}
           type="file"
+          name="img"
           required
         />
         <select

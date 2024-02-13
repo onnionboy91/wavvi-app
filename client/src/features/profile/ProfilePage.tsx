@@ -36,8 +36,12 @@ function ProfilePage(): JSX.Element {
           ) : null}
         </form>
         <div className="button-container">
-          <Link to="/profile/edit">Редактировать</Link>
-          <Link to="/">Главная</Link>
+          <Link className="link-button" to="/profile/edit">
+            Редактировать
+          </Link>
+          <Link className="link-button" to="/">
+            На главную
+          </Link>
         </div>
       </div>
     </div>

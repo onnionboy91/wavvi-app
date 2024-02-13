@@ -4,6 +4,20 @@ import { useSelector } from 'react-redux';
 import './styles/style.scss';
 import { profileUpdate } from './ProfileSlice';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+// const multer = require("multer");
+
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, "public/img");
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, file.originalname);
+//   },
+// });
+
+// const upload = multer({ storage });
 
 function ProfileCard(): JSX.Element {
   const user = useSelector((store: RootState) => store.auth.auth);
@@ -12,6 +26,8 @@ function ProfileCard(): JSX.Element {
 
   const [name, setName] = useState(user?.name || '');
   const [styleDance, setStyleDance] = useState(user?.styleDance || '');
+  const [img, setImg] = useState(user?.img || '');
+
   const [description, setDescription] = useState(user?.description || '');
 
   const handleUpdateUser = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -32,13 +48,26 @@ function ProfileCard(): JSX.Element {
     <div className="profile">
       <div className="container-profile">
         <h5>Личный кабинет</h5>
-        <form className="form-update-form">
+        <form className="form-update-form" onSubmit={(e) => e.preventDefault()}>
           {user?.role === 'Instructor' && (
             <>
               <div>
                 <img className="image" src={user?.img} alt="image" />
               </div>
               <div className="userInfo">
+                <div>
+                  <p className="name-input">Фото профиля:</p>
+                  <div>
+                    <input
+                      className="inputProfile"
+                      onChange={(e) => setImg(e.target.files)}
+                      type="file"
+                    />
+                  </div>
+                  <button className="delete-button" onClick={(e) => handleUpdateUser(e)}>
+                    <i className="bx bxs-trash"></i>
+                  </button>
+                </div>
                 <div>
                   <p className="name-input">Имя:</p>
                   <input
@@ -97,6 +126,9 @@ function ProfileCard(): JSX.Element {
             <button className="save-button" onClick={(e) => handleUpdateUser(e)}>
               Сохранить
             </button>
+            <Link className="save-button" to="/profile">
+              Назад
+            </Link>
           </div>
         </form>
       </div>

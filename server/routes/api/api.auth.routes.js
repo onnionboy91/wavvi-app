@@ -16,6 +16,16 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
+const checkUserExists = async (email) => {
+  try {
+    const existingUser = await User.findOne({ email });
+    return existingUser ? true : false;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
 function isValidEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
@@ -61,6 +71,8 @@ router.post("/sign-in", async (req, res) => {
 });
 
 router.post("/sign-up", upload.single("img"), async (req, res) => {
+  console.log("file", req.file);
+  console.log(req.body);
   // router.post("/sign-up", async (req, res) => {
   let user;
   try {

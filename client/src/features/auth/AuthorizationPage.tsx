@@ -37,6 +37,13 @@ const AuthorizationPage = (): JSX.Element => {
       return;
     }
 
+    // Проверка, существует ли пользователь с заданным адресом электронной почты
+    const isUserExists = await checkUserExists(email);
+    if (!isUserExists) {
+      dispatch(setEmailErrorAuth('Пользователь с таким адресом электронной почты не существует'));
+      return;
+    }
+
     // Очистить ошибки валидации
     dispatch(setPasswordErrorAuth(''));
     dispatch(setEmailErrorAuth(''));
@@ -50,7 +57,7 @@ const AuthorizationPage = (): JSX.Element => {
       <form className="sign-in" onSubmit={handleSubmit}>
         <input
           className="form-control input"
-          placeholder="email"
+          placeholder="Почта"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           type="text"
@@ -66,7 +73,7 @@ const AuthorizationPage = (): JSX.Element => {
         )}
         <input
           className="form-control input"
-          placeholder="password"
+          placeholder="Введите пароль"
           value={password}
           onChange={(e) => setPasssword(e.target.value)}
           type="password"

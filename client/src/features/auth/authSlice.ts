@@ -52,7 +52,7 @@ export const checkUser = createAsyncThunk('auth/check', () => fetchCheckUser());
 
 export const signIn = createAsyncThunk('auth/signIn', (user: UserSignIn) => fetchSignIn(user));
 
-export const signUp = createAsyncThunk('auth/signUp', (user: UserSignUp) => fetchSignUp(user));
+export const signUp = createAsyncThunk('auth/signUp', (user: FormData) => fetchSignUp(user));
 
 export const logOut = createAsyncThunk('auth/logOut', () => fetchLogOut());
 
@@ -81,6 +81,9 @@ const authSlice = createSlice({
     setEmailErrorAuth: (state, action) => {
       state.emailError = action.payload;
     },
+    // setEmailErrorAuth: (state, action: PayloadAction<string | undefined>) => {
+    //   state.emailError = action.payload;
+    // },
   },
   extraReducers: (builder) => {
     builder

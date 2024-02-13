@@ -68,3 +68,17 @@ const NavBar = (): JSX.Element => {
 };
 
 export default NavBar;
+
+
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData();
+    if (name) formData.append('name', name);
+    if (email) formData.append('email', email);
+    if (password) formData.append('password', password);
+    if (rpassword) formData.append('rpassword', rpassword);
+     if (img && img[0]) formData.append('img', img[0]);
+    if (role) formData.append('role', role);
+    dispatch(signUp(formData));
+  };
