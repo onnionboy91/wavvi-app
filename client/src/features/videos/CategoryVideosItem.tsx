@@ -51,7 +51,7 @@ const CategoryVideosItem = ({ video }: VideosItemProps) => {
 
   return (
     <>
-    <div className="card-videos" style={{margin: '50px'}} >
+    <div className="card-videos" style={{margin: '50px'}}  >
     <img src={video.img} className="card-img-videos" alt="..."/>
     <button className='card-modal-videos' onClick={openModal}>PLAY</button>
       <Modal isOpen={modalOpen} onClose={closeModal}>

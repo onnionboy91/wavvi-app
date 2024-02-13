@@ -6,6 +6,8 @@ import { useSelector } from "react-redux"
 import { RootState } from '../../redux/store'
 import CategoryVideosItem from "./CategoryVideosItem"
 import './styles/style.css'
+import CommonlyUsedComponents from "../instructors/Calendar"
+import CallComponent from "../Call/CallComponent"
 
 const CategoryVideos = () => {
   const dispatch = useAppDispatch()
@@ -21,6 +23,10 @@ const CategoryVideos = () => {
       {videos.map((video) => (
         <CategoryVideosItem key={video.id} video={video} />
       ))}
+          <div>
+      <h1>Video Call App</h1>
+      <CallComponent />
+    </div>
     </div>
   );
 };
