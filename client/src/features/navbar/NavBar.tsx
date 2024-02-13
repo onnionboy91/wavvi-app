@@ -19,11 +19,11 @@ const NavBar = (): JSX.Element => {
           {user && user.name ? (
             <>
               <div className="nav__list">
-                <li className="hello">Hello, {user.name}!</li>
+                {/* <li className="hello">Hello, {user.name}!</li> */}
                 <li className="nav__item">
-                  <a>
+                  <NavLink to="/profile">
                     <img src={user.img} className="avatar" />
-                  </a>
+                  </NavLink>
                 </li>
                 <li className="nav__item">
                   <NavLink className="nav__link" to="/categories">
@@ -40,11 +40,11 @@ const NavBar = (): JSX.Element => {
                     Избранное
                   </NavLink>
                 </li>
-                <li className="nav__item">
+                {/* <li className="nav__item">
                   <NavLink className="nav__link" to="/profile">
                     Личный кабинет
                   </NavLink>
-                </li>
+                </li> */}
                 <li
                   onClick={() => {
                     dispatch(logOut()).catch(console.log);

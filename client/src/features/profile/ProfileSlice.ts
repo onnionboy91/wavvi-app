@@ -1,29 +1,39 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { User } from '../auth/types';
+import { fetchProfileUpdate } from '../../App/api';
 
 interface UserState {
   userInfo: User | null;
   loading: boolean;
-  error: string | null;
+  error: string | undefined;
 }
 
 const initialState: UserState = {
   userInfo: null,
   loading: false,
-  error: null,
+  error: undefined,
 };
+
+export const profileUpdate = createAsyncThunk('profile/update', (user: User) =>
+  fetchProfileUpdate(user),
+);
 
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {
-    updateUser(state, action: PayloadAction<User>) {
-      state.userInfo = action.payload;
-    },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(profileUpdate.fulfilled, (state, action) => {
+        state.userInfo = action.payload;
+      })
+      .addCase(profileUpdate.rejected, (state, action) => {
+        state.error = action.error.message;
+      });
   },
 });
 
-export const { updateUser } = userSlice.actions;
+export const {} = userSlice.actions;
 
 export default userSlice.reducer;
 

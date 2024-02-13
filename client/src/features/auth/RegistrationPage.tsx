@@ -20,7 +20,6 @@ const RegistrationPage = (): JSX.Element => {
   const [password, setPassword] = useState('');
   const [rpassword, setRpassword] = useState('');
   const [img, setImg] = useState('');
-
   const [role, setRole] = useState('Instructor');
 
   const error = useSelector((store: RootState) => store.auth.error);
@@ -69,6 +68,7 @@ const RegistrationPage = (): JSX.Element => {
           type="text"
           required
         />
+        <i className="bx bxs-user"></i>
         <input
           className="form-control input"
           placeholder="email"
@@ -78,6 +78,7 @@ const RegistrationPage = (): JSX.Element => {
           autoComplete="username"
           required
         />
+        <i className="bx bxs-envelope"></i>
         <input
           className="form-control input"
           placeholder="password"
@@ -87,6 +88,7 @@ const RegistrationPage = (): JSX.Element => {
           autoComplete="new-password"
           required
         />
+        <i className="bx bxs-lock-alt bzz1"></i>
 
         {passwordError && (
           <span className="errorPassword" style={{ color: 'red' }}>
@@ -102,12 +104,14 @@ const RegistrationPage = (): JSX.Element => {
           autoComplete="new-password"
           required
         />
+        <i className="bx bxs-lock-alt bxx"></i>
+
         <input
           className="form-control input"
           placeholder="img"
           value={img}
           onChange={(e) => setImg(e.target.value)}
-          type="text"
+          type="file"
           required
         />
         <select

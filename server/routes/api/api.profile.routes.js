@@ -1,12 +1,22 @@
-// const router = require("express").Router();
-// const { User } = require("../../db/models");
+const router = require("express").Router();
+const { User } = require("../../db/models");
 
-// router.get("/:profileId", async (req, res) => {
-//   try {
-//     const { profileId } = req.params;
-//     const user = await User.findOne({ where: { profileId: profileId } });
-//     res.json({ user });
-//   } catch ({ message }) {
-//     res.json({ type: "user router", message });
-//   }
-// });
+router.put("/", async (req, res) => {
+  try {
+    const { id, name, email, description, styleDance, img } = req.body;
+    const user = await User.findOne({ where: { id } });
+    const [result] = await User.update(
+      { name, email, img, description, styleDance },
+      { where: { id } }
+    );
+
+    if (result > 0) {
+      res.json({ message: "success", user });
+      return;
+    }
+  } catch ({ message }) {
+    res.json({ message });
+  }
+});
+
+module.exports = router;
