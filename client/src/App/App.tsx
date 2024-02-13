@@ -17,6 +17,7 @@ import { loadLikes } from '../features/favourites/likesSlice';
 import ProfilePage from '../features/profile/ProfilePage';
 import InstructorPage from '../features/instructors/InstructorPage';
 import { loadVideosAll } from '../features/videos/videosSlice';
+import ProfileCard from '../features/profile/ProfileCard';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -42,6 +43,7 @@ function App(): JSX.Element {
           <Route path="/sign-up" element={<RegistrationPage />} />
           <Route path="/favourites" element={<FavouritesPage />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/profile/edit" element={<ProfileCard />} />
           <Route
             path="*"
             element={

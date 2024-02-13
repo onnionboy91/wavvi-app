@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { RootState } from '../../redux/store';
 import { useSelector } from 'react-redux';
 import './styles/style.scss';
@@ -11,30 +11,44 @@ function ProfilePage(): JSX.Element {
     <div className="profile">
       <div className="container-profile">
         <h5>Личный кабинет</h5>
-        <form>
+        <form className="form-update-lk">
           {user?.role === 'Instructor' ? (
             <>
               <div>
                 <img className="image" src={user?.img} alt="image" />
               </div>
-              <h5>Имя: {user?.name}</h5>
-              <h5>Стиль танца: {user?.styleDance}</h5>
-              <h5>О себе: {user?.description}</h5>
+              <div className="userInfo">
+                <p>Имя: {user?.name}</p>
+                <p>Стиль танца: {user?.styleDance}</p>
+                <p>О себе: {user?.description}</p>
+              </div>
             </>
           ) : user?.role === 'Dancer' ? (
             <>
               <div>
                 <img className="image" src={user?.img} alt="image" />
               </div>
-              <div>Имя: {user?.name}</div>
-              <h5>О cебе: {user?.description}</h5>
+              <div>
+                <h5>Имя: {user?.name}</h5>
+                <h5>О себе: {user?.description}</h5>
+              </div>
             </>
           ) : null}
         </form>
-        <Link to="/other-form">Редактировать</Link>
+        <div className="button-container">
+          <Link to="/profile/edit">Редактировать</Link>
+          <Link to="/">Главная</Link>
+        </div>
       </div>
     </div>
   );
 }
 
 export default ProfilePage;
+
+{
+  /* <i className="bx bxl-telegram"></i>
+<i className="bx bxl-whatsapp"></i>
+<i className="bx bxl-facebook"></i>
+<i className="bx bxl-instagram"></i> */
+}
