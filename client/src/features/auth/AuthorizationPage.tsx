@@ -37,12 +37,12 @@ const AuthorizationPage = (): JSX.Element => {
       return;
     }
 
-    // Проверка, существует ли пользователь с заданным адресом электронной почты
-    const isUserExists = await checkUserExists(email);
-    if (!isUserExists) {
-      dispatch(setEmailErrorAuth('Пользователь с таким адресом электронной почты не существует'));
-      return;
-    }
+    // // Проверка, существует ли пользователь с заданным адресом электронной почты
+    // const isUserExists = await checkUserExists(email);
+    // if (!isUserExists) {
+    //   dispatch(setEmailErrorAuth('Пользователь с таким адресом электронной почты не существует'));
+    //   return;
+    // }
 
     // Очистить ошибки валидации
     dispatch(setPasswordErrorAuth(''));
