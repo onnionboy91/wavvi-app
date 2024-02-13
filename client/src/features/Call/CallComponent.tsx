@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 
-const socket = io('http://localhost:5000'); // Замените на адрес вашего сервера
+const socket = io('http://localhost:4000'); // Замените на адрес вашего сервера
 
 const CallComponent = () => {
   const [calling, setCalling] = useState(false);
@@ -35,9 +35,7 @@ const CallComponent = () => {
 
   return (
     <div>
-      {!calling && !callAccepted && (
-        <button onClick={handleCall}>Call</button>
-      )}
+      {!calling && !callAccepted && <button onClick={handleCall}>Call</button>}
 
       {calling && !callAccepted && (
         <div>
@@ -46,9 +44,7 @@ const CallComponent = () => {
         </div>
       )}
 
-      {callAccepted && (
-        <p>Call accepted!</p>
-      )}
+      {callAccepted && <p>Call accepted!</p>}
     </div>
   );
 };

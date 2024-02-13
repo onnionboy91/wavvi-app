@@ -9,7 +9,6 @@ import { UserInfo, UserInfoId, UserRole } from '../features/profile/types';
 // import { useNavigate } from 'react-router-dom';
 // const navigate = useNavigate();
 
-
 export const fetchLoadCategories = async (): Promise<Category[]> => {
   const res = await fetch('/api/categories');
   const data: { categories: Category[] } = (await res.json()) as { categories: Category[] };
@@ -115,10 +114,10 @@ export const fetchSignIn = async (user: UserSignIn): Promise<User> => {
 //   return data.user;
 // };
 
-export const fetchSignUp = async (user: FormData): Promise<User> => {
+export const fetchSignUp = async (formData: FormData): Promise<User> => {
   const res = await fetch('/api/auth/sign-up', {
     method: 'post',
-    body: user,
+    body: formData,
   });
 
   if (res.status >= 400) {

@@ -59,6 +59,12 @@ const RegistrationPage = (): JSX.Element => {
     dispatch(signUp(formData));
   };
 
+  // const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (e.target.files && e.target.files.length > 0) {
+  //     setImg(e.target.files);
+  //   }
+  // };  добавили с Ваней
+
   return (
     <div className="auth-container">
       <h4 className="auth">Регистрация</h4>
@@ -115,12 +121,12 @@ const RegistrationPage = (): JSX.Element => {
 
         <input
           className="form-control input"
-          placeholder="img"
-          value={img}
-          onChange={(e) => setImg(e.target.value)}
+          // placeholder="img"
+          onChange={(e) => {
+            setImg(e.target.value);
+          }}
           type="file"
           name="img"
-          required
         />
         <select
           value={role}

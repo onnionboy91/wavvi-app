@@ -16,16 +16,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-const checkUserExists = async (email) => {
-  try {
-    const existingUser = await User.findOne({ email });
-    return existingUser ? true : false;
-  } catch (error) {
-    console.error(error);
-    return false;
-  }
-};
-
 function isValidEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
@@ -42,7 +32,6 @@ router.post("/sign-in", async (req, res) => {
         message: "Такой пользователь не существует или пароль неверный!",
       });
       return;
-      d;
     }
     const isSame = await bcrypt.compare(password, user.password);
     if (!isSame) {
@@ -77,6 +66,9 @@ router.post("/sign-up", upload.single("img"), async (req, res) => {
   let user;
   try {
     const { name, email, password, rpassword, img, role } = req.body;
+    // const { img } = req.file;
+    // const newFileUrl = `/img/${req.file.originalname}`;
+    // console.log(img);
     // console.log(name, email, password, rpassword, role, 666);
 
     if (!isValidEmail(email)) {
@@ -100,7 +92,15 @@ router.post("/sign-up", upload.single("img"), async (req, res) => {
       return;
     }
     const hash = await bcrypt.hash(password, 10);
-    user = await User.create({ name, email, password: hash, img, role });
+    user = await User.create({
+      name,
+      email,
+      password: hash,
+      // img: newFileUrl,
+      img,
+
+      role,
+    });
 
     const { accessToken, refreshToken } = generateTokens({
       user: { id: user.id, name: user.name, img: user.img },
