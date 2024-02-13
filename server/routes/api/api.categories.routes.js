@@ -1,11 +1,21 @@
 const router = require('express').Router();
 const { Video, Category, Like, Comment } = require('../../db/models');
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'public/img');
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+
+const upload = multer({ storage });
 
 router.get('/', async (req, res) => {
   try {
-    const categories = await Category.findAll(
-    {include: {model:Video}}
-    );
+    const categories = await Category.findAll({ include: { model: Video } });
     res.json({ categories });
   } catch ({ message }) {
     res.json({ type: 'categories router', message });
@@ -26,12 +36,13 @@ router.get('/:categoryId', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', upload.single('img'), async (req, res) => {
   try {
-    const { name, img } = req.body;
+    const { name } = req.body;
+    const newFileUrl = `/img/${req.file.originalname}`;
     const category = await Category.create({
       name,
-      img,
+      img: newFileUrl,
     });
     res.json({
       category,

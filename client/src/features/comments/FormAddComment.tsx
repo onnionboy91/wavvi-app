@@ -12,6 +12,7 @@ const FormAddComment = ({video}: {video: Video}): JSX.Element => {
   const dispatch = useAppDispatch();
   const comment = useSelector((store: RootState) => store.comments.comments)
   const user = useSelector((store: RootState) => store.auth.auth)
+  console.log(comment);
   
   return (
     <>
@@ -20,7 +21,7 @@ const FormAddComment = ({video}: {video: Video}): JSX.Element => {
       className="input-group"
       onSubmit={(e) => {
         e.preventDefault();
-        console.log(user);
+        console.log(video.id);
         
         dispatch(addComment({
           title,

@@ -14,16 +14,14 @@ export const fetchLoadCategories = async (): Promise<Category[]> => {
   return data.categories;
 };
 
-export const fetchAddCategory = async (hero: CategoryWithOutId): Promise<Category> => {
-  const res = await fetch('/api/heroes', {
+export const fetchAddCategory = async (formData: FormData): Promise<Category> => {
+  console.log(formData)
+  const res = await fetch('/api/categories', {
     method: 'POST',
-    headers: {
-      'Content-type': 'application/json',
-    },
-    body: JSON.stringify(hero),
+    body: formData
   });
-  const data: { categories: Category } = (await res.json()) as { categories: Category };
-  return data.categories;
+  const data: { category: Category } = (await res.json()) as { category: Category };
+  return data.category;
 };
 
 export const fetchCategoryRemove = async (id: CategoryId): Promise<CategoryId> => {
@@ -137,8 +135,8 @@ export const fetchAddComment = async (comment: CommentWithOutId): Promise<Commen
     },
     body: JSON.stringify(comment),
   });
-  const data: { comments: Comment } = (await res.json()) as { comments: Comment };
-  return data.comments;
+  const data: { comment: Comment } = (await res.json()) as { comment: Comment };
+  return data.comment;
 };
 
 export const fetchCommentRemove = async (id: CommentId): Promise<CommentId> => {

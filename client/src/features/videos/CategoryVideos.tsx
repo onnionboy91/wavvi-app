@@ -17,12 +17,13 @@ const CategoryVideos = () => {
   },[])
 
   return (
-    <div className='cards-videos'>
+  <>
+      <div className='cards-videos'>
       {videos.map((video) => (
         <CategoryVideosItem key={video.id} video={video}/>
     ))}
     </div>
-
+    </>
   )
 }
 

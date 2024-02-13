@@ -60,3 +60,27 @@
   border-radius: 3px;
   cursor: pointer;
 }
+
+.form-add-categories {
+  margin-top: 100px;
+  width: 300px;
+  margin: 0 auto;
+}
+
+.form-input-categories {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.fform-btn-categories {
+  background-color: #0c61c9;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.form-btn-categories:hover {
+  background-color: #0a0880;
+}

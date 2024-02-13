@@ -1,3 +1,8 @@
+export type FormDate = {
+    name: string,
+    fileName?: string
+}
+
 export type Category = {
     id: number,
     name: string,

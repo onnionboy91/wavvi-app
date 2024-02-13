@@ -10,7 +10,7 @@ const initialState: CategoriesState = {
 
 export const loadCategories = createAsyncThunk('categories/load', () => fetchLoadCategories())
 
-export const addCategory = createAsyncThunk('categories/add', (category: CategoryWithOutId) => fetchAddCategory(category))
+export const addCategory = createAsyncThunk('categories/add', (formData: FormData) => fetchAddCategory(formData))
 
 export const removeCategory = createAsyncThunk('categories/remove', (categoryId: CategoryId) => fetchCategoryRemove(categoryId))
 
