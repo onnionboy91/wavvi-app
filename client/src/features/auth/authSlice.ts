@@ -52,7 +52,9 @@ export const checkUser = createAsyncThunk('auth/check', () => fetchCheckUser());
 
 export const signIn = createAsyncThunk('auth/signIn', (user: UserSignIn) => fetchSignIn(user));
 
-export const signUp = createAsyncThunk('auth/signUp', (user: FormData) => fetchSignUp(user));
+export const signUp = createAsyncThunk('auth/signUp', (formData: FormData) =>
+  fetchSignUp(formData),
+);
 
 export const logOut = createAsyncThunk('auth/logOut', () => fetchLogOut());
 
