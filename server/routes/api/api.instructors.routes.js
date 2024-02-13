@@ -12,7 +12,8 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    const { name, email, password, styleDance, level, description } = req.body;
+    const { name, email, password, styleDance, level, img, description } =
+      req.body;
     const instructor = await User.create({
       role: 'Instructor',
       name,
@@ -20,6 +21,7 @@ router.post('/', async (req, res) => {
       password,
       styleDance,
       level,
+      img,
       description,
     });
     res.json({
@@ -41,6 +43,36 @@ router.delete('/:instructorId', async (req, res) => {
     res.json({ message: 'Нет прав для удаления' });
   } catch ({ message }) {
     res.json({ message });
+  }
+});
+
+router.put('/', async (req, res) => {
+  try {
+    const { id, name, email, password, styleDance, level, img, description } =
+      req.body;
+    const instructorUpdate = await User.update(
+      {
+        id,
+        role: 'Instructor',
+        name,
+        email,
+        password,
+        styleDance,
+        level,
+        img,
+        description,
+      },
+      { where: { id: +id } }
+    );
+    if (instructorUpdate[0] > 0) {
+      const instructor = await User.findOne({ where: { id: +id } });
+      console.log(instructor, 33333);
+      res.json({
+        instructor,
+      });
+    }
+  } catch ({ message }) {
+    res.json({ type: 'instructors router', message });
   }
 });
 
