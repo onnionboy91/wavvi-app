@@ -9,15 +9,14 @@ import { loadInstructors } from '../features/instructors/instructorsSlice';
 import InstructorsPage from '../features/instructors/InstructorsPage';
 import { loadCategories } from '../features/categories/categoriesSlice';
 import CategoriesPage from '../features/categories/CategoriesPage';
-
 import './App.css';
-
 import { loadComments } from '../features/comments/commentsSlice';
 import CategoryVideos from '../features/videos/CategoryVideos';
 import FavouritesPage from '../features/favourites/FavouritesPage';
 import { loadLikes } from '../features/favourites/likesSlice';
 import ProfilePage from '../features/profile/ProfilePage';
 import InstructorPage from '../features/instructors/InstructorPage';
+import { loadVideosAll } from '../features/videos/videosSlice';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -27,6 +26,7 @@ function App(): JSX.Element {
     dispatch(loadInstructors()).catch(console.log);
     dispatch(loadComments()).catch(console.log);
     dispatch(loadCategories()).catch(console.log);
+    dispatch(loadVideosAll()).catch(console.log);
     dispatch(loadLikes()).catch(console.log);
   }, []);
 
@@ -42,7 +42,6 @@ function App(): JSX.Element {
           <Route path="/sign-up" element={<RegistrationPage />} />
           <Route path="/favourites" element={<FavouritesPage />} />
           <Route path="/profile" element={<ProfilePage />} />
-
           <Route
             path="*"
             element={

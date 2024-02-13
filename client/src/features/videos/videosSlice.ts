@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 // import { fetchAddCategory, fetchCategoryRemove, fetchLoadCategories } from "../../App/api";
 import { VideosState } from './types';
-import { fetchLoadVideos } from '../../App/api';
+import { fetchLoadVideos, fetchLoadVideosAll } from '../../App/api';
 import { CategoryId } from '../categories/types';
 
 const initialState: VideosState = {
@@ -12,6 +12,8 @@ const initialState: VideosState = {
 
 export const loadVideos = createAsyncThunk('videos/load', (id: CategoryId) => fetchLoadVideos(id));
 
+export const loadVideosAll = createAsyncThunk('videos/loadAll', () => fetchLoadVideosAll());
+
 // export const addCategory = createAsyncThunk('categories/add', (category: CategoryWithOutId) => fetchAddCategory(category))
 
 // export const removeCategory = createAsyncThunk('categories/remove', (categoryId: CategoryId) => fetchCategoryRemove(categoryId))
@@ -19,11 +21,7 @@ export const loadVideos = createAsyncThunk('videos/load', (id: CategoryId) => fe
 const videosSlice = createSlice({
   name: 'categories',
   initialState,
-  reducers: {
-    // stopLoading: (state) => {
-    //     state.loading = false
-    // }
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(loadVideos.fulfilled, (state, action) => {
@@ -34,6 +32,17 @@ const videosSlice = createSlice({
         state.loading = true;
       })
       .addCase(loadVideos.rejected, (state, action) => {
+        state.error = action.error.message;
+        state.loading = false;
+      })
+      .addCase(loadVideosAll.fulfilled, (state, action) => {
+        state.videos = action.payload;
+        state.loading = false;
+      })
+      .addCase(loadVideosAll.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(loadVideosAll.rejected, (state, action) => {
         state.error = action.error.message;
         state.loading = false;
       });
