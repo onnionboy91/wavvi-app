@@ -3,9 +3,7 @@ const { Video, Category, Like, Comment } = require('../../db/models');
 
 router.get('/', async (req, res) => {
   try {
-    const categories = await Category.findAll(
-    {include: {model:Video}}
-    );
+    const categories = await Category.findAll({ include: { model: Video } });
     res.json({ categories });
   } catch ({ message }) {
     res.json({ type: 'categories router', message });
