@@ -122,3 +122,8 @@
 .instr-contacts {
   margin-left: 10px;
 }
+
+.add-date-button {
+  height: 48px;
+  width: 256px;
+}

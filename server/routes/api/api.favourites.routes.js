@@ -3,8 +3,8 @@ const { Like } = require('../../db/models');
 
 router.get('/', async (req, res) => {
   try {
-    const result = await Like.findAll();
-    res.json({ result });
+    const likes = await Like.findAll();
+    res.json(likes);
   } catch ({ message }) {
     res.json({ message });
   }
