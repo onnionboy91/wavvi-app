@@ -1,9 +1,11 @@
 import React from 'react';
+import mainVideo from './mainVideo.mp4'
+import './mainPage.css'
 
 const MainPage = (): JSX.Element => {
   return (
-    <div>
-      <h2>Elbrus Bootcamp</h2>
+    <div className="video1">
+      <video className="video__media1" src={mainVideo} autoPlay muted loop></video>
     </div>
   );
 };

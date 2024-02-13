@@ -18,6 +18,7 @@ import ProfilePage from '../features/profile/ProfilePage';
 import InstructorPage from '../features/instructors/InstructorPage';
 import { loadVideosAll } from '../features/videos/videosSlice';
 import ProfileCard from '../features/profile/ProfileCard';
+import MainPage from "../features/main/MainPage";
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -35,6 +36,7 @@ function App(): JSX.Element {
     <div className="App">
       <Routes>
         <Route path="/" element={<NavBar />}>
+          <Route index path="/" element={<MainPage />} />
           <Route path="/instructors" element={<InstructorsPage />} />
           <Route path="/instructors/:instructorId" element={<InstructorPage />} />
           <Route path="/categories" element={<CategoriesPage />} />
