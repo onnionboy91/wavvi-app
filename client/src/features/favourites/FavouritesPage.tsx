@@ -24,10 +24,12 @@ function FavouritesPage(): JSX.Element {
 
   return (
     <>
-      <h1>Favourites</h1>
-      <div className="container">
-        {currentVideos &&
-          currentVideos.map((video) => <CategoryVideosItem key={video.id} video={video} />)}
+      <div style={{ marginTop: '7%' }}>
+        <h1>Favourites</h1>
+        <div className="container">
+          {currentVideos &&
+            currentVideos.map((video) => <CategoryVideosItem key={video.id} video={video} />)}
+        </div>
       </div>
     </>
   );

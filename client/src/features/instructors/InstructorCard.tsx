@@ -1,13 +1,25 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import React from 'react';
+import React, { useState } from 'react';
 import { Instructor } from './types';
 import { removeInstructor } from './instructorsSlice';
 import { useAppDispatch } from '../../redux/store';
 import './styles/style.css';
 import { Link } from 'react-router-dom';
+import Modal from './Modal';
+import FormUpdateInstructor from './FormUpdateInstructor';
 
 function InstructorCard({ instructor }: { instructor: Instructor }): JSX.Element {
   const dispatch = useAppDispatch();
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
   const onHandleRemove = (): void => {
     dispatch(removeInstructor(instructor.id)).catch(console.log);
@@ -29,10 +41,13 @@ function InstructorCard({ instructor }: { instructor: Instructor }): JSX.Element
           <button type="button" onClick={onHandleRemove} className="btn btn-danger">
             Удоли
           </button>
-          <button type="button" className="btn btn-warning">
+          <button type="button" onClick={openModal} className="btn btn-warning">
             Измени
           </button>
         </div>
+        <Modal isOpen={modalOpen} onClose={closeModal}>
+          <FormUpdateInstructor instructor={instructor} />
+        </Modal>
         <Link className="details-button" to={`/instructors/${instructor.id}`}>
           Подробнее
         </Link>
