@@ -56,13 +56,43 @@
   justify-content: center;
 }
 
-.bx {
-  margin-top: 10px;
+.bxs-user {
+  position: absolute;
+  top: 10%;
+  transform: translateY(-50%);
+  left: 520px; /* измените значение в соответствии с вашим дизайном */
+  top: 95px;
 }
 
-// .bx {
-//   position: absolute;
-//   top: 10%;
-//   transform: translateY(-50%);
-//   left: 10px; /* измените значение в соответствии с вашим дизайном */
-// }
+.bxs-lock-alt {
+  position: absolute;
+  top: 10%;
+  transform: translateY(-50%);
+  left: 520px; /* измените значение в соответствии с вашим дизайном */
+  top: 142px;
+  // bottom: 30px;
+}
+
+.bzz1 {
+  position: absolute;
+  top: 10%;
+  transform: translateY(-50%);
+  left: 520px; /* измените значение в соответствии с вашим дизайном */
+  top: 190px;
+}
+
+.bxx {
+  position: absolute;
+  top: 10%;
+  transform: translateY(-50%);
+  left: 520px; /* измените значение в соответствии с вашим дизайном */
+  top: 240px;
+}
+
+.bxs-envelope {
+  position: absolute;
+  top: 10%;
+  transform: translateY(-50%);
+  left: 520px; /* измените значение в соответствии с вашим дизайном */
+  top: 144px;
+}

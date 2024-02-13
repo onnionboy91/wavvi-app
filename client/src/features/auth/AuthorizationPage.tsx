@@ -57,8 +57,7 @@ const AuthorizationPage = (): JSX.Element => {
           autoComplete="username"
           required
         />
-
-        {/* <i className="bx bxs-user"></i> */}
+        <i className="bx bxs-user"></i>
 
         {emailError && (
           <div className="errorPassword" style={{ color: 'red' }}>
@@ -74,7 +73,7 @@ const AuthorizationPage = (): JSX.Element => {
           autoComplete="new-password"
           required
         />
-        {/* <i className="bx bxs-lock-alt"></i> */}
+        <i className="bx bxs-lock-alt"></i>
         {passwordError && (
           <div className="errorPassword" style={{ color: 'red' }}>
             {passwordError}
