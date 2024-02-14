@@ -14,20 +14,21 @@ const CategoryVideos = () => {
   const dispatch = useAppDispatch();
   const { categoryId } = useParams();
   const videos = useSelector((store: RootState) => store.videos.videos);
-  console.log(videos, 'videos');
-
+  const user = useSelector((store: RootState) => store.auth.auth);
+  
   useEffect(() => {
     dispatch(loadVideos(+categoryId!)).catch(console.log);
   }, []);
 
   return (
     <div className="cards-videos">
-      <FormAddVideo categoryId={categoryId}/>
+      {user && user.name === 'admin' && (
+        <FormAddVideo categoryId={categoryId}/>
+      )}
       {videos.map((video) => (
         <CategoryVideosItem key={video.id} video={video} />
       ))}
           <div>
-      <h1>Video Call App</h1>
       {/* <CallComponent /> */}
     </div>
     </div>

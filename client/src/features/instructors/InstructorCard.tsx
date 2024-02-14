@@ -2,7 +2,8 @@
 import React, { useState } from 'react';
 import { Instructor } from './types';
 import { removeInstructor } from './instructorsSlice';
-import { useAppDispatch } from '../../redux/store';
+import { RootState, useAppDispatch} from '../../redux/store';
+import { useSelector } from 'react-redux';
 import './styles/style.css';
 import { Link } from 'react-router-dom';
 import Modal from './Modal';
@@ -10,6 +11,8 @@ import FormUpdateInstructor from './FormUpdateInstructor';
 
 function InstructorCard({ instructor }: { instructor: Instructor }): JSX.Element {
   const dispatch = useAppDispatch();
+
+  const user = useSelector((store: RootState) => store.auth.auth)
 
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -37,7 +40,9 @@ function InstructorCard({ instructor }: { instructor: Instructor }): JSX.Element
           <h2>{instructor.name}</h2>
           <h3>{instructor.styleDance}</h3>
         </div>
-        <div className="card-btns">
+      
+        {user && user.name === 'admin' && (
+          <div className="card-btns">
           <button type="button" onClick={onHandleRemove} className="btn btn-danger">
             Удалить
           </button>
@@ -45,9 +50,10 @@ function InstructorCard({ instructor }: { instructor: Instructor }): JSX.Element
             Изменить
           </button>
         </div>
-        <Modal isOpen={modalOpen} onClose={closeModal}>
-          <FormUpdateInstructor instructor={instructor} />
-        </Modal>
+        )}
+         <Modal isOpen={modalOpen} onClose={closeModal}>
+        <FormUpdateInstructor instructor={instructor} />
+      </Modal>
         <Link className="details-button" to={`/instructors/${instructor.id}`}>
           Подробнее
         </Link>

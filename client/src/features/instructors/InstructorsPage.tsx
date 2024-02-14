@@ -7,10 +7,12 @@ import FormAddInstructor from './FormAddInstructor';
 
 function InstructorsPage(): JSX.Element {
   const instructors = useSelector((store: RootState) => store.instructors.instructors);
-
+  const user = useSelector((store: RootState) => store.auth.auth);
   return (
     <>
-      <FormAddInstructor />
+    {user?.name === 'admin' && (
+<FormAddInstructor />
+    )}
       <div className="card-container">
         {instructors.map((instructor) => (
           <InstructorCard key={instructor.id} instructor={instructor} />

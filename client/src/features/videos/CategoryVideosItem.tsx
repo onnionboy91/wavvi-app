@@ -62,7 +62,9 @@ const CategoryVideosItem = ({ video }: VideosItemProps) => {
     <>
       <div className="card-videos" style={{ margin: '50px' }}>
         <img src={video.img} className="card-img-videos" alt="..." />
-        <button onClick={handleDelete} type="button" className="form-btn-video-delete">Удалить</button>
+        {userInSystem && userInSystem.name === 'admin' && (
+      <button onClick={handleDelete} type="button" className="form-btn-video-delete">Удалить</button>
+    )}
         <button className="form-btn-video" onClick={openModal}>
           PLAY
         </button>
