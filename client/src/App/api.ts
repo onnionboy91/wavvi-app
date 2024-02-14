@@ -1,6 +1,12 @@
 /* eslint-disable import/prefer-default-export */
 import type { User, UserSignIn, UserSignUp } from '../features/auth/types';
-import type { Instructor, InstructorId, InstructorWithOutId } from '../features/instructors/types';
+import type {
+  Instructor,
+  InstructorId,
+  InstructorUpdate,
+  InstructorWithOutId,
+  NewInstructor,
+} from '../features/instructors/types';
 import { Category, CategoryId, CategoryWithOutId } from '../features/categories/types';
 import { Like, LikeId, LikeWithOutId } from '../features/favourites/types';
 import type { Comment, CommentId, CommentWithOutId } from '../features/comments/types';
@@ -8,7 +14,6 @@ import { Video } from '../features/videos/types';
 import { UserInfo, UserInfoId, UserRole } from '../features/profile/types';
 // import { useNavigate } from 'react-router-dom';
 // const navigate = useNavigate();
-
 
 export const fetchLoadCategories = async (): Promise<Category[]> => {
   const res = await fetch('/api/categories');
@@ -48,7 +53,7 @@ export const fetchLoadInstructors = async (): Promise<Instructor[]> => {
   return data;
 };
 
-export const fetchAddInstructor = async (instructor: InstructorWithOutId): Promise<Instructor> => {
+export const fetchAddInstructor = async (instructor: NewInstructor): Promise<Instructor> => {
   const res = await fetch('/api/instructors', {
     method: 'POST',
     headers: {
@@ -74,6 +79,23 @@ export const fetchInstructorRemove = async (id: InstructorId): Promise<Instructo
   return data.instructorId;
 };
 
+export const fetchUpdateInstructor = async (
+  instructor: InstructorUpdate,
+): Promise<InstructorUpdate> => {
+  console.log(instructor, 8888);
+  const res = await fetch(`/api/instructors`, {
+    method: 'PUT',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify(instructor),
+  });
+  const data: { instructor: InstructorUpdate } = (await res.json()) as {
+    instructor: InstructorUpdate;
+  };
+  return data.instructor;
+};
+
 export const fetchCheckUser = async (): Promise<User> => {
   const res = await fetch('/api/auth/check');
   const data: { user: User } = (await res.json()) as { user: User };
@@ -92,6 +114,11 @@ export const fetchSignIn = async (user: UserSignIn): Promise<User> => {
     message: string;
     user: User;
   };
+
+  if (data.message !== 'success') {
+    throw new Error(data.message);
+  }
+
   return data.user;
 };
 
@@ -115,10 +142,10 @@ export const fetchSignIn = async (user: UserSignIn): Promise<User> => {
 //   return data.user;
 // };
 
-export const fetchSignUp = async (user: FormData): Promise<User> => {
+export const fetchSignUp = async (formData: FormData): Promise<User> => {
   const res = await fetch('/api/auth/sign-up', {
     method: 'post',
-    body: user,
+    body: formData,
   });
 
   if (res.status >= 400) {

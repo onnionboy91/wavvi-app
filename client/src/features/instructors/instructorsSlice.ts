@@ -1,6 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { fetchAddInstructor, fetchInstructorRemove, fetchLoadInstructors } from '../../App/api';
-import type { InstructorId, InstructorWithOutId, InstructorsState } from './types';
+import {
+  fetchAddInstructor,
+  fetchInstructorRemove,
+  fetchLoadInstructors,
+  fetchUpdateInstructor,
+} from '../../App/api';
+import type { InstructorId, InstructorUpdate, InstructorsState, NewInstructor } from './types';
 
 const initialState: InstructorsState = {
   instructors: [],
@@ -10,14 +15,18 @@ const initialState: InstructorsState = {
 
 export const loadInstructors = createAsyncThunk('instructors/load', () => fetchLoadInstructors());
 
-export const addInstructor = createAsyncThunk(
-  'Instructors/add',
-  (Instructor: InstructorWithOutId) => fetchAddInstructor(Instructor),
+export const addInstructor = createAsyncThunk('Instructors/add', (Instructor: NewInstructor) =>
+  fetchAddInstructor(Instructor),
 );
 
 export const removeInstructor = createAsyncThunk(
   'Instructors/remove',
   (InstructorId: InstructorId) => fetchInstructorRemove(InstructorId),
+);
+
+export const updateInstructor = createAsyncThunk(
+  'Instructors/update',
+  (Instructor: InstructorUpdate) => fetchUpdateInstructor(Instructor),
 );
 
 const instructorsSlice = createSlice({
@@ -51,6 +60,17 @@ const instructorsSlice = createSlice({
         );
       })
       .addCase(removeInstructor.rejected, (state, action) => {
+        state.error = action.error.message;
+      })
+      .addCase(updateInstructor.fulfilled, (state, action) => {
+        state.instructors = state.instructors.map((instructor) => {
+          if (instructor.id === action.payload.id) {
+            return action.payload;
+          }
+          return instructor;
+        });
+      })
+      .addCase(updateInstructor.rejected, (state, action) => {
         state.error = action.error.message;
       });
   },

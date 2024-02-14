@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { RootState } from '../../redux/store';
@@ -15,6 +15,22 @@ function InstructorPage(): JSX.Element {
   const instructors = useSelector((store: RootState) => store.instructors.instructors);
 
   const currentInstructor = instructorId && instructors.find((el) => el.id === +instructorId);
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.className = 'qqq'
+    script.src = 'https://w1079066.yclients.com/widgetJS';
+    document.body.appendChild(script);
+
+    return () => {
+      console.log(script);
+      const qqq = document.querySelector('.qqq')
+      const yButton = document.querySelector('.yButton')
+      yButton?.remove()
+        qqq?.remove();
+    };
+}, []);
 
   return (
     <>
@@ -65,6 +81,7 @@ function InstructorPage(): JSX.Element {
                 </div>
               </div>
             </div>
+            <button >Жми</button>
           </div>
         </>
       )}
