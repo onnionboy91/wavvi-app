@@ -29,8 +29,9 @@ function ProfilePage(): JSX.Element {
                 <img className="image" src={user?.img} alt="image" />
               </div>
               <div>
-                <h5>Имя: {user?.name}</h5>
-                <h5>О себе: {user?.description}</h5>
+                <p className="name-input">Имя:</p>
+                <p>{user?.name}</p>
+                <p>О себе: {user?.description}</p>
               </div>
             </>
           ) : null}

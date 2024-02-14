@@ -16,14 +16,39 @@ const NavBar = (): JSX.Element => {
     <>
       <div className="container-Navbar">
         <ul className="nav__container">
+          <div className="wavvi">WAVVI</div>
           {user && user.name ? (
             <>
               <div className="nav__list">
                 {/* <li className="hello">Hello, {user.name}!</li> */}
                 <li className="nav__item">
-                  <NavLink to="/profile">
+                  <li className="li">
                     <img src={user.img} className="avatar" />
-                  </NavLink>
+                    <ul className="ul">
+                      <li className="nav__item">
+                        <NavLink className="nav__link" to="/profile">
+                          Личный кабинет
+                        </NavLink>
+                      </li>
+                      <li className="nav__item">
+                        <NavLink className="nav__link" to="/favourites">
+                          Избранное
+                        </NavLink>
+                      </li>
+
+                      <li
+                        onClick={() => {
+                          dispatch(logOut()).catch(console.log);
+                          navigate('/');
+                        }}
+                        className="nav__item burger"
+                      >
+                        <NavLink className="nav__link" to="/logout">
+                          Выйти
+                        </NavLink>
+                      </li>
+                    </ul>
+                  </li>
                 </li>
                 <li className="nav__item">
                   <NavLink className="nav__link" to="/categories">
@@ -33,27 +58,6 @@ const NavBar = (): JSX.Element => {
                 <li className="nav__item">
                   <NavLink className="nav__link" to="/instructors">
                     Инструкторы
-                  </NavLink>
-                </li>
-                <li className="nav__item">
-                  <NavLink className="nav__link" to="/favourites">
-                    Избранное
-                  </NavLink>
-                </li>
-                {/* <li className="nav__item">
-                  <NavLink className="nav__link" to="/profile">
-                    Личный кабинет
-                  </NavLink>
-                </li> */}
-                <li
-                  onClick={() => {
-                    dispatch(logOut()).catch(console.log);
-                    navigate('/');
-                  }}
-                  className="nav__item"
-                >
-                  <NavLink className="nav__link" to="/logout">
-                    Выйти
                   </NavLink>
                 </li>
               </div>

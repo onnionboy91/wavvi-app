@@ -1,6 +1,6 @@
 import React from 'react';
-import mainVideo from './mainVideo.mp4'
-import './mainPage.css'
+import mainVideo from './Candy2000.mp4';
+import './mainPage.css';
 
 const MainPage = (): JSX.Element => {
   return (

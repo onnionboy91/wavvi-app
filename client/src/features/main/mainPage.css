@@ -1,9 +1,10 @@
 .video1 {
-  max-height: 100vh;
+  max-height: 100%;
+  max-width: 100%;
   overflow: hidden;
 }
 
-video__media1 {
+.video__media1 {
   width: 100%;
   position: absolute;
   top: 0;
