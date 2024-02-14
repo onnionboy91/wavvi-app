@@ -1,31 +1,41 @@
-import React from 'react'
-import { Category } from './types'
-import { Link } from 'react-router-dom'
-import { removeCategory } from './categoriesSlice'
-import { useAppDispatch } from '../../redux/store'
+import React from 'react';
+import { Category } from './types';
+import { Link } from 'react-router-dom';
+import { useAppDispatch } from '../../redux/store';
 // import FormAddComment from '../comments/FormAddComment'
-import './styles/styles.css'
+// import './styles/styles.css';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import { StyledEngineProvider } from '@mui/material';
 
-
-const CategoryCard = ({category}: {category: Category}): JSX.Element => {
-
-const dispatch = useAppDispatch()
+const CategoryCard = ({ category }: { category: Category }): JSX.Element => {
+  const dispatch = useAppDispatch();
 
   return (
     <>
-    <div className="card-categories" style={{margin: '50px'}} >
-  <img src={category.img} className="card-img-categories" alt="..."/>
-  <div className="card-body-categories">
-    <div className='card-footer-categories'>
-      <h5 className="card-title-categories">{category.name}</h5>
-    <Link className="card-button-categories" to={`/categories/${category.id}`}>More information</Link>
-    {/* <button className="btn btn-danger" onClick={() => dispatch(removeCategory(category.id))} type='button'>Удалить</button> */}
-      </div>{/* <p className="card-text-categories">Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
-  </div>
-</div>
-{/* <FormAddComment/> */}
-</>
-  )
-}
+      <StyledEngineProvider injectFirst>
+        <Card sx={{ width: 600 }} className="card-category">
+          <CardMedia
+            sx={{ height: 300 }}
+            image={category.img}
+            title="dance"
+            className="card-photo"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div" className="card-text">
+              {category.name}
+            </Typography>
+          </CardContent>
 
-export default CategoryCard
+          <Link className="details-button" to={`/category/${category.id}`}>
+            Подробнее
+          </Link>
+        </Card>
+      </StyledEngineProvider>
+    </>
+  );
+};
+
+export default CategoryCard;

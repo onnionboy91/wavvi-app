@@ -60,7 +60,6 @@ const FormAddInstructor = (): JSX.Element => {
           type="text"
           required
         />
-        <i className="bx bxs-user"></i>
         <input
           className="form-control input"
           placeholder="email"
@@ -69,7 +68,7 @@ const FormAddInstructor = (): JSX.Element => {
           type="text"
           required
         />
-        <i className="bx bxs-envelope"></i>
+
         <input
           className="form-control input"
           placeholder="password"
@@ -79,7 +78,7 @@ const FormAddInstructor = (): JSX.Element => {
           autoComplete="new-password"
           required
         />
-        <i className="bx bxs-lock-alt bzz1"></i>
+
         <input
           className="form-control input"
           placeholder="style dance"
