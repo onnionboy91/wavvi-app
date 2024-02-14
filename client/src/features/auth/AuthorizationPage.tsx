@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { RootState, useAppDispatch } from '../../redux/store';
-import { setEmailErrorAuth, setPasswordErrorAuth, signIn } from './authSlice';
+import { setEmailErrorAuth, setPasswordErrorAuth, setProfileErrorAuth, signIn } from './authSlice';
 import './styles/auth.scss';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -10,14 +10,22 @@ const AuthorizationPage = (): JSX.Element => {
   const [password, setPasssword] = useState('');
 
   const passwordError = useSelector((store: RootState) => store.auth.passwordError);
+  const profileError = useSelector((store: RootState) => store.auth.profileError);
+  console.log(profileError, '--------');
   const emailError = useSelector((store: RootState) => store.auth.emailError);
+  const user = useSelector((store: RootState) => store.auth.auth);
   const error = useSelector((store: RootState) => store.auth.error);
   console.log(error, 555);
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => {});
+  useEffect(() => {
+    if (user) {
+      navigate('/');
+    }
+  }, [user]);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -44,12 +52,8 @@ const AuthorizationPage = (): JSX.Element => {
     // Очистить ошибки валидации
     dispatch(setPasswordErrorAuth(''));
     dispatch(setEmailErrorAuth(''));
+    dispatch(setProfileErrorAuth(''));
     dispatch(signIn({ email, password }));
-
-    if (!error) {
-      console.log(error, 55);
-      // navigate('/');
-    }
   };
 
   return (

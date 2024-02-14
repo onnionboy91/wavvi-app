@@ -7,26 +7,29 @@ import { RootState } from '../../redux/store';
 import CategoryVideosItem from './CategoryVideosItem';
 import './styles/style.css';
 import CommonlyUsedComponents from "../instructors/Calendar"
-import CallComponent from "../Call/CallComponent"
+import FormAddVideo from './FormAddVideo';
+// import CallComponent from "../Call/CallComponent"
 
 const CategoryVideos = () => {
   const dispatch = useAppDispatch();
   const { categoryId } = useParams();
   const videos = useSelector((store: RootState) => store.videos.videos);
-  console.log(videos, 66666);
-
+  const user = useSelector((store: RootState) => store.auth.auth);
+  
   useEffect(() => {
     dispatch(loadVideos(+categoryId!)).catch(console.log);
   }, []);
 
   return (
     <div className="cards-videos">
+      {user && user.name === 'admin' && (
+        <FormAddVideo categoryId={categoryId}/>
+      )}
       {videos.map((video) => (
         <CategoryVideosItem key={video.id} video={video} />
       ))}
           <div>
-      <h1>Video Call App</h1>
-      <CallComponent />
+      {/* <CallComponent /> */}
     </div>
     </div>
   );

@@ -2,7 +2,8 @@
 import React, { useState } from 'react';
 import { InstructorUpdate } from './types';
 import { removeInstructor } from './instructorsSlice';
-import { useAppDispatch } from '../../redux/store';
+import { RootState, useAppDispatch} from '../../redux/store';
+import { useSelector } from 'react-redux';
 import './styles/style.css';
 import { Link } from 'react-router-dom';
 import Modal from './Modal';
@@ -11,6 +12,8 @@ import Paper from '@mui/material/Paper';
 
 function InstructorCard({ instructor }: { instructor: InstructorUpdate }): JSX.Element {
   const dispatch = useAppDispatch();
+
+  const user = useSelector((store: RootState) => store.auth.auth)
 
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -28,6 +31,7 @@ function InstructorCard({ instructor }: { instructor: InstructorUpdate }): JSX.E
 
   return (
     <>
+
       <Paper elevation={3}>
         <div className="card swiper-slide">
           <div className="card-flex">
@@ -35,6 +39,7 @@ function InstructorCard({ instructor }: { instructor: InstructorUpdate }): JSX.E
             <h2>{instructor.name}</h2>
             <h3>{instructor.styleDance}</h3>
           </div>
+           {user && user.name === 'admin' && (
           <div className="card-btns">
             <button type="button" onClick={onHandleRemove} className="btn btn-danger">
               Удалить
@@ -42,7 +47,7 @@ function InstructorCard({ instructor }: { instructor: InstructorUpdate }): JSX.E
             <button type="button" onClick={openModal} className="btn btn-warning">
               Изменить
             </button>
-          </div>
+          </div>)}
           <Modal isOpen={modalOpen} onClose={closeModal}>
             <FormUpdateInstructor instructor={instructor} />
           </Modal>
@@ -51,7 +56,8 @@ function InstructorCard({ instructor }: { instructor: InstructorUpdate }): JSX.E
             Подробнее
           </Link>
         </div>
-      </Paper>
+      </Paper>    
+  
     </>
   );
 }
