@@ -114,6 +114,11 @@ export const fetchSignIn = async (user: UserSignIn): Promise<User> => {
     message: string;
     user: User;
   };
+
+  if (data.message !== 'success') {
+    throw new Error(data.message);
+  }
+
   return data.user;
 };
 

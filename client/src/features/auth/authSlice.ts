@@ -70,7 +70,6 @@ const authSlice = createSlice({
     },
     setPasswordMatchError(state, action: PayloadAction<string | undefined>) {
       const rpassword = action.payload || '';
-      // console.log(state.password, rpassword);
       const passwordError = validatePasswordsMatch(state.password, rpassword);
       state.passwordError = passwordError;
     },
@@ -83,9 +82,6 @@ const authSlice = createSlice({
     setEmailErrorAuth: (state, action) => {
       state.emailError = action.payload;
     },
-    // setEmailErrorAuth: (state, action: PayloadAction<string | undefined>) => {
-    //   state.emailError = action.payload;
-    // },
   },
   extraReducers: (builder) => {
     builder
