@@ -1,8 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 // import { fetchAddCategory, fetchCategoryRemove, fetchLoadCategories } from "../../App/api";
-import { VideosState } from './types';
+import { VideoWithOutId, VideosState, VideoId } from './types';
 import { fetchLoadVideos, fetchLoadVideosAll } from '../../App/api';
 import { CategoryId } from '../categories/types';
+import { fetchAddVideo, fetchVideoRemove } from '../../App/api.video';
 
 const initialState: VideosState = {
   videos: [],
@@ -14,9 +15,9 @@ export const loadVideos = createAsyncThunk('videos/load', (id: CategoryId) => fe
 
 export const loadVideosAll = createAsyncThunk('videos/loadAll', () => fetchLoadVideosAll());
 
-// export const addCategory = createAsyncThunk('categories/add', (category: CategoryWithOutId) => fetchAddCategory(category))
+export const addVideo = createAsyncThunk('videos/add', (video: VideoWithOutId) => fetchAddVideo(video))
 
-// export const removeCategory = createAsyncThunk('categories/remove', (categoryId: CategoryId) => fetchCategoryRemove(categoryId))
+export const removeVideo = createAsyncThunk('categories/remove', (videoId: VideoId) => fetchVideoRemove(videoId))
 
 const videosSlice = createSlice({
   name: 'categories',
@@ -45,19 +46,19 @@ const videosSlice = createSlice({
       .addCase(loadVideosAll.rejected, (state, action) => {
         state.error = action.error.message;
         state.loading = false;
-      });
-    // .addCase(addCategory.fulfilled, (state, action) => {
-    //   state.categories.push(action.payload)
-    // })
-    // .addCase(addCategory.rejected, (state, action) => {
-    //   state.error = action.error.message
-    // })
-    // .addCase(removeCategory.fulfilled, (state, action) => {
-    //   state.categories = state.categories.filter((category) => category.id !== +action.payload)
-    // })
-    // .addCase(removeCategory.rejected, (state, action) => {
-    //   state.error = action.error.message
-    // })
+      })
+    .addCase(addVideo.fulfilled, (state, action) => {
+      state.videos.push(action.payload)
+    })
+    .addCase(addVideo.rejected, (state, action) => {
+      state.error = action.error.message
+    })
+    .addCase(removeVideo.fulfilled, (state, action) => {
+      state.videos = state.videos.filter((video) => video.id !== +action.payload)
+    })
+    .addCase(removeVideo.rejected, (state, action) => {
+      state.error = action.error.message
+    })
   },
 });
 

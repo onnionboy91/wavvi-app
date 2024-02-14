@@ -13,6 +13,7 @@ router.get('/', async (req, res) => {
 router.get('/:categoryId', async (req, res) => {
   try {
     const { categoryId } = req.params;
+    console.log(req.params);
     console.log(res.locals.user.id);
     const videos = await Video.findAll({
       where: { category_id: categoryId },
@@ -20,7 +21,7 @@ router.get('/:categoryId', async (req, res) => {
     });
     res.json({ videos });
   } catch ({ message }) {
-    res.json({ type: 'videos router', message });
+    res.json({ type: 'videos router category', message });
   }
 });
 
@@ -30,6 +31,7 @@ router.post('/', async (req, res) => {
     const category = await Category.create({
       name,
       img,
+
     });
     res.json({
       category,
