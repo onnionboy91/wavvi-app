@@ -23,8 +23,6 @@ export type NewInstructor = {
 export type InstructorUpdate = {
   id: number;
   name: string;
-  email: string;
-  password: string;
   styleDance: string;
   level: string;
   img: string;

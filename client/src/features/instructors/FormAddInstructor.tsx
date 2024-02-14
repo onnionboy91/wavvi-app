@@ -11,7 +11,6 @@ import {
   setEmailError,
 } from '../auth/authSlice';
 import '../auth/styles/auth.scss';
-import { fetchAddInstructor } from '../../App/api';
 import { addInstructor } from './instructorsSlice';
 
 const FormAddInstructor = (): JSX.Element => {

@@ -49,7 +49,7 @@ const instructorsSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(addInstructor.fulfilled, (state, action) => {
-        state.instructors.push(action.payload);
+        state.instructors.unshift(action.payload);
       })
       .addCase(addInstructor.rejected, (state, action) => {
         state.error = action.error.message;

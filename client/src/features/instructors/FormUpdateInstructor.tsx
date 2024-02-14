@@ -3,21 +3,13 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { type RootState, useAppDispatch } from '../../redux/store';
-import {
-  clearError,
-  validatePassword,
-  setPasswordErrorLength,
-  validateEmailFormat,
-  setEmailError,
-} from '../auth/authSlice';
+import { clearError } from '../auth/authSlice';
 import '../auth/styles/auth.scss';
 import { Instructor } from './types';
 import { updateInstructor } from './instructorsSlice';
 
 const FormUpdateInstructor = ({ instructor }: { instructor: Instructor }): JSX.Element => {
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [styleDance, setStyleDance] = useState('');
   const [level, setLevel] = useState('');
   const [img, setImg] = useState('');
@@ -26,17 +18,17 @@ const FormUpdateInstructor = ({ instructor }: { instructor: Instructor }): JSX.E
   const error = useSelector((store: RootState) => store.auth.error);
   const dispatch = useAppDispatch();
 
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newEmail = e.target.value;
-    setEmail(newEmail);
-    const emailError = validateEmailFormat(newEmail);
-    dispatch(setEmailError(emailError));
-  };
-
   const onHandleUpdate = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(
-      updateInstructor({ id: instructor.id, name, email, password, styleDance, level, img, description }),
+      updateInstructor({
+        id: instructor.id,
+        name,
+        styleDance,
+        level,
+        img,
+        description,
+      }),
     );
   };
 
@@ -56,25 +48,6 @@ const FormUpdateInstructor = ({ instructor }: { instructor: Instructor }): JSX.E
           type="text"
           required
         />
-        <i className="bx bxs-user"></i>
-        <input
-          className="form-control input"
-          placeholder="email"
-          value={email}
-          onChange={handleEmailChange}
-          type="text"
-          required
-        />
-        <i className="bx bxs-envelope"></i>
-        <input
-          className="form-control input"
-          placeholder="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          type="password"
-          required
-        />
-        <i className="bx bxs-lock-alt bzz1"></i>
         <input
           className="form-control input"
           placeholder="style dance"
