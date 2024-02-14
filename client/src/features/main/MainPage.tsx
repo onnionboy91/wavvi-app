@@ -1,5 +1,5 @@
 import React from 'react';
-import mainVideo from './Candy2000.mp4';
+import mainVideo from './CandyVideo.mp4';
 import './mainPage.css';
 
 const MainPage = (): JSX.Element => {

@@ -2,21 +2,22 @@
   margin-top: 100px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 .card-category {
-  background-color: #060b0f;
+  background-color: white;
   position: relative;
   width: 600px;
-  border: 1px solid #ccc;
+  border: 2px solid #605d5d9e;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  margin: 10px;
+  margin: 20px;
 }
 .card-text {
-  font-size: 18px;
-  color: #f7f1f1;
+  font-size: 30px;
+  color: rgba(0, 0, 0, 0.721);
   margin-top: 14px;
+  font-weight: 700;
 }
 .card-photo {
   width: 100%;
@@ -36,7 +37,7 @@
   padding: 8px 16px;
   background-color: #cfd1d4ca;
   color: #fff;
-  border: none;
+  border: 2px solid rgba(0, 0, 0, 0.527);
   border-radius: 5px;
   cursor: pointer;
   opacity: 0;
@@ -47,5 +48,5 @@
   opacity: 1;
 }
 .details-button:hover {
-  color: rgb(105, 109, 109);
+  color: rgb(74, 75, 75);
 }

@@ -19,21 +19,21 @@ function InstructorPage(): JSX.Element {
   useEffect(() => {
     const script = document.createElement('script');
     script.type = 'text/javascript';
-    script.className = 'qqq'
+    script.className = 'qqq';
     script.src = 'https://w1079066.yclients.com/widgetJS';
     document.body.appendChild(script);
 
     return () => {
       console.log(script);
-      const qqq = document.querySelector('.qqq')
-      const yButton = document.querySelector('.yButton')
-      yButton?.remove()
-        qqq?.remove();
+      const qqq = document.querySelector('.qqq');
+      const yButton = document.querySelector('.yButton');
+      yButton?.remove();
+      qqq?.remove();
     };
-}, []);
+  }, []);
 
   return (
-    <>
+    <div>
       {currentInstructor && (
         <>
           <div className="instr-container">
@@ -62,9 +62,11 @@ function InstructorPage(): JSX.Element {
             <div className="instr-podrobnee">
               <div className="instr-video">
                 <iframe
+                  className="iframe"
                   width="100%"
                   height="100%"
                   src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=hMEEDBBJ_Xed6s_s"
+                  // src="https://www.youtube.com/watch?v=vBKYRIUhUUM&list=PLOT99LmkLIkniugD1zVE0WhPjT1oKYskz&index=20"
                   title="YouTube video player"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
@@ -72,20 +74,20 @@ function InstructorPage(): JSX.Element {
               </div>
               <div className="instr-descr">
                 <div className="instr-border">
-                  <div className="instr-description">{currentInstructor.styleDance}</div>
-                  <div className="instr-description">{currentInstructor.level}</div>
+                  <h5 className="instr-description">{currentInstructor.styleDance}</h5>
+                  <h5 className="instr-description">{currentInstructor.level}</h5>
                 </div>
                 <div className="instr-border instr-description">
-                  <p>Об инструкторе:</p>
+                  {/* <p>Информация</p> */}
                   {currentInstructor.description}
                 </div>
               </div>
             </div>
-            <button >Жми</button>
+            <button>Жми</button>
           </div>
         </>
       )}
-    </>
+    </div>
   );
 }
 

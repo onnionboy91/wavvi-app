@@ -47,7 +47,7 @@ function ProfileCard(): JSX.Element {
   return (
     <div className="profile">
       <div className="container-profile">
-        <h5>Личный кабинет</h5>
+        <h5>ЛИЧНЫЙ КАБИНЕТ</h5>
         <form className="form-update-form" onSubmit={(e) => e.preventDefault()}>
           {user?.role === 'Instructor' && (
             <>
@@ -56,7 +56,7 @@ function ProfileCard(): JSX.Element {
               </div>
               <div className="userInfo">
                 <div>
-                  <p className="name-input">Фото профиля:</p>
+                  <strong className="name-input">Фотография:</strong>
                   <div>
                     <input
                       className="inputProfile"
@@ -69,7 +69,7 @@ function ProfileCard(): JSX.Element {
                   </button>
                 </div>
                 <div>
-                  <p className="name-input">Имя:</p>
+                  <strong className="name-input">Имя:</strong>
                   <input
                     className="inputProfile"
                     type="text"
@@ -79,7 +79,7 @@ function ProfileCard(): JSX.Element {
                 </div>
 
                 <div>
-                  <p className="name-input">Стиль танца:</p>
+                  <strong className="name-input">Стили танцев:</strong>
                   <input
                     className="inputProfile"
                     type="text"
@@ -88,7 +88,7 @@ function ProfileCard(): JSX.Element {
                   />
                 </div>
                 <div>
-                  <p className="name-input">Описание:</p>
+                  <strong className="name-input">О себе:</strong>
                   <textarea
                     className="inputProfile"
                     value={description}
@@ -104,7 +104,7 @@ function ProfileCard(): JSX.Element {
                 <img className="image" src={user?.img} alt="image" />
               </div>
               <div>
-                <p className="name-input">Имя:</p>
+                <strong className="name-input">Имя:</strong>
                 <input
                   className="inputProfile"
                   type="text"
@@ -113,7 +113,17 @@ function ProfileCard(): JSX.Element {
                 />
               </div>
               <div>
-                <p className="name-input">Описание:</p>
+                <strong className="name-input">Стиль танца:</strong>
+                <input
+                  className="inputProfile"
+                  type="text"
+                  value={styleDance}
+                  onChange={(e) => setStyleDance(e.target.value)}
+                />
+              </div>
+
+              <div>
+                <strong className="name-input">Описание:</strong>
                 <textarea
                   className="inputProfile"
                   value={description}
