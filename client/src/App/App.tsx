@@ -19,6 +19,7 @@ import InstructorPage from '../features/instructors/InstructorPage';
 import { loadVideosAll } from '../features/videos/videosSlice';
 import ProfileCard from '../features/profile/ProfileCard';
 import MainPage from "../features/main/MainPage";
+import ResponsiveAppBar from "../features/navbar/NewNavBar";
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -35,7 +36,7 @@ function App(): JSX.Element {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<NavBar />}>
+        <Route path="/" element={<ResponsiveAppBar />}>
           <Route index path="/" element={<MainPage />} />
           <Route path="/instructors" element={<InstructorsPage />} />
           <Route path="/instructors/:instructorId" element={<InstructorPage />} />
