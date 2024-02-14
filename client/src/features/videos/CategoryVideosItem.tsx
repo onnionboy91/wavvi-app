@@ -8,6 +8,7 @@ import { addLike, removeLike } from '../favourites/likesSlice';
 import { useAppDispatch } from '../../redux/store';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
+import { removeVideo } from './videosSlice';
 
 type VideosItemProps = {
   video: Video;
@@ -49,11 +50,20 @@ const CategoryVideosItem = ({ video }: VideosItemProps) => {
     }
   };
 
+  const handleDelete = () => {
+    const confirmDelete = window.confirm('Вы точно хотите удалить видео?');
+
+    if (confirmDelete) {
+      dispatch(removeVideo(video.id));
+    }
+  };
+
   return (
     <>
       <div className="card-videos" style={{ margin: '50px' }}>
         <img src={video.img} className="card-img-videos" alt="..." />
-        <button className="card-modal-videos" onClick={openModal}>
+        <button onClick={handleDelete} type="button" className="form-btn-video-delete">Удалить</button>
+        <button className="form-btn-video" onClick={openModal}>
           PLAY
         </button>
         <Modal isOpen={modalOpen} onClose={closeModal}>

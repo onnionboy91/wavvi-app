@@ -179,8 +179,8 @@ export const fetchAddComment = async (comment: CommentWithOutId): Promise<Commen
     },
     body: JSON.stringify(comment),
   });
-  const data: { comments: Comment } = (await res.json()) as { comments: Comment };
-  return data.comments;
+  const data: { comment: Comment } = (await res.json()) as { comment: Comment };
+  return data.comment;
 };
 
 export const fetchCommentRemove = async (id: CommentId): Promise<CommentId> => {
@@ -198,11 +198,10 @@ export const fetchCommentRemove = async (id: CommentId): Promise<CommentId> => {
 };
 
 export const fetchLoadVideos = async (id: number): Promise<Video[]> => {
-  console.log(id);
+  // console.log(id);
   const res = await fetch(`/api/categories/${id}`);
   const data: { videos: Video[] } = (await res.json()) as { videos: Video[] };
-  console.log(data, 'data');
-
+  console.log(data);
   return data.videos;
 };
 
