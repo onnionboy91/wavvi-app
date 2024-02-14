@@ -19,7 +19,7 @@ const RegistrationPage = (): JSX.Element => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rpassword, setRpassword] = useState('');
-  const [img, setImg] = useState<FileList | null>(null);
+  const [img, setImg] = useState<File | null>(null);
   const [role, setRole] = useState('Instructor');
 
   const error = useSelector((store: RootState) => store.auth.error);
@@ -49,6 +49,7 @@ const RegistrationPage = (): JSX.Element => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!img) return;
     const formData = new FormData();
     formData.append('name', name);
     formData.append('email', email);
@@ -58,12 +59,6 @@ const RegistrationPage = (): JSX.Element => {
     formData.append('role', role);
     dispatch(signUp(formData));
   };
-
-  // const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   if (e.target.files && e.target.files.length > 0) {
-  //     setImg(e.target.files);
-  //   }
-  // };  добавили с Ваней
 
   return (
     <div className="auth-container">
@@ -123,10 +118,11 @@ const RegistrationPage = (): JSX.Element => {
           className="form-control input"
           // placeholder="img"
           onChange={(e) => {
-            setImg(e.target.value);
+            if (e.target.files && e.target.files.length > 0) {
+              setImg(e.target.files[0]);
+            }
           }}
           type="file"
-          name="img"
         />
         <select
           value={role}

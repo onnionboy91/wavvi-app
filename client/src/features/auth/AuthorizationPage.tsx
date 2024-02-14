@@ -1,9 +1,9 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { RootState, useAppDispatch } from '../../redux/store';
 import { setEmailErrorAuth, setPasswordErrorAuth, signIn } from './authSlice';
 import './styles/auth.scss';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const AuthorizationPage = (): JSX.Element => {
   const [email, setEmail] = useState('');
@@ -11,9 +11,13 @@ const AuthorizationPage = (): JSX.Element => {
 
   const passwordError = useSelector((store: RootState) => store.auth.passwordError);
   const emailError = useSelector((store: RootState) => store.auth.emailError);
+  const error = useSelector((store: RootState) => store.auth.error);
+  console.log(error, 555);
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
+  useEffect(() => {});
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -37,23 +41,21 @@ const AuthorizationPage = (): JSX.Element => {
       return;
     }
 
-    // Проверка, существует ли пользователь с заданным адресом электронной почты
-    // const isUserExists = await checkUserExists(email);
-    // if (!email) {
-    //   dispatch(setEmailErrorAuth('Пользователь с таким адресом электронной почты не существует'));
-    //   return;
-    // }
-
     // Очистить ошибки валидации
     dispatch(setPasswordErrorAuth(''));
     dispatch(setEmailErrorAuth(''));
     dispatch(signIn({ email, password }));
+
+    if (!error) {
+      console.log(error, 55);
+      // navigate('/');
+    }
   };
 
   return (
     <div className="auth-container">
       <h4 className="auth">Авторизация</h4>
-      {/* <div className="errorForm">{error && <h6>{error}</h6>}</div> */}
+      <div className="errorForm">{error && <h6>{error}</h6>}</div>
       <form className="sign-in" onSubmit={handleSubmit}>
         <input
           className="form-control input"

@@ -65,9 +65,11 @@ router.post("/sign-up", upload.single("img"), async (req, res) => {
   // router.post("/sign-up", async (req, res) => {
   let user;
   try {
-    const { name, email, password, rpassword, img, role } = req.body;
-    // const { img } = req.file;
-    // const newFileUrl = `/img/${req.file.originalname}`;
+    const { name, email, password, rpassword, role } = req.body;
+    let img;
+    req.file ? (img = `/img/${req.file.originalname}`) : (img = "no_file");
+
+    //const newFileUrl = `/img/${req.file.originalname}`;
     // console.log(img);
     // console.log(name, email, password, rpassword, role, 666);
 
