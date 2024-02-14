@@ -2,17 +2,14 @@
   margin-top: 100px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
 }
 .card {
   position: relative;
   width: 200px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   margin: 5px;
   overflow: hidden;
+  border: none;
 }
 .card-flex {
   display: flex;
@@ -28,11 +25,10 @@
   font-size: 14px;
   color: #666;
 }
-.card .card-photo {
+.card-photo {
   width: 100%;
-  height: 500px;
+  height: 300px;
   object-fit: cover;
-  border-radius: 10px;
   transition: transform 0.3s ease;
 }
 .card-text {

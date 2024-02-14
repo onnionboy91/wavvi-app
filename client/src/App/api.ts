@@ -49,9 +49,9 @@ export const fetchCategoryRemove = async (id: CategoryId): Promise<CategoryId> =
   return data.categoryId;
 };
 
-export const fetchLoadInstructors = async (): Promise<Instructor[]> => {
+export const fetchLoadInstructors = async (): Promise<InstructorUpdate[]> => {
   const res = await fetch('/api/instructors');
-  const data: Instructor[] = await res.json();
+  const data: InstructorUpdate[] = await res.json();
   return data;
 };
 
