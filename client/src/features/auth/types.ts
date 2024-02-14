@@ -14,6 +14,7 @@ export type AuthState = {
   auth: User | undefined;
   error: string | undefined;
   passwordError: string | undefined;
+  profileError: string | undefined;
   password: string;
   rpassword: string;
   email: string;

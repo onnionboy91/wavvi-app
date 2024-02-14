@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { type RootState, useAppDispatch } from '../../redux/store';
 import {
@@ -13,6 +13,9 @@ import {
   validatePasswordsMatch,
 } from './authSlice';
 import './styles/auth.scss';
+import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
+// const navigate = useNavigate();
 
 const RegistrationPage = (): JSX.Element => {
   const [name, setName] = useState('');
@@ -24,7 +27,16 @@ const RegistrationPage = (): JSX.Element => {
 
   const error = useSelector((store: RootState) => store.auth.error);
   const passwordError = useSelector((store: RootState) => store.auth.passwordError);
+  const user = useSelector((store: RootState) => store.auth.auth);
+
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      navigate('/');
+    }
+  }, [user]);
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newPassword = e.target.value;
@@ -116,7 +128,6 @@ const RegistrationPage = (): JSX.Element => {
 
         <input
           className="form-control input"
-          // placeholder="img"
           onChange={(e) => {
             if (e.target.files && e.target.files.length > 0) {
               setImg(e.target.files[0]);
