@@ -3,7 +3,10 @@ const { User } = require('../../db/models');
 
 router.get('/', async (req, res) => {
   try {
-    const instructors = await User.findAll({ where: { role: 'Instructor' } });
+    const instructors = await User.findAll({
+      where: { role: 'Instructor' },
+      order: [['id', 'DESC']],
+    });
     res.json(instructors);
   } catch ({ message }) {
     res.json({ type: 'instructors router', message });
@@ -48,15 +51,11 @@ router.delete('/:instructorId', async (req, res) => {
 
 router.put('/', async (req, res) => {
   try {
-    const { id, name, email, password, styleDance, level, img, description } =
-      req.body;
+    const { id, name, styleDance, level, img, description } = req.body;
     const instructorUpdate = await User.update(
       {
         id,
-        role: 'Instructor',
         name,
-        email,
-        password,
         styleDance,
         level,
         img,
@@ -66,7 +65,6 @@ router.put('/', async (req, res) => {
     );
     if (instructorUpdate[0] > 0) {
       const instructor = await User.findOne({ where: { id: +id } });
-      console.log(instructor, 33333);
       res.json({
         instructor,
       });

@@ -4,7 +4,6 @@ import type {
   Instructor,
   InstructorId,
   InstructorUpdate,
-  InstructorWithOutId,
   NewInstructor,
 } from '../features/instructors/types';
 import { Category, CategoryId, CategoryWithOutId } from '../features/categories/types';
@@ -79,10 +78,7 @@ export const fetchInstructorRemove = async (id: InstructorId): Promise<Instructo
   return data.instructorId;
 };
 
-export const fetchUpdateInstructor = async (
-  instructor: InstructorUpdate,
-): Promise<InstructorUpdate> => {
-  console.log(instructor, 8888);
+export const fetchUpdateInstructor = async (instructor: InstructorUpdate): Promise<Instructor> => {
   const res = await fetch(`/api/instructors`, {
     method: 'PUT',
     headers: {
@@ -90,8 +86,8 @@ export const fetchUpdateInstructor = async (
     },
     body: JSON.stringify(instructor),
   });
-  const data: { instructor: InstructorUpdate } = (await res.json()) as {
-    instructor: InstructorUpdate;
+  const data: { instructor: Instructor } = (await res.json()) as {
+    instructor: Instructor;
   };
   return data.instructor;
 };

@@ -39,10 +39,10 @@ function InstructorCard({ instructor }: { instructor: Instructor }): JSX.Element
         </div>
         <div className="card-btns">
           <button type="button" onClick={onHandleRemove} className="btn btn-danger">
-            Удоли
+            Удалить
           </button>
           <button type="button" onClick={openModal} className="btn btn-warning">
-            Измени
+            Изменить
           </button>
         </div>
         <Modal isOpen={modalOpen} onClose={closeModal}>
