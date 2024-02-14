@@ -1,7 +1,6 @@
 import React from 'react';
 import { Category } from './types';
 import { Link } from 'react-router-dom';
-import { useAppDispatch } from '../../redux/store';
 // import FormAddComment from '../comments/FormAddComment'
 // import './styles/styles.css';
 import Card from '@mui/material/Card';
@@ -11,8 +10,6 @@ import Typography from '@mui/material/Typography';
 import { StyledEngineProvider } from '@mui/material';
 
 const CategoryCard = ({ category }: { category: Category }): JSX.Element => {
-  const dispatch = useAppDispatch();
-
   return (
     <>
       <StyledEngineProvider injectFirst>
@@ -29,7 +26,7 @@ const CategoryCard = ({ category }: { category: Category }): JSX.Element => {
             </Typography>
           </CardContent>
 
-          <Link className="details-button" to={`/category/${category.id}`}>
+          <Link className="details-button" to={`/categories/${category.id}`}>
             Подробнее
           </Link>
         </Card>

@@ -1,9 +1,17 @@
 const router = require('express').Router();
-const { Video } = require('../../db/models');
+const { Video, Like } = require('../../db/models');
 
 router.get('/', async (req, res) => {
+  console.log(3454645);
   try {
     const videos = await Video.findAll();
+    // {
+    //   include: {
+    //     model: Like,
+    //     where: { user_id: res.locals.user.id },
+    //   },
+    // }
+    console.log(videos);
     res.json(videos);
   } catch ({ message }) {
     res.json({ type: 'videos router', message });
@@ -12,12 +20,16 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    const { name,content,img,level,category_id} = req.body;
+    const { name, content, img, level, category_id } = req.body;
     const video = await Video.create({
-      name,content,img,level,category_id
+      name,
+      content,
+      img,
+      level,
+      category_id,
     });
     res.json({
-      video
+      video,
     });
   } catch ({ message }) {
     res.json({ type: 'video post router', message });
