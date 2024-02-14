@@ -13,7 +13,9 @@
   margin-top: 100px;
   margin-bottom: 30px;
   // backdrop-filter: blur(10px);
-  box-shadow: 10px 10px 20px 3px rgba($color: black, $alpha: 0.5);
+  // box-shadow: 10px 10px 20px 3px rgba($color: rgb(49, 136, 228), $alpha: 0.5);
+  box-shadow: 10px 10px 20px 10px rgba(104, 104, 104, 0.356);
+
   gap: 3px;
 }
 
@@ -21,8 +23,8 @@
   border-radius: 50%;
   width: 160px;
   height: 150px;
-  margin-top: 40px;
-  margin-bottom: 30px;
+  margin-top: 30px;
+  margin-bottom: 5px;
 }
 
 .form-update-lk,
@@ -36,13 +38,12 @@
   justify-content: start;
   flex-direction: column;
   align-items: flex-start;
-  padding-top: 30px;
-  padding-left: 30px;
+  padding-top: 50px;
+  padding-left: 50px;
 }
 
 .update-form-link {
   display: flex;
-
   width: 15%;
   box-shadow: 10px 10px 20px 3px rgba($color: black, $alpha: 0.5);
 }
@@ -60,14 +61,20 @@
 .save-button {
   display: inline-block;
   padding: 10px 20px;
-  background-color: blue;
-  color: white;
+  background-color: white;
+  color: rgb(72, 71, 71);
+  border: 2px solid darkgray;
   text-decoration: none;
   border-radius: 4px;
   font-size: 16px;
   margin: 0 10px;
-  border: none;
   cursor: pointer;
+}
+
+.save-button:hover {
+  border-color: grey; /* изменение цвета границы при наведении */
+  color: white; /* изменение цвета текста при наведении */
+  background-color: darkgrey;
 }
 
 .button-container {
@@ -78,21 +85,27 @@
 .link-button {
   display: inline-block;
   padding: 10px 20px;
-  background-color: blue;
-  color: white;
+  background-color: white;
+  color: rgb(72, 71, 71);
+  border: 2px solid darkgray;
   text-decoration: none;
   border-radius: 4px;
   font-size: 16px;
   margin: 0 10px;
-  border: none;
   cursor: pointer;
+}
+
+.link-button:hover {
+  border-color: grey; /* изменение цвета границы при наведении */
+  color: white; /* изменение цвета текста при наведении */
+  background-color: darkgrey;
 }
 
 .delete-button {
   display: flex;
   justify-content: start;
   padding: 10px 20px;
-  background-color: blue;
+  background-color: grey;
   color: white;
   text-decoration: none;
   border-radius: 4px;
