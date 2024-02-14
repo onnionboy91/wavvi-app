@@ -10,6 +10,7 @@ const initialState: AuthState = {
   error: undefined,
   passwordError: undefined,
   emailError: undefined,
+  profileError: undefined,
   password: '',
   rpassword: '',
   email: '',
@@ -82,6 +83,9 @@ const authSlice = createSlice({
     setEmailErrorAuth: (state, action) => {
       state.emailError = action.payload;
     },
+    setProfileErrorAuth: (state, action) => {
+      state.emailError = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -118,5 +122,6 @@ export const {
   setPasswordMatchError,
   setEmailErrorAuth,
   setPasswordErrorAuth,
+  setProfileErrorAuth,
 } = authSlice.actions;
 export default authSlice.reducer;

@@ -1,17 +1,17 @@
 /* eslint-disable import/prefer-default-export */
-import type { User, UserSignIn, UserSignUp } from '../features/auth/types';
+import type { User, UserSignIn } from '../features/auth/types';
 import type {
   Instructor,
   InstructorId,
   InstructorUpdate,
-  InstructorWithOutId,
+  // InstructorWithOutId,
   NewInstructor,
 } from '../features/instructors/types';
 import { Category, CategoryId, CategoryWithOutId } from '../features/categories/types';
 import { Like, LikeId, LikeWithOutId } from '../features/favourites/types';
 import type { Comment, CommentId, CommentWithOutId } from '../features/comments/types';
 import { Video } from '../features/videos/types';
-import { UserInfo, UserInfoId, UserRole } from '../features/profile/types';
+
 // import { useNavigate } from 'react-router-dom';
 // const navigate = useNavigate();
 
@@ -114,33 +114,14 @@ export const fetchSignIn = async (user: UserSignIn): Promise<User> => {
     message: string;
     user: User;
   };
-
+  console.log(data, 'daaaaaaaa');
   if (data.message !== 'success') {
+    // console.log(111111111111111111111111111111111111111111);
     throw new Error(data.message);
   }
 
   return data.user;
 };
-
-// export const fetchSignUp = async (user: UserSignUp): Promise<User> => {
-//   const res = await fetch('/api/auth/sign-up', {
-//     method: 'post',
-//     headers: {
-//       'content-type': 'application/json',
-//     },
-//     body: JSON.stringify(user),
-//   });
-//   if (res.status >= 400) {
-//     const data: { message: string } = (await res.json()) as { message: string };
-//     throw new Error(data.message);
-//   }
-//   const data: { message: string; user: User } = (await res.json()) as {
-//     message: string;
-//     user: User;
-//   };
-//   // console.log(data, 77);
-//   return data.user;
-// };
 
 export const fetchSignUp = async (formData: FormData): Promise<User> => {
   const res = await fetch('/api/auth/sign-up', {
