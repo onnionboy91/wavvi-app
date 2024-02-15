@@ -8,8 +8,6 @@ import mail from '../../../assets/img/622401_mail_packet_email_envelope_letter_i
 import inst from '../../../assets/img//1161953_instagram_icon (1).png';
 import location from '../../../assets/img/211766_location_icon.png';
 
-export type CurrentInstructor = {};
-
 function InstructorPage(): JSX.Element {
   const { instructorId } = useParams();
   const instructors = useSelector((store: RootState) => store.instructors.instructors);
@@ -38,10 +36,7 @@ function InstructorPage(): JSX.Element {
         <>
           <div className="instr-container">
             <div className="instr-profile">
-              <img
-                className="instr-img"
-                src="https://images.unsplash.com/photo-1601128426315-7a1d9168f163?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzZ8fGhpcCUyMGhvcHxlbnwwfHwwfHx8MA%3D%3D"
-              ></img>
+              <img className="instr-img" src={currentInstructor.img}></img>
               <div className="instr-contacts">
                 <div className="instr-description">
                   <h1>{currentInstructor.name}</h1>
@@ -61,15 +56,28 @@ function InstructorPage(): JSX.Element {
             </div>
             <div className="instr-podrobnee">
               <div className="instr-video">
-                <iframe
-                  className="iframe"
-                  width="100%"
-                  height="100%"
-                  src="https://www.youtube.com/watch?v=vBKYRIUhUUM&list=PLOT99LmkLIkniugD1zVE0WhPjT1oKYskz&index=20"
-                  title="YouTube video player"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                ></iframe>
+
+                <div>
+                  <iframe
+                    width="560"
+                    height="315"
+                    src="https://www.youtube.com/embed/vBKYRIUhUUM?si=9T1BByH9iEe8BVoQ"
+                    title="YouTube video player"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+                <div style={{ marginTop: '20px' }}>
+                  <iframe
+                    width="560"
+                    height="315"
+                    src="https://www.youtube.com/embed/IW1HZAoKuGA?si=r5tdWI8LnrRnPNaR"
+                    title="YouTube video player"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  ></iframe>
+                </div>              
+
               </div>
               <div className="instr-descr">
                 <div className="instr-border">
@@ -82,7 +90,6 @@ function InstructorPage(): JSX.Element {
                 </div>
               </div>
             </div>
-            <button>Жми</button>
           </div>
         </>
       )}

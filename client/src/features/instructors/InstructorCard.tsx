@@ -2,18 +2,23 @@
 import React, { useState } from 'react';
 import { InstructorUpdate } from './types';
 import { removeInstructor } from './instructorsSlice';
-import { RootState, useAppDispatch} from '../../redux/store';
+import { RootState, useAppDispatch } from '../../redux/store';
 import { useSelector } from 'react-redux';
 import './styles/style.css';
 import { Link } from 'react-router-dom';
 import Modal from './Modal';
 import FormUpdateInstructor from './FormUpdateInstructor';
-import Paper from '@mui/material/Paper';
+import { StyledEngineProvider } from '@mui/material';
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import { SwiperSlide } from 'swiper/react';
 
 function InstructorCard({ instructor }: { instructor: InstructorUpdate }): JSX.Element {
   const dispatch = useAppDispatch();
 
-  const user = useSelector((store: RootState) => store.auth.auth)
+  const user = useSelector((store: RootState) => store.auth.auth);
 
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -31,33 +36,39 @@ function InstructorCard({ instructor }: { instructor: InstructorUpdate }): JSX.E
 
   return (
     <>
+      <SwiperSlide>
+        <StyledEngineProvider injectFirst>
+          <Card className="card-instructor swiper-slide">
+            <CardMedia image={instructor.img} title="dance" className="card-photo" />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div" className="card-text">
+                {instructor.name}
+              </Typography>
+              <Typography gutterBottom variant="h5" component="div" className="card-text">
+                {instructor.styleDance}
+              </Typography>
+            </CardContent>
 
-      <Paper elevation={3}>
-        <div className="card swiper-slide">
-          <div className="card-flex">
-            <img className="card-photo" src={instructor.img} alt="Nice dancer" />
-            <h2>{instructor.name}</h2>
-            <h3>{instructor.styleDance}</h3>
-          </div>
-           {user && user.name === 'admin' && (
-          <div className="card-btns">
-            <button type="button" onClick={onHandleRemove} className="btn btn-danger">
-              Удалить
-            </button>
-            <button type="button" onClick={openModal} className="btn btn-warning">
-              Изменить
-            </button>
-          </div>)}
-          <Modal isOpen={modalOpen} onClose={closeModal}>
-            <FormUpdateInstructor instructor={instructor} />
-          </Modal>
+            {user && user.name === 'admin' && (
+              <div className="card-btns">
+                <button type="button" onClick={onHandleRemove} className="btn btn-danger">
+                  Удалить
+                </button>
+                <button type="button" onClick={openModal} className="btn btn-warning">
+                  Изменить
+                </button>
+              </div>
+            )}
+            <Modal isOpen={modalOpen} onClose={closeModal}>
+              <FormUpdateInstructor instructor={instructor} />
+            </Modal>
 
-          <Link className="details-button" to={`/instructors/${instructor.id}`}>
-            Подробнее
-          </Link>
-        </div>
-      </Paper>    
-  
+            <Link className="details-button" to={`/instructors/${instructor.id}`}>
+              Подробнее
+            </Link>
+          </Card>
+        </StyledEngineProvider>
+      </SwiperSlide>
     </>
   );
 }

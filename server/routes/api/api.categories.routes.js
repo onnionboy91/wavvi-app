@@ -17,7 +17,6 @@ router.get('/:categoryId', async (req, res) => {
     console.log(res.locals.user.id);
     const videos = await Video.findAll({
       where: { category_id: categoryId },
-      // include: { model: Like, where: { user_id: res.locals.user.id } },
     });
     res.json({ videos });
   } catch ({ message }) {
@@ -31,7 +30,6 @@ router.post('/', async (req, res) => {
     const category = await Category.create({
       name,
       img,
-
     });
     res.json({
       category,
