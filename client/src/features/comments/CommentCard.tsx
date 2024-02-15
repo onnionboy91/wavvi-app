@@ -11,16 +11,27 @@ const CommentCard = ({ comment, video }: { comment: Comment, video: number}): JS
 
   const user = useSelector((store: RootState) => store.auth.auth)
 
+  const date = new Date(comment.createdAt);
+
+const year = date.getFullYear();
+const month = String(date.getMonth() + 1).padStart(2, '0');
+const day = String(date.getDate()).padStart(2, '0');
+const hours = String(date.getHours()).padStart(2, '0');
+const minutes = String(date.getMinutes()).padStart(2, '0');
+const seconds = String(date.getSeconds()).padStart(2, '0');
+
+const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+
   return (
     <>
     <div className='comment-card'>
-      {/* <h5>{comment.User.name}</h5> */}
+    <p>{comment.user_id}</p>
        <h4>{comment.title}</h4>
        {user && user.name === 'admin' && (
          <button onClick={() => dispatch(removeComment(comment.id))} type="button" className="btn btn-light">Удалить</button>
        )}
+    <p className='comment-date'>{formattedDate}</p>
     </div>
-    {/* <p>{comment.createdAt.toLocaleString()}</p> */}
     </>
   )
 };
