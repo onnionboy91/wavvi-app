@@ -59,7 +59,6 @@ const AuthorizationPage = (): JSX.Element => {
   return (
     <div className="auth-container">
       <h4 className="auth">Авторизация</h4>
-      <div className="errorForm">{error && <h6>{error}</h6>}</div>
       <form className="sign-in" onSubmit={handleSubmit}>
         <input
           className="form-control input"
@@ -73,7 +72,7 @@ const AuthorizationPage = (): JSX.Element => {
         <i className="bx bxs-user"></i>
 
         {emailError && (
-          <div className="errorPassword" style={{ color: 'red' }}>
+          <div className="errorPassword" style={{ color: 'white' }}>
             {emailError}
           </div>
         )}
@@ -88,7 +87,7 @@ const AuthorizationPage = (): JSX.Element => {
         />
         <i className="bx bxs-lock-alt"></i>
         {passwordError && (
-          <div className="errorPassword" style={{ color: 'red' }}>
+          <div className="errorPassword" style={{ color: 'white' }}>
             {passwordError}
           </div>
         )}
@@ -96,13 +95,14 @@ const AuthorizationPage = (): JSX.Element => {
           Войти
         </button>
         <div className="reg">
-          <p>
+          <p className="textReg">
             У вас ещё нет аккаунта?{' '}
             <a className="ssilka" href="/sign-up">
               Зарегистрироваться
             </a>
           </p>
         </div>
+        <div className="errorForm">{error && <h6>{error}</h6>}</div>
       </form>
     </div>
   );

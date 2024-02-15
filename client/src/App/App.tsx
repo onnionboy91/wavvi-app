@@ -55,7 +55,6 @@ function App(): JSX.Element {
                   src="https://w-dog.ru/wallpapers/13/13/398770840645436/ne-najden-oshibka-404-ferror-fon.jpg"
                   alt="img"
                   className="error-image"
-                  // style={{ position: 'relative', width: '100%', height: '100%' }}
                 />
                 <button
                   type="button"

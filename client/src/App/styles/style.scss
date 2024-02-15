@@ -1,0 +1,19 @@
+body {
+  background-image: url('https://img.freepik.com/free-photo/stone-texture-background_632498-969.jpg?w=996&t=st=1707984938~exp=1707985538~hmac=d872af76c80dbdb179ce7493e0cea05171851aae1cc3b410ece19f5a125aa743');
+  background-size: 100%;
+  //   background-position: center;
+  background-repeat: repeat;
+  animation: slideAnimation 10s linear infinite;
+  margin: 0;
+  padding: 100px 0 0 0;
+  height: 1600px;
+}
+
+@keyframes slideAnimation {
+  0% {
+    background-position: left top;
+  }
+  100% {
+    background-position: right bottom;
+  }
+}

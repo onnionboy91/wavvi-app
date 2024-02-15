@@ -65,8 +65,7 @@ function InstructorPage(): JSX.Element {
                   className="iframe"
                   width="100%"
                   height="100%"
-                  src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=hMEEDBBJ_Xed6s_s"
-                  // src="https://www.youtube.com/watch?v=vBKYRIUhUUM&list=PLOT99LmkLIkniugD1zVE0WhPjT1oKYskz&index=20"
+                  src="https://www.youtube.com/watch?v=vBKYRIUhUUM&list=PLOT99LmkLIkniugD1zVE0WhPjT1oKYskz&index=20"
                   title="YouTube video player"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
