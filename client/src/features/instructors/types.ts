@@ -4,6 +4,7 @@ export type Instructor = {
   styleDance: string;
   level: string;
   description: string;
+  img: string;
 };
 
 export type InstructorId = Instructor['id'];
