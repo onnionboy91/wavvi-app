@@ -75,7 +75,6 @@ const RegistrationPage = (): JSX.Element => {
   return (
     <div className="auth-container">
       <h4 className="auth">Регистрация</h4>
-      <div className="errorForm">{error && <h6>{error}</h6>}</div>
       <form className="sign-up" encType="multipart/form-data" onSubmit={handleSubmit}>
         <input
           className="form-control input"
@@ -110,11 +109,6 @@ const RegistrationPage = (): JSX.Element => {
         />
         <i className="bx bxs-lock-alt bzz1"></i>
 
-        {passwordError && (
-          <span className="errorPassword" style={{ color: 'red' }}>
-            {passwordError}
-          </span>
-        )}
         <input
           className="form-control input"
           placeholder="Повторите пароль"
@@ -146,6 +140,12 @@ const RegistrationPage = (): JSX.Element => {
         <button type="submit" className="form-control input submit">
           Зарегистрироваться
         </button>
+        <div className="errorForm">{error && <h6>{error}</h6>}</div>
+        {passwordError && (
+          <span className="errorPassword" style={{ color: 'white' }}>
+            {passwordError}
+          </span>
+        )}
       </form>
     </div>
   );

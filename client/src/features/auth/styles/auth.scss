@@ -4,15 +4,17 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  border: 1px solid white;
+  border: 1px solid rgba(255, 255, 255, 0.6); /* Цвет рамки формы */
   border-radius: 15px;
   padding: 30px;
   width: 600px;
   margin: 0 auto;
-  margin-top: 150px;
-  // margin-bottom: 30px;
-  box-shadow: 10px 10px 20px 3px rgba($color: grey, $alpha: 0.5);
-  background: white;
+  margin-top: 120px;
+  background-color: rgba(0, 0, 0, 0.721); /* Цвет фона формы */
+  backdrop-filter: blur(5px); /* Применение эффекта размытия к фону */
+  box-shadow: 10px 10px 20px 3px rgba(128, 128, 128, 0.5); /* Тень формы */
+  opacity: 1;
+  // opacity: 1;
 }
 
 .input {
@@ -40,17 +42,18 @@
 .auth {
   display: flex;
   justify-content: center;
+  color: white;
 }
 
 .errorForm {
-  color: red;
+  color: rgb(13, 243, 243);
   display: flex;
   justify-content: center;
   // font-size: 30px;
 }
 
 .errorPassword {
-  color: red;
+  color: rgb(13, 243, 243);
   font-weight: 500;
   display: flex;
   justify-content: center;
@@ -98,7 +101,7 @@
 }
 
 .reg a {
-  color: blue;
+  color: white;
   text-decoration: none;
   transition:
     color 0.3s,
@@ -107,11 +110,15 @@
 }
 
 .reg a:hover {
-  color: blue;
-
+  color: rgb(13, 243, 243);
   transform: scale(1.2) translateX(15px);
 }
 
 .ssilka {
   margin-right: 30px;
+}
+
+.textReg {
+  color: white;
+  font-weight: 600;
 }
