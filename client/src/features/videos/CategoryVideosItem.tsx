@@ -63,8 +63,10 @@ const CategoryVideosItem = ({ video }: VideosItemProps) => {
       <div className="card-videos" style={{ margin: '50px' }}>
         <img src={video.img} className="card-img-videos" alt="..." />
         {userInSystem && userInSystem.name === 'admin' && (
-      <button onClick={handleDelete} type="button" className="form-btn-video-delete">Удалить</button>
-    )}
+          <button onClick={handleDelete} type="button" className="form-btn-video-delete">
+            Удалить
+          </button>
+        )}
         <button className="form-btn-video" onClick={openModal}>
           PLAY
         </button>
@@ -83,7 +85,7 @@ const CategoryVideosItem = ({ video }: VideosItemProps) => {
           <h5 className="card-title-level">{video.level}</h5>
           <p className="card-text">Description</p>
           <button onClick={onHandleLike} type="button">
-            <img className="btn-like-img" src={likeState}></img>
+            <img className="btn-like-img" src={likeImg}></img>
           </button>
         </div>
       </div>
