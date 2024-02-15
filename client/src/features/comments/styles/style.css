@@ -1,13 +1,29 @@
 #add-comment {
-    margin: 60px;
-    width: 90%;
-
+  display: flex;
+  justify-content: center;
+  margin: 60px;
+  width: 1340px;
 }
 
 .comment-card {
-    display: flex;
-    justify-content: start;
-    margin: 20px 60px;
-    border-radius: 5px;
-    background-color: #f5f5f5;
+  display: flex;
+  justify-content: start;
+  margin: 20px 60px;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+}
+
+.btn.btn-outline-secondary {
+  background: linear-gradient(to right, #333, darkgrey);
+  color: white;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+.btn.btn-outline-secondary:hover {
+  background: linear-gradient(to right, rgb(99, 72, 171), #333);
+}
+
+.input-group {
+  height: 45px;
 }
