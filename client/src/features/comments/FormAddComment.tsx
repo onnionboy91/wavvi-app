@@ -14,23 +14,23 @@ const FormAddComment = ({ video }: { video: Video }): JSX.Element => {
 
   return (
     <>
-      <form
-        id="add-comment"
-        className="input-group"
-        onSubmit={(e) => {
-          e.preventDefault();
-          console.log(user);
 
-          dispatch(
-            addComment({
-              title,
-              user_id: user?.id,
-              video_id: video.id,
-            }),
-          ).catch(console.log);
-        }}
-      >
-        {/* <div className="form-floating">
+    <form
+      id="add-comment"
+      className="input-group"
+      onSubmit={(e) => {
+        e.preventDefault();
+        
+        dispatch(addComment({
+          title,
+          user_id: user?.id,
+          video_id: video.id
+        })).catch(console.log);
+        setTitle('');
+      }}
+    >
+      {/* <div className="form-floating">
+
   <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea2">vxvxv</textarea>
   <label for="floatingTextarea2">Comments</label>
 </div> */}

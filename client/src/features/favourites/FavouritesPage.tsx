@@ -24,7 +24,7 @@ function FavouritesPage(): JSX.Element {
 
   return (
     <>
-      <div style={{ marginTop: '7%' }}>
+      <div style={{ marginTop: '100px' }}>
         <h1>Favourites</h1>
         <div className="container">
           {currentVideos &&
