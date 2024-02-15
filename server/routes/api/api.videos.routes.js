@@ -5,14 +5,17 @@ router.get('/', async (req, res) => {
   console.log(3454645);
   try {
     const videos = await Video.findAll();
-    // {
     //   include: {
     //     model: Like,
     //     where: { user_id: res.locals.user.id },
     //   },
-    // }
-    console.log(videos);
-    res.json(videos);
+    // });
+    if (!videos) {
+      res.json({ message: 'У вас еще нет избранного' });
+      console.log(oisjfsd);
+    } else {
+      res.json({ message: 'success', videos });
+    }
   } catch ({ message }) {
     res.json({ type: 'videos router', message });
   }
