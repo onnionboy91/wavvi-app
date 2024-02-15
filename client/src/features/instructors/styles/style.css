@@ -184,7 +184,17 @@
   justify-content: start;
 }
 
+
 /* .inst {
   display: flex;
   justify-content: start;
 } */
+
+.mySwiper {
+  z-index: 0;
+}
+.form-add-qq {
+  position: fixed;
+  z-index: 1;
+}
+
