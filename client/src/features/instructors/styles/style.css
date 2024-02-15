@@ -2,14 +2,16 @@
   margin-top: 100px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 .card {
   position: relative;
-  width: 200px;
+  width: 250px;
   background-color: #fff;
   margin: 5px;
   overflow: hidden;
   border: none;
+  margin-top: 30px;
 }
 .card-flex {
   display: flex;
@@ -26,10 +28,11 @@
   color: #666;
 }
 .card-photo {
-  width: 100%;
+  width: 120%;
   height: 300px;
   object-fit: cover;
   transition: transform 0.3s ease;
+  border-radius: 6px;
 }
 .card-text {
   text-align: center;
@@ -51,17 +54,18 @@
 }
 .card .details-button {
   position: absolute;
-  top: 300px;
+  top: 150px;
   left: 50%;
   transform: translateX(-50%);
   padding: 8px 16px;
-  background-color: #007bff;
+  background-color: #cfd1d4ca;
   color: #fff;
-  border: none;
+  border: 2px solid rgba(0, 0, 0, 0.527);
   border-radius: 5px;
   cursor: pointer;
   opacity: 0;
   transition: opacity 0.3s ease;
+  text-decoration: none;
 }
 .card:hover .details-button {
   opacity: 1;
@@ -74,7 +78,7 @@
 
 .instr-img {
   height: 200px;
-  width: auto;
+  width: 300px;
   margin-bottom: 5px;
 }
 
@@ -122,4 +126,8 @@
 .add-date-button {
   height: 48px;
   width: 256px;
+}
+
+.iframe {
+  border-radius: 5px;
 }

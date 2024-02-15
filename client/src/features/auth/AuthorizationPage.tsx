@@ -11,7 +11,7 @@ const AuthorizationPage = (): JSX.Element => {
 
   const passwordError = useSelector((store: RootState) => store.auth.passwordError);
   const profileError = useSelector((store: RootState) => store.auth.profileError);
-  console.log(profileError, '--------');
+  // console.log(profileError, '--------');
   const emailError = useSelector((store: RootState) => store.auth.emailError);
   const user = useSelector((store: RootState) => store.auth.auth);
   const error = useSelector((store: RootState) => store.auth.error);

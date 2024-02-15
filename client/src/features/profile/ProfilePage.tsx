@@ -10,7 +10,7 @@ function ProfilePage(): JSX.Element {
   return (
     <div className="profile">
       <div className="container-profile">
-        <h5>Личный кабинет</h5>
+        <h5>ЛИЧНЫЙ КАБИНЕТ</h5>
         <form className="form-update-lk">
           {user?.role === 'Instructor' ? (
             <>
@@ -18,9 +18,15 @@ function ProfilePage(): JSX.Element {
                 <img className="image" src={user?.img} alt="image" />
               </div>
               <div className="userInfo">
-                <p>Имя: {user?.name}</p>
-                <p>Стиль танца: {user?.styleDance}</p>
-                <p>О себе: {user?.description}</p>
+                <h5 className="h5">
+                  <strong>Имя:</strong> {user?.name}
+                </h5>
+                <h5 className="h5">
+                  <strong>Стиль танца:</strong> {user?.styleDance}
+                </h5>
+                <h5 className="h5">
+                  <strong>О себе:</strong> {user?.description}
+                </h5>
               </div>
             </>
           ) : user?.role === 'Dancer' ? (
@@ -28,10 +34,16 @@ function ProfilePage(): JSX.Element {
               <div>
                 <img className="image" src={user?.img} alt="image" />
               </div>
-              <div>
-                <p className="name-input">Имя:</p>
-                <p>{user?.name}</p>
-                <p>О себе: {user?.description}</p>
+              <div className="userInfo">
+                <h5 className="h5">
+                  <strong>Имя:</strong> {user?.name}
+                </h5>
+                <h5 className="h5">
+                  <strong>Стиль танца:</strong> {user?.styleDance}
+                </h5>
+                <h5 className="h5">
+                  <strong>О себе:</strong> {user?.description}
+                </h5>
               </div>
             </>
           ) : null}

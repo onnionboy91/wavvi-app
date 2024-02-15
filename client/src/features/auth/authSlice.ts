@@ -17,8 +17,8 @@ const initialState: AuthState = {
 };
 
 export const validatePassword = (password: string): string | undefined => {
-  if (password.length < 6) {
-    return 'Пароль должен быть не менее 6 символов.';
+  if (password.length < 8) {
+    return 'Пароль должен быть не менее 8 символов.';
   } else {
     return undefined; // Если пароль прошел валидацию, возвращаем undefined
   }
