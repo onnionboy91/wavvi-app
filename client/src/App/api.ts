@@ -165,6 +165,8 @@ export const fetchAddComment = async (comment: CommentWithOutId): Promise<Commen
     body: JSON.stringify(comment),
   });
   const data: { comment: Comment } = (await res.json()) as { comment: Comment };
+  console.log(data);
+  
   return data.comment;
 };
 

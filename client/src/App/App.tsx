@@ -29,7 +29,7 @@ function App(): JSX.Element {
     dispatch(loadInstructors()).catch(console.log);
     dispatch(loadComments()).catch(console.log);
     dispatch(loadCategories()).catch(console.log);
-    dispatch(loadVideosAll()).catch(console.log);
+    // dispatch(loadVideosAll()).catch(console.log);
     dispatch(loadLikes()).catch(console.log);
   }, []);
 

@@ -23,40 +23,40 @@ const videosSlice = createSlice({
   name: 'categories',
   initialState,
   reducers: {},
-  extraReducers: (builder) => {
+  extraReducers: (builder: { addCase: (arg0: any, arg1: (state: any, action: any) => void) => { (): any; new(): any; addCase: { (arg0: any, arg1: (state: any) => void): { (): any; new(): any; addCase: { (arg0: any, arg1: (state: any, action: any) => void): { (): any; new(): any; addCase: { (arg0: any, arg1: (state: any, action: any) => void): { (): any; new(): any; addCase: { (arg0: any, arg1: (state: any) => void): { (): any; new(): any; addCase: { (arg0: any, arg1: (state: any, action: any) => void): { (): any; new(): any; addCase: { (arg0: any, arg1: (state: any, action: any) => void): { (): any; new(): any; addCase: { (arg0: any, arg1: (state: any, action: any) => void): { (): any; new(): any; addCase: { (arg0: any, arg1: (state: any, action: any) => void): { (): any; new(): any; addCase: { (arg0: any, arg1: (state: any, action: any) => void): void; new(): any; }; }; new(): any; }; }; new(): any; }; }; new(): any; }; }; new(): any; }; }; new(): any; }; }; new(): any; }; }; new(): any; }; }; new(): any; }; }; }) => {
     builder
-      .addCase(loadVideos.fulfilled, (state, action) => {
+      .addCase(loadVideos.fulfilled, (state: { videos: any; loading: boolean; }, action: { payload: any; }) => {
         state.videos = action.payload;
         state.loading = false;
       })
-      .addCase(loadVideos.pending, (state) => {
+      .addCase(loadVideos.pending, (state: { loading: boolean; }) => {
         state.loading = true;
       })
-      .addCase(loadVideos.rejected, (state, action) => {
+      .addCase(loadVideos.rejected, (state: { error: any; loading: boolean; }, action: { error: { message: any; }; }) => {
         state.error = action.error.message;
         state.loading = false;
       })
-      .addCase(loadVideosAll.fulfilled, (state, action) => {
+      .addCase(loadVideosAll.fulfilled, (state: { videos: any; loading: boolean; }, action: { payload: any; }) => {
         state.videos = action.payload;
         state.loading = false;
       })
-      .addCase(loadVideosAll.pending, (state) => {
+      .addCase(loadVideosAll.pending, (state: { loading: boolean; }) => {
         state.loading = true;
       })
-      .addCase(loadVideosAll.rejected, (state, action) => {
+      .addCase(loadVideosAll.rejected, (state: { error: any; loading: boolean; }, action: { error: { message: any; }; }) => {
         state.error = action.error.message;
         state.loading = false;
       })
-    .addCase(addVideo.fulfilled, (state, action) => {
+    .addCase(addVideo.fulfilled, (state: { videos: any[]; }, action: { payload: any; }) => {
       state.videos.push(action.payload)
     })
-    .addCase(addVideo.rejected, (state, action) => {
+    .addCase(addVideo.rejected, (state: { error: any; }, action: { error: { message: any; }; }) => {
       state.error = action.error.message
     })
-    .addCase(removeVideo.fulfilled, (state, action) => {
-      state.videos = state.videos.filter((video) => video.id !== +action.payload)
+    .addCase(removeVideo.fulfilled, (state: { videos: any[]; }, action: { payload: string | number; }) => {
+      state.videos = state.videos.filter((video: { id: number; }) => video.id !== +action.payload)
     })
-    .addCase(removeVideo.rejected, (state, action) => {
+    .addCase(removeVideo.rejected, (state: { error: any; }, action: { error: { message: any; }; }) => {
       state.error = action.error.message
     })
   },

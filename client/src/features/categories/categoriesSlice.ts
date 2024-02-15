@@ -18,11 +18,11 @@ const categoriesSlice = createSlice({
     name: 'categories',
     initialState,
     reducers: {
-        stopLoading: (state) => {
+        stopLoading: (state: { loading: boolean; }) => {
             state.loading = false
         }
     },
-    extraReducers: (builder) => {
+    extraReducers: (builder: { addCase: (arg0: any, arg1: (state: any, action: any) => void) => { (): any; new(): any; addCase: { (arg0: any, arg1: (state: any) => void): { (): any; new(): any; addCase: { (arg0: any, arg1: (state: any, action: any) => void): { (): any; new(): any; addCase: { (arg0: any, arg1: (state: any, action: any) => void): { (): any; new(): any; addCase: { (arg0: any, arg1: (state: any, action: any) => void): { (): any; new(): any; addCase: { (arg0: any, arg1: (state: any, action: any) => void): { (): any; new(): any; addCase: { (arg0: any, arg1: (state: any, action: any) => void): void; new(): any; }; }; new(): any; }; }; new(): any; }; }; new(): any; }; }; new(): any; }; }; new(): any; }; }; }) => {
         builder
         .addCase(loadCategories.fulfilled, (state,action) => {
             state.categories = action.payload
@@ -40,7 +40,7 @@ const categoriesSlice = createSlice({
             state.error = action.error.message
           })
           .addCase(removeCategory.fulfilled, (state, action) => {
-            state.categories = state.categories.filter((category) => category.id !== +action.payload)
+            state.categories = state.categories.filter((category: { id: number; }) => category.id !== +action.payload)
           })
           .addCase(removeCategory.rejected, (state, action) => {
             state.error = action.error.message
