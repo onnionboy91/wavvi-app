@@ -29,7 +29,7 @@ function App(): JSX.Element {
     dispatch(loadInstructors()).catch(console.log);
     dispatch(loadComments()).catch(console.log);
     dispatch(loadCategories()).catch(console.log);
-    dispatch(loadVideosAll()).catch(console.log);
+    // dispatch(loadVideosAll()).catch(console.log);
     dispatch(loadLikes()).catch(console.log);
   }, []);
 
@@ -55,7 +55,6 @@ function App(): JSX.Element {
                   src="https://w-dog.ru/wallpapers/13/13/398770840645436/ne-najden-oshibka-404-ferror-fon.jpg"
                   alt="img"
                   className="error-image"
-                  // style={{ position: 'relative', width: '100%', height: '100%' }}
                 />
                 <button
                   type="button"

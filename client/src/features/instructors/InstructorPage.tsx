@@ -56,6 +56,7 @@ function InstructorPage(): JSX.Element {
             </div>
             <div className="instr-podrobnee">
               <div className="instr-video">
+
                 <div>
                   <iframe
                     width="560"
@@ -75,7 +76,8 @@ function InstructorPage(): JSX.Element {
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowFullScreen
                   ></iframe>
-                </div>
+                </div>              
+
               </div>
               <div className="instr-descr">
                 <div className="instr-border">

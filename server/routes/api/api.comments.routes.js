@@ -13,6 +13,7 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const { title, user_id, video_id } = req.body;
+    console.log( title, user_id, video_id );
     const comment = await Comment.create({ title, user_id, video_id });
     // const currentcomment = await Comment.findOne({where: {id: comment.id}, include: User})
     res.json({ comment });
