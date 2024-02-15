@@ -11,44 +11,51 @@ const FormAddVideo = ({ categoryId }: { categoryId: string }): JSX.Element => {
 
   const dispatch = useAppDispatch();
   return (
-    <form
-      action=""
-      className="form-add-video"
-      onSubmit={(e) => {
-        e.preventDefault();
-        dispatch(addVideo({ name, content, img, level, category_id: +categoryId })).catch(
-          console.log,
-        );
-      }}
-    >
-      <input
-        className="form-input-video"
-        onChange={(e) => setName(e.target.value)}
-        type="text"
-        placeholder="название"
-      />
-      <input
-        className="form-input-video"
-        onChange={(e) => setContent(e.target.value)}
-        type="text"
-        placeholder="ссылка на видео"
-      />
-      <input
-        className="form-input-video"
-        onChange={(e) => setImg(e.target.value)}
-        type="text"
-        placeholder="ссылка на изображение"
-      />
-      <select value={level} onChange={(e) => setLevel(e.target.value)} className="form-input-video">
-        <option value="">Cложность</option>
-        <option value="BEGGINER">BEGGINER</option>
-        <option value="MEDIUM">MEDIUM</option>
-        <option value="PRO">PRO</option>
-      </select>
-      <button className="form-btn-video" type="submit">
-        Добавить
-      </button>
-    </form>
+    <div className="auth-container">
+      <h4 className="auth">Добавить видео</h4>
+      <form
+        action=""
+        className="sign-in"
+        onSubmit={(e) => {
+          e.preventDefault();
+          dispatch(addVideo({ name, content, img, level, category_id: +categoryId })).catch(
+            console.log,
+          );
+        }}
+      >
+        <input
+          className="form-control input"
+          onChange={(e) => setName(e.target.value)}
+          type="text"
+          placeholder="Название"
+        />
+        <input
+          className="form-control input"
+          onChange={(e) => setContent(e.target.value)}
+          type="text"
+          placeholder="Ссылка на видео"
+        />
+        <input
+          className="form-control input"
+          onChange={(e) => setImg(e.target.value)}
+          type="text"
+          placeholder="Ссылка на изображение"
+        />
+        <select
+          value={level}
+          onChange={(e) => setLevel(e.target.value)}
+          className="form-input-video"
+        >
+          <option value="">Cложность</option>
+          <option value="BEGGINER">BEGGINER</option>
+          <option value="MEDIUM">MEDIUM</option>
+          <option value="PRO">PRO</option>
+        </select>
+        <button className="form-control input submit" type="submit">
+          Добавить
+        </button>
+      </form>
+    </div>
   );
 };
 

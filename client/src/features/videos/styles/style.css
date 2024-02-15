@@ -75,6 +75,11 @@
 
 .form-input-video {
   margin-bottom: 10px;
+  width: 539px;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid rgba(169, 169, 169, 0.603);
+  padding-left: 7px;
 }
 
 .form-btn-video {
@@ -90,7 +95,7 @@
 }
 
 .form-btn-video:hover {
-  background: linear-gradient(to right, #333, rgb(99, 72, 171));
+  background: linear-gradient(to right, #343232, rgb(99, 72, 171));
 }
 
 .form-btn-video-delete {
@@ -123,13 +128,22 @@
   background-color: #fff;
   margin-top: 0px;
   margin-bottom: 0px;
+  width: 40px;
 }
 
 .buttonn {
   background-color: #fff;
 }
 
-.form-add-video {
+.form-add {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input {
+  width: 500px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
 }

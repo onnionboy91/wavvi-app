@@ -21,17 +21,16 @@ const CategoryVideos = () => {
   }, []);
 
   return (
-    <>
-      <div className="form-add">
-        {user && user.name === 'admin' && <FormAddVideo categoryId={categoryId} />}
-      </div>
+    <div className="form-add">
+      <div>{user && user.name === 'admin' && <FormAddVideo categoryId={categoryId} />}</div>
+
       <div className="cards-videos">
         {videos.map((video) => (
           <CategoryVideosItem key={video.id} video={video} />
         ))}
         <div>{/* <CallComponent /> */}</div>
       </div>
-    </>
+    </div>
   );
 };
 
