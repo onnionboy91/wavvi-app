@@ -85,7 +85,23 @@
   font-family: 'Black Han Sans', sans-serif;
   font-weight: 400;
   font-style: normal;
-  margin-top: 5px;
+  margin-top: 8px;
+}
+
+.wavvi {
+  animation: pulseAnimation 2s infinite;
+}
+
+@keyframes pulseAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .ul {

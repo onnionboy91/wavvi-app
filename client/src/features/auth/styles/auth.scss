@@ -96,3 +96,22 @@
   left: 520px; /* измените значение в соответствии с вашим дизайном */
   top: 144px;
 }
+
+.reg a {
+  color: blue;
+  text-decoration: none;
+  transition:
+    color 0.3s,
+    transform 0.3s;
+  display: inline-block; /* Добавляем display */
+}
+
+.reg a:hover {
+  color: blue;
+
+  transform: scale(1.2) translateX(15px);
+}
+
+.ssilka {
+  margin-right: 30px;
+}
