@@ -1,4 +1,5 @@
 export type Comment = {
+    User: any;
     id: number,
     title: string,
     user_id: number | undefined,
