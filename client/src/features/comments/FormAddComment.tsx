@@ -20,13 +20,13 @@ const FormAddComment = ({video}: {video: Video}): JSX.Element => {
       className="input-group"
       onSubmit={(e) => {
         e.preventDefault();
-        console.log(user);
         
         dispatch(addComment({
           title,
           user_id: user?.id,
           video_id: video.id
         })).catch(console.log);
+        setTitle('');
       }}
     >
       {/* <div className="form-floating">
