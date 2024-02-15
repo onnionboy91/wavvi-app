@@ -5,10 +5,10 @@ import { useSelector } from 'react-redux';
 import { type RootState, useAppDispatch } from '../../redux/store';
 import { clearError } from '../auth/authSlice';
 import '../auth/styles/auth.scss';
-import { Instructor } from './types';
+import { InstructorUpdate } from './types';
 import { updateInstructor } from './instructorsSlice';
 
-const FormUpdateInstructor = ({ instructor }: { instructor: Instructor }): JSX.Element => {
+const FormUpdateInstructor = ({ instructor }: { instructor: InstructorUpdate }): JSX.Element => {
   const [name, setName] = useState('');
   const [styleDance, setStyleDance] = useState('');
   const [level, setLevel] = useState('');
@@ -30,10 +30,18 @@ const FormUpdateInstructor = ({ instructor }: { instructor: Instructor }): JSX.E
         description,
       }),
     );
+    setName('');
+    setStyleDance('');
+    setLevel('');
+    setImg('');
+    setDescription('');
   };
 
   return (
-    <div className="auth-container">
+    <div
+      className="auth-container form-add-qq"
+      style={{ position: 'absolute', zIndex: 1, right: '-10px' }}
+    >
       <h4 className="auth">Изменить инструктора</h4>
       <div className="errorForm">{error && <h6>{error}</h6>}</div>
       <form className="sign-up" onSubmit={onHandleUpdate}>
@@ -69,7 +77,7 @@ const FormUpdateInstructor = ({ instructor }: { instructor: Instructor }): JSX.E
           placeholder="img"
           value={img}
           onChange={(e) => setImg(e.target.value)}
-          type="file"
+          type="text"
           required
         />
         <input

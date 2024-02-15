@@ -6,40 +6,39 @@ import { RootState, useAppDispatch } from '../../redux/store';
 import { useSelector } from 'react-redux';
 import './styles/style.css';
 import { Link } from 'react-router-dom';
-import Modal from './Modal';
-import FormUpdateInstructor from './FormUpdateInstructor';
 import { StyledEngineProvider } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { SwiperSlide } from 'swiper/react';
+import FormUpdateInstructor from './FormUpdateInstructor';
 
 function InstructorCard({ instructor }: { instructor: InstructorUpdate }): JSX.Element {
   const dispatch = useAppDispatch();
+  const [formUpdate, setFormUpdate] = useState(false);
 
   const user = useSelector((store: RootState) => store.auth.auth);
-
-  const [modalOpen, setModalOpen] = useState(false);
-
-  const openModal = () => {
-    setModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setModalOpen(false);
-  };
 
   const onHandleRemove = (): void => {
     dispatch(removeInstructor(instructor.id)).catch(console.log);
   };
 
   return (
-    <>
+    <div style={{ zIndex: 0 }}>
+      <div>{formUpdate === true && <FormUpdateInstructor instructor={instructor} />}</div>
       <SwiperSlide>
         <StyledEngineProvider injectFirst>
           <Card className="card-instructor swiper-slide">
-            <CardMedia image={instructor.img} title="dance" className="card-photo" />
+            <CardMedia image={instructor.img} title="dance" className="card-photo">
+              <button
+                type="button"
+                onClick={() => setFormUpdate((prev) => !prev)}
+                className="btn btn-warning"
+              >
+                ✎
+              </button>
+            </CardMedia>
             <CardContent>
               <Typography gutterBottom variant="h5" component="div" className="card-text">
                 {instructor.name}
@@ -48,20 +47,15 @@ function InstructorCard({ instructor }: { instructor: InstructorUpdate }): JSX.E
                 {instructor.styleDance}
               </Typography>
             </CardContent>
-
             {user && user.name === 'admin' && (
-              <div className="card-btns">
-                <button type="button" onClick={onHandleRemove} className="btn btn-danger">
-                  Удалить
-                </button>
-                <button type="button" onClick={openModal} className="btn btn-warning">
-                  Изменить
-                </button>
-              </div>
+              <>
+                <div className="card-btns">
+                  <button type="button" onClick={onHandleRemove} className="btn btn-danger">
+                    Удалить
+                  </button>
+                </div>
+              </>
             )}
-            <Modal isOpen={modalOpen} onClose={closeModal}>
-              <FormUpdateInstructor instructor={instructor} />
-            </Modal>
 
             <Link className="details-button" to={`/instructors/${instructor.id}`}>
               Подробнее
@@ -69,7 +63,7 @@ function InstructorCard({ instructor }: { instructor: InstructorUpdate }): JSX.E
           </Card>
         </StyledEngineProvider>
       </SwiperSlide>
-    </>
+    </div>
   );
 }
 
