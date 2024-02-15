@@ -97,7 +97,10 @@ const AuthorizationPage = (): JSX.Element => {
         </button>
         <div className="reg">
           <p>
-            У вас ещё нет аккаунта? <a href="/sign-up">Зарегистрироваться</a>
+            У вас ещё нет аккаунта?{' '}
+            <a className="ssilka" href="/sign-up">
+              Зарегистрироваться
+            </a>
           </p>
         </div>
       </form>

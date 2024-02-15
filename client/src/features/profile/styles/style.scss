@@ -138,3 +138,26 @@
 strong {
   font-weight: bold;
 }
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+.container-profile {
+  position: relative; /* Добавляем относительное позиционирование для контейнера */
+  height: 100%;
+  display: flex; /* Используем flexbox для центрирования по вертикали и горизонтали */
+  justify-content: center; /* Центрируем по горизонтали */
+  align-items: center; /* Центрируем по вертикали */
+}
+
+.container-profile .image {
+  position: relative;
+  transition: transform 0.3s;
+}
+
+.container-profile .image:hover {
+  transform: scale(1.1) translateX(10px); /* Увеличиваем фото при наведении */
+}
