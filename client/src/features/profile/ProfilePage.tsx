@@ -14,8 +14,13 @@ function ProfilePage(): JSX.Element {
         <form className="form-update-lk">
           {user?.role === 'Instructor' ? (
             <>
-              <div>
-                <img className="image" src={user?.img} alt="image" />
+              <div style={{ height: '100px' }}>
+                <img
+                  className="image"
+                  src={user?.img}
+                  alt="image"
+                  style={{ objectFit: 'cover', width: '100%' }}
+                />
               </div>
               <div className="userInfo">
                 <h5 className="h5">
