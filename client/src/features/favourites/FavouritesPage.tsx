@@ -4,19 +4,26 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import './style.css';
 import CategoryVideosItem from '../videos/CategoryVideosItem';
-import { loadVideosAll } from '../videos/videosSlice';
+import { loadVideosAll } from './videosWithLikesSlice';
 
 function FavouritesPage(): JSX.Element {
   const dispatch = useAppDispatch();
 
   const userInSystem = useSelector((store: RootState) => store.auth.auth);
+  console.log(userInSystem);
   const allLikes = useSelector((store: RootState) => store.likes.likes);
+  console.log(allLikes);
   const currentLikes =
     userInSystem && allLikes.filter((el: any) => el.user_id === +userInSystem.id);
-  const allVideos = useSelector((store: RootState) => store.videos.videos);
+  console.log(currentLikes, 888);
+  const allVideos = useSelector((store: RootState) => store.videosWithLikes.videosWithLikes);
+  console.log(allVideos, 666);
+
   const currentVideos =
     currentLikes &&
     allVideos.filter((video) => currentLikes.some((el) => video.id === el.video_id));
+
+  console.log(currentVideos, 555);
 
   useEffect(() => {
     dispatch(loadVideosAll);

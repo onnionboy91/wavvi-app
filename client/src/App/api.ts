@@ -6,7 +6,6 @@ import type {
   InstructorUpdate,
 
   // InstructorWithOutId,
-
   NewInstructor,
 } from '../features/instructors/types';
 import { Category, CategoryId, CategoryWithOutId } from '../features/categories/types';
@@ -155,7 +154,6 @@ export const fetchLoadComments = async (): Promise<Comment[]> => {
 };
 
 export const fetchAddComment = async (comment: CommentWithOutId): Promise<Comment> => {
-
   const res = await fetch('/api/comments', {
     method: 'POST',
     headers: {
@@ -165,7 +163,7 @@ export const fetchAddComment = async (comment: CommentWithOutId): Promise<Commen
   });
   const data: { comment: Comment } = (await res.json()) as { comment: Comment };
   console.log(data);
-  
+
   return data.comment;
 };
 
@@ -204,6 +202,8 @@ export const fetchLoadLikes = async (): Promise<Like[]> => {
 };
 
 export const fetchAddLike = async (like: LikeWithOutId): Promise<Like> => {
+  console.log('дошли дщ феча', like);
+
   const res = await fetch('/api/likes', {
     method: 'POST',
     headers: {
@@ -212,6 +212,8 @@ export const fetchAddLike = async (like: LikeWithOutId): Promise<Like> => {
     body: JSON.stringify(like),
   });
   const data: { like: Like } = (await res.json()) as { like: Like };
+  console.log(data.like, "7777777");
+  
   return data.like;
 };
 

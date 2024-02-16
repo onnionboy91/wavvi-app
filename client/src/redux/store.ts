@@ -6,6 +6,7 @@ import categoriesSlice from '../features/categories/categoriesSlice';
 import commentsSlice from '../features/comments/commentsSlice';
 import videosSlice from '../features/videos/videosSlice';
 import likesSlice from '../features/favourites/likesSlice';
+import videosWithLikesSlice from '../features/favourites/videosWithLikesSlice';
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +16,7 @@ export const store = configureStore({
     comments: commentsSlice,
     videos: videosSlice,
     likes: likesSlice,
+    videosWithLikes: videosWithLikesSlice,
   },
 });
 
