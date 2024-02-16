@@ -3,7 +3,7 @@ import { RootState, useAppDispatch } from '../../redux/store';
 import { useSelector } from 'react-redux';
 import './styles/style.scss';
 import { profileUpdate } from './ProfileSlice';
-import { useNavigate } from 'react-router-dom';
+import { redirect, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 // const multer = require("multer");
@@ -41,6 +41,7 @@ function ProfileCard(): JSX.Element {
       };
       dispatch(profileUpdate(updatedUser));
       window.location.href = '/profile';
+      // navigate(-1);
     }
   }; // console.log(user, 333);
 

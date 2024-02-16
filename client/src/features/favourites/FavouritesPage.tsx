@@ -30,15 +30,15 @@ function FavouritesPage(): JSX.Element {
   }, []);
 
   return (
-    <>
-      <div style={{ marginTop: '100px' }}>
-        <h1>Favourites</h1>
-        <div className="container">
+    <div className="containerDiv">
+      <div style={{ marginTop: '60px' }}>
+        <h1>Избранное</h1>
+        <div className="containerOne">
           {currentVideos &&
             currentVideos.map((video) => <CategoryVideosItem key={video.id} video={video} />)}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
