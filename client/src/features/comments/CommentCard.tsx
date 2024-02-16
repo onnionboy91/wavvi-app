@@ -22,10 +22,13 @@ const seconds = String(date.getSeconds()).padStart(2, '0');
 
 const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 
+
+
+
   return (
     <>
     <div className='comment-card'>
-    <p>{comment.user_id}</p>
+    <p>{comment.User.name}</p>
        <h4>{comment.title}</h4>
        {user && user.name === 'admin' && (
          <button onClick={() => dispatch(removeComment(comment.id))} type="button" className="btn btn-light">Удалить</button>

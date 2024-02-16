@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const { Comment } = require('../../db/models');
+const { Comment, User } = require('../../db/models');
 
 router.get('/', async (req, res) => {
   try {
-    const comments = await Comment.findAll();
+    const comments = await Comment.findAll({include: User});
     res.json({ comments });
   } catch ({ message }) {
     res.json({ type: 'comments router', message });
@@ -15,8 +15,8 @@ router.post('/', async (req, res) => {
     const { title, user_id, video_id } = req.body;
     console.log( title, user_id, video_id );
     const comment = await Comment.create({ title, user_id, video_id });
-    // const currentcomment = await Comment.findOne({where: {id: comment.id}, include: User})
-    res.json({ comment });
+    const currentcomment = await Comment.findOne({where: {id: comment.id}, include: User});
+    res.json({ currentcomment });  
   } catch ({ message }) {
     res.json({ type: 'comments post', message });
   }

@@ -77,7 +77,7 @@ const CategoryVideosItem = ({ video }: VideosItemProps) => {
             height="600"
             src={video.content}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
+            allowFullScreen
           ></iframe>
           <FormAddComment key={video.id} video={video} />
         </Modal>
