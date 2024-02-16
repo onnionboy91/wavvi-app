@@ -2,7 +2,8 @@
   display: flex;
   justify-content: center;
   margin: 60px;
-  width: 1200px;
+  width: 1000px;
+  right: 35px;
 }
 
 .comment-card {

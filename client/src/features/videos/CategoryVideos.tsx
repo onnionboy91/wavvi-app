@@ -28,7 +28,6 @@ const CategoryVideos = () => {
         {videos.map((video) => (
           <CategoryVideosItem key={video.id} video={video} />
         ))}
-        <div>{/* <CallComponent /> */}</div>
       </div>
     </div>
   );

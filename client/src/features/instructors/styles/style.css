@@ -46,16 +46,16 @@
 /* //ниже стили для профиля инструктора */
 
 .instr-img {
-  margin-top: 250px;
+  margin-top: 400px;
   margin-bottom: 15px;
   width: 20%;
   height: 250px;
   object-fit: cover;
-  padding-left: 90px;
+  padding-left: 30px;
   border-radius: 5px;
 }
 .instr-networks {
-  width: 200px;
+  width: 300px;
   display: flex;
   justify-content: space-between;
 }
@@ -99,37 +99,16 @@
   align-items: center;
   box-shadow: 10px 10px 20px 3px rgba(128, 128, 128, 0.5); /* Тень формы */
   background-color: rgba(255, 255, 255, 0.676);
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   border-radius: 10px;
-}
-
-.instr-profile {
-  position: relative;
-  transform-style: preserve-3d;
-}
-
-.instr-profile:hover {
-  animation-name: rotate;
-  animation-duration: 3s;
-  animation-timing-function: ease-in-out;
-  animation-fill-mode: forwards;
-  transform: rotateY(360deg);
-  cursor: pointer;
-}
-
-@keyframes rotate {
-  0% {
-    transform: rotateY(0deg);
-  }
-  100% {
-    transform: rotateY(360deg);
-  }
 }
 
 .instr-contacts {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  margin-top: 250px;
+  margin-bottom: 30px;
 }
 
 .instr-podrobnee {
@@ -142,7 +121,7 @@
 }
 
 .instr-descr {
-  width: 60%;
+  width: 70%;
   padding-right: 75px;
 }
 

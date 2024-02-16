@@ -73,11 +73,11 @@ const CategoryVideosItem = ({ video }: VideosItemProps) => {
         </button>
         <Modal isOpen={modalOpen} onClose={closeModal}>
           <iframe
-            width="1100"
-            height="600"
+            width="1000"
+            height="550"
             src={video.content}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
+            allowFullScreen
           ></iframe>
           <FormAddComment key={video.id} video={video} />
         </Modal>
