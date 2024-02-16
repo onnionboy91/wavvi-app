@@ -46,7 +46,7 @@
 /* //ниже стили для профиля инструктора */
 
 .instr-img {
-  margin-top: 400px;
+  margin-top: 340px;
   margin-bottom: 15px;
   width: 20%;
   height: 250px;
@@ -107,7 +107,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: 250px;
+  margin-top: 170px;
   margin-bottom: 30px;
 }
 
