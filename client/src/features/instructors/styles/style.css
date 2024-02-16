@@ -43,49 +43,26 @@
 .card-instructor:hover .details-button {
   opacity: 1;
 }
-.instr-container {
-  margin-top: 10%;
-  margin-left: 5%;
-  border: rgba(0, 0, 0, 0.527);
-}
+/* //ниже стили для профиля инструктора */
+
 .instr-img {
-  margin-bottom: 5px;
-  width: 16%;
-  height: 200px;
+  margin-top: 250px;
+  margin-bottom: 15px;
+  width: 20%;
+  height: 250px;
   object-fit: cover;
+  padding-left: 90px;
+  border-radius: 5px;
 }
 .instr-networks {
   width: 200px;
   display: flex;
   justify-content: space-between;
 }
-.netw {
-  width: 25px;
-  height: 25px;
-}
-.instr-profile {
-  display: flex;
-}
-.instr-podrobnee {
-  display: flex;
-}
-.instr-video {
-  width: 50%;
-}
-.instr-descr {
-  width: 50%;
-}
-.instr-border {
-  border: 2px solid rgba(0, 0, 0, 0.172);
-  border-radius: 5px;
-  margin: 5px;
-  padding: 5px;
-}
-.instr-description {
-  text-align: start;
-}
+
 .instr-contacts {
-  margin-left: 10px;
+  margin-left: 30px;
+  margin-top: 60px;
 }
 .add-date-button {
   height: 48px;
@@ -104,6 +81,115 @@
   transition: opacity 0.3s ease;
   text-decoration: none;
 }
+
+.container-instructorPage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Растягиваем контейнер на всю высоту экрана */
+}
+
+.instr-container {
+  width: 90%;
+}
+
+.instr-profile {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  box-shadow: 10px 10px 20px 3px rgba(128, 128, 128, 0.5); /* Тень формы */
+  background-color: rgba(255, 255, 255, 0.676);
+  margin-bottom: 30px;
+  border-radius: 10px;
+}
+
+.instr-profile {
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.instr-profile:hover {
+  animation-name: rotate;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  transform: rotateY(360deg);
+  cursor: pointer;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+.instr-contacts {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.instr-podrobnee {
+  display: flex;
+  justify-content: space-around;
+}
+
+.instr-video {
+  width: 50%;
+}
+
+.instr-descr {
+  width: 60%;
+  padding-right: 75px;
+}
+
+.instr-border {
+  border: 2px solid rgba(0, 0, 0, 0.172);
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+}
+
+.instr-description {
+  font-size: 17px;
+}
+
+.instr-description {
+  text-align: start;
+}
+
+.instr-networks {
+  width: 200px;
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+}
+
+.instr-networks .netw {
+  width: 25px;
+  height: 25px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.instr-networks .netw:hover {
+  transform: scale(1.2); /* Масштабирование при наведении */
+}
+
+.inst {
+  display: flex;
+  justify-content: start;
+}
+
+
+/* .inst {
+  display: flex;
+  justify-content: start;
+} */
+
 .mySwiper {
   z-index: 0;
 }
@@ -111,3 +197,4 @@
   position: fixed;
   z-index: 1;
 }
+
