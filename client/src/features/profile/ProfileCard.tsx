@@ -56,7 +56,7 @@ function ProfileCard(): JSX.Element {
                 <img className="image" src={user?.img} alt="image" />
               </div>
               <div className="userInfo">
-                <div>
+                {/* <div>
                   <strong className="name-input">Фотография:</strong>
                   <div>
                     <input
@@ -68,7 +68,7 @@ function ProfileCard(): JSX.Element {
                   <button className="delete-button" onClick={(e) => handleUpdateUser(e)}>
                     <i className="bx bxs-trash"></i>
                   </button>
-                </div>
+                </div> */}
                 <div>
                   <strong className="name-input">Имя:</strong>
                   <input
