@@ -35,11 +35,11 @@ function InstructorCard({ instructor }: { instructor: InstructorUpdate }): JSX.E
                 <button
                   type="button"
                   onClick={() => setFormUpdate((prev) => !prev)}
-                  className="btn btn-warning"
+                  className="btn btn-warning btn-handle"
                 >
                   ✎
                 </button>
-              )}              
+              )}
             </CardMedia>
             <CardContent>
               <Typography gutterBottom variant="h5" component="div" className="card-text">

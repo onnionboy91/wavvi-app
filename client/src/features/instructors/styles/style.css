@@ -22,6 +22,9 @@
   display: flex;
   justify-content: center;
 }
+.btn-handle {
+  margin-left: 80%;
+}
 .card-photo:hover {
   transform: scale(1.05);
 }
