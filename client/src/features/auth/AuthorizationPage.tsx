@@ -22,7 +22,7 @@ const AuthorizationPage = (): JSX.Element => {
 
   useEffect(() => {
     if (user) {
-      navigate('/');
+      navigate('/categories');
     }
   }, [user]);
 

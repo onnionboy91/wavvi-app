@@ -39,7 +39,7 @@ function InstructorCard({ instructor }: { instructor: InstructorUpdate }): JSX.E
                 >
                   ✎
                 </button>
-              )}
+              )}              
             </CardMedia>
             <CardContent>
               <Typography gutterBottom variant="h5" component="div" className="card-text">

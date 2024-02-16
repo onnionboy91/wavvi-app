@@ -42,6 +42,7 @@ function InstructorPage(): JSX.Element {
                   <h1>{currentInstructor.name}</h1>
                 </div>
                 <div className="instr-networks">
+
                   <div className="inst">
                     <img src={inst} className="netw" />
                     <img src={facebook} className="netw" />
