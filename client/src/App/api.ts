@@ -155,7 +155,6 @@ export const fetchLoadComments = async (): Promise<Comment[]> => {
 };
 
 export const fetchAddComment = async (comment: CommentWithOutId): Promise<Comment> => {
-  console.log(comment);
 
   const res = await fetch('/api/comments', {
     method: 'POST',

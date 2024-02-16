@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { RootState, useAppDispatch } from '../../redux/store';
-import { addComment } from './commentsSlice';
+import { addComment, loadComments } from './commentsSlice';
 import './styles/style.css';
 import { useSelector } from 'react-redux';
 import CommentCard from './CommentCard';
@@ -10,8 +10,13 @@ import type { Video } from '../videos/types';
 const FormAddComment = ({video}: {video: Video}): JSX.Element => {
   const [title, setTitle] = useState('');
   const dispatch = useAppDispatch();
-  const comment = useSelector((store: RootState) => store.comments.comments)
-  const user = useSelector((store: RootState) => store.auth.auth)
+  const comment = useSelector((store: RootState) => store.comments.comments);
+  const user = useSelector((store: RootState) => store.auth.auth);
+
+  useEffect(() => {
+    dispatch(loadComments()).catch(console.log);
+
+  }, [comment])
   
   return (
     <>
@@ -24,7 +29,7 @@ const FormAddComment = ({video}: {video: Video}): JSX.Element => {
         dispatch(addComment({
           title,
           user_id: user?.id,
-          video_id: video.id
+          video_id: video.id,
         })).catch(console.log);
         setTitle('');
       }}
@@ -45,8 +50,7 @@ const FormAddComment = ({video}: {video: Video}): JSX.Element => {
       </button>
     </form>
   <div>
-{comment.map((comment) => (
-   comment.video_id === video.id &&
+  {comment && comment.length > 0 && comment.filter((el) => el?.video_id === video.id).map((comment: { video_id: any; id: any; User?: any; title?: string; user_id?: number | undefined; }) => (
     <CommentCard key={comment.id} comment={comment} video={video.id}/>
 ))}
   </div>
