@@ -1,14 +1,15 @@
 .cards-videos {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .card-videos {
   width: 600px;
   border: 1px solid hsl(0, 0%, 100%);
-  background-color: #000000;
+  background-color: white;
   border-radius: 5px;
+  border: 2px solid #605d5d9e;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px;
   margin-bottom: 20px;
@@ -28,8 +29,22 @@
 }
 
 .card-title-level {
-  color: rgb(247, 149, 12);
-  font-size: 20px;
+  color: rgb(80, 44, 177);
+  font-size: 30px;
+  font-weight: 700;
+  animation-name: fade-in;
+  animation-duration: 1s;
+  display: flex;
+  align-items: center;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .card-modal-videos {
@@ -50,8 +65,6 @@
   transform: translateY(2px);
 }
 
-/* form-add-video */
-
 .form-add-video {
   margin-top: 200px;
   margin-left: auto;
@@ -65,25 +78,58 @@
 }
 
 .form-btn-video {
+  width: 560px;
+  border-radius: 5px;
   padding: 10px 15px;
-  background-color: #007bff;
+  background: linear-gradient(to right, #333, darkgrey);
   color: white;
   border: none;
   cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 20px;
 }
 
 .form-btn-video:hover {
-  background-color: #0056b3;
+  background: linear-gradient(to right, #333, rgb(99, 72, 171));
 }
 
 .form-btn-video-delete {
+  width: 560px;
+  border-radius: 5px;
   padding: 10px 15px;
-  background-color: #ff001e;
+  background: linear-gradient(to right, darkgrey, #333); /* Обновление градиента */
   color: white;
   border: none;
   cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 20px;
+  margin-bottom: 10px;
 }
 
 .form-btn-video-delete:hover {
-  background-color: #b30000;
+  background: linear-gradient(
+    to right,
+    #333,
+    rgb(99, 72, 171)
+  ); /* Обновление градиента при наведении */
+}
+
+.card-body {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-like-img {
+  background-color: #fff;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.buttonn {
+  background-color: #fff;
+}
+
+.form-add-video {
+  display: flex;
+  justify-content: center;
 }

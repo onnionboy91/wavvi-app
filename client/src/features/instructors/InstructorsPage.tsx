@@ -18,6 +18,7 @@ function InstructorsPage(): JSX.Element {
   return (
     <>
       {user?.name === 'admin' && <FormAddInstructor />}
+
       <Swiper
         slidesPerView={4}
         spaceBetween={20}

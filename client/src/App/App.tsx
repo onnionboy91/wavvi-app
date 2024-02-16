@@ -16,7 +16,7 @@ import FavouritesPage from '../features/favourites/FavouritesPage';
 import { loadLikes } from '../features/favourites/likesSlice';
 import ProfilePage from '../features/profile/ProfilePage';
 import InstructorPage from '../features/instructors/InstructorPage';
-import { loadVideosAll } from '../features/videos/videosSlice';
+// import { loadVideosAll } from '../features/videos/videosSlice';
 import ProfileCard from '../features/profile/ProfileCard';
 import MainPage from '../features/main/MainPage';
 import './styles/style.scss';

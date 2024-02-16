@@ -6,8 +6,7 @@ import { useSelector } from 'react-redux';
 import CommentCard from './CommentCard';
 import type { Video } from '../videos/types';
 
-
-const FormAddComment = ({video}: {video: Video}): JSX.Element => {
+const FormAddComment = ({ video }: { video: Video }): JSX.Element => {
   const [title, setTitle] = useState('');
   const dispatch = useAppDispatch();
   const comment = useSelector((store: RootState) => store.comments.comments);
@@ -15,11 +14,11 @@ const FormAddComment = ({video}: {video: Video}): JSX.Element => {
 
   useEffect(() => {
     dispatch(loadComments()).catch(console.log);
-
   }, [comment])
   
   return (
     <>
+
     <form
       id="add-comment"
       className="input-group"
@@ -35,6 +34,7 @@ const FormAddComment = ({video}: {video: Video}): JSX.Element => {
       }}
     >
       {/* <div className="form-floating">
+
   <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea2">vxvxv</textarea>
   <label for="floatingTextarea2">Comments</label>
 </div> */}

@@ -62,6 +62,7 @@ const CategoryVideosItem = ({ video }: VideosItemProps) => {
     <>
       <div className="card-videos" style={{ margin: '50px' }}>
         <img src={video.img} className="card-img-videos" alt="..." />
+
         {userInSystem && userInSystem.name === 'admin' && (
           <button onClick={handleDelete} type="button" className="form-btn-video-delete">
             Удалить
@@ -72,19 +73,20 @@ const CategoryVideosItem = ({ video }: VideosItemProps) => {
         </button>
         <Modal isOpen={modalOpen} onClose={closeModal}>
           <iframe
-            width="560"
-            height="315"
+            width="1100"
+            height="600"
             src={video.content}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           ></iframe>
           <FormAddComment key={video.id} video={video} />
         </Modal>
+
         <div className="card-body">
-          <h5 className="card-title-videos">{video.name}</h5>
+          {/* <h5 className="card-title-videos">{video.name}</h5> */}
           <h5 className="card-title-level">{video.level}</h5>
-          <p className="card-text">Description</p>
-          <button onClick={onHandleLike} type="button">
+          {/* <p className="card-text">Description</p> */}
+          <button className="buttonn" onClick={onHandleLike} type="button">
             <img className="btn-like-img" src={likeImg}></img>
           </button>
         </div>

@@ -42,6 +42,13 @@ const FormAddInstructor = (): JSX.Element => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(addInstructor({ name, email, password, styleDance, level, img, description }));
+    setName('');
+    setEmail('');
+    setPassword('');
+    setStyleDance('');
+    setLevel('');
+    setImg('');
+    setDescription('');
   };
 
   return (
@@ -100,7 +107,7 @@ const FormAddInstructor = (): JSX.Element => {
           placeholder="img"
           value={img}
           onChange={(e) => setImg(e.target.value)}
-          type="file"
+          type="text"
           required
         />
         <input
