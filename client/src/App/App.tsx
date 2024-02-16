@@ -16,10 +16,10 @@ import FavouritesPage from '../features/favourites/FavouritesPage';
 import { loadLikes } from '../features/favourites/likesSlice';
 import ProfilePage from '../features/profile/ProfilePage';
 import InstructorPage from '../features/instructors/InstructorPage';
-// import { loadVideosAll } from '../features/videos/videosSlice';
 import ProfileCard from '../features/profile/ProfileCard';
 import MainPage from '../features/main/MainPage';
 import './styles/style.scss';
+import { loadVideosAll } from '../features/favourites/videosWithLikesSlice';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -28,7 +28,7 @@ function App(): JSX.Element {
     dispatch(checkUser()).catch(console.log);
     dispatch(loadInstructors()).catch(console.log);
     dispatch(loadCategories()).catch(console.log);
-    // dispatch(loadVideosAll()).catch(console.log);
+    dispatch(loadVideosAll()).catch(console.log);
     dispatch(loadLikes()).catch(console.log);
   }, []);
 

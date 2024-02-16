@@ -36,7 +36,7 @@ const LikesSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(addLike.fulfilled, (state, action) => {
-        state.likes[state.likes.length - 1] = action.payload;
+        state.likes.push(action.payload);
       })
       .addCase(addLike.rejected, (state, action) => {
         state.error = action.error.message;

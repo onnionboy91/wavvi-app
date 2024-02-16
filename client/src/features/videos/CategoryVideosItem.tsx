@@ -87,7 +87,7 @@ const CategoryVideosItem = ({ video }: VideosItemProps) => {
           <h5 className="card-title-level">{video.level}</h5>
           {/* <p className="card-text">Description</p> */}
           <button className="buttonn" onClick={onHandleLike} type="button">
-            <img className="btn-like-img" src={likeImg}></img>
+            <img className="btn-like-img" src={likeState}></img>
           </button>
         </div>
       </div>
