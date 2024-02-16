@@ -147,3 +147,10 @@
   margin-bottom: 10px;
   border-radius: 5px;
 }
+
+iframe {
+  display: block;
+  margin: 0 auto;
+  border-radius: 10px;
+  margin-right: 14px;
+}

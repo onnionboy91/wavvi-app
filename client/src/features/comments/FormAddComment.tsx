@@ -14,47 +14,58 @@ const FormAddComment = ({ video }: { video: Video }): JSX.Element => {
 
   useEffect(() => {
     dispatch(loadComments()).catch(console.log);
-  }, [comment])
-  
+  }, [comment]);
+
   return (
     <>
+      <form
+        id="add-comment"
+        className="input-group"
+        onSubmit={(e) => {
+          e.preventDefault();
 
-    <form
-      id="add-comment"
-      className="input-group"
-      onSubmit={(e) => {
-        e.preventDefault();
-        
-        dispatch(addComment({
-          title,
-          user_id: user?.id,
-          video_id: video.id,
-        })).catch(console.log);
-        setTitle('');
-      }}
-    >
-      {/* <div className="form-floating">
+          dispatch(
+            addComment({
+              title,
+              user_id: user?.id,
+              video_id: video.id,
+            }),
+          ).catch(console.log);
+          setTitle('');
+        }}
+      >
+        {/* <div className="form-floating">
 
   <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea2">vxvxv</textarea>
   <label for="floatingTextarea2">Comments</label>
 </div> */}
-      <input
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        type="text"
-        className="form-control"
-        placeholder="написать комментарий"
-      />
-      <button className="btn btn-outline-secondary" type="submit">
-        добавить
-      </button>
-    </form>
-  <div>
-  {comment && comment.length > 0 && comment.filter((el) => el?.video_id === video.id).map((comment: { video_id: any; id: any; User?: any; title?: string; user_id?: number | undefined; }) => (
-    <CommentCard key={comment.id} comment={comment} video={video.id}/>
-))}
-  </div>
-  </>
+        <input
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          type="text"
+          className="form-control"
+          placeholder="Написать комментарий"
+        />
+        <button className="btn btn-outline-secondary" type="submit">
+          ДOБАВИТЬ
+        </button>
+      </form>
+      <div>
+        {comment &&
+          comment.length > 0 &&
+          comment
+            .filter((el) => el?.video_id === video.id)
+            .map(
+              (comment: {
+                video_id: any;
+                id: any;
+                User?: any;
+                title?: string;
+                user_id?: number | undefined;
+              }) => <CommentCard key={comment.id} comment={comment} video={video.id} />,
+            )}
+      </div>
+    </>
   );
 };
 
