@@ -1,1 +1,19 @@
+.containerOne {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-left: 50px;
+  /* padding-top: 10px; */
+  /* margin-bottom: 60px; */
+  /* justify-content: center;
+  align-items: center;
+  flex-direction: row; */
+  /* height: 100vh; */
+}
 
+h1 {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #6b1cff;
+  color: white;
+}
