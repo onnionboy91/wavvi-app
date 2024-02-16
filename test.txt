@@ -82,3 +82,27 @@ export default NavBar;
     if (role) formData.append('role', role);
     dispatch(signUp(formData));
   };
+
+
+.button {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 78%;
+  left: 50%;
+  width: 30%;
+  transform: translate(-50%, -50%);
+  /* background-color: #f8aa5c; */
+  color: #ffffff;
+  padding: 10px 20px;
+  font-size: 20px;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  background: linear-gradient(to right, #333, #ed325a);
+}
+
+.button:hover {
+  background: linear-gradient(to right, #6b1cff, #333);
+}

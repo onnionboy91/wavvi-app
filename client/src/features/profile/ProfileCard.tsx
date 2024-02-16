@@ -40,7 +40,7 @@ function ProfileCard(): JSX.Element {
         description: description,
       };
       dispatch(profileUpdate(updatedUser));
-      navigate('/profile');
+      window.location.href = '/profile';
     }
   }; // console.log(user, 333);
 

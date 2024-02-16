@@ -25,12 +25,12 @@ const NavBar = (): JSX.Element => {
                   <li className="li">
                     <img src={user.img} className="avatar" />
                     <ul className="ul">
-                      <li className="nav__item">
+                      <li className="nav__item menu">
                         <NavLink className="nav__link" to="/profile">
                           Личный кабинет
                         </NavLink>
                       </li>
-                      <li className="nav__item">
+                      <li className="nav__item menu">
                         <NavLink className="nav__link" to="/favourites">
                           Избранное
                         </NavLink>
@@ -43,7 +43,7 @@ const NavBar = (): JSX.Element => {
                         }}
                         className="nav__item burger"
                       >
-                        <NavLink className="nav__link" to="/logout">
+                        <NavLink className="nav__link menu" to="/logout">
                           Выйти
                         </NavLink>
                       </li>
