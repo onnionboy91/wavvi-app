@@ -31,13 +31,13 @@ function InstructorCard({ instructor }: { instructor: InstructorUpdate }): JSX.E
         <StyledEngineProvider injectFirst>
           <Card className="card-instructor swiper-slide">
             <CardMedia image={instructor.img} title="dance" className="card-photo">
-              <button
+              {user.name === 'admin' && (<button
                 type="button"
                 onClick={() => setFormUpdate((prev) => !prev)}
                 className="btn btn-warning"
               >
                 ✎
-              </button>
+              </button>)}
             </CardMedia>
             <CardContent>
               <Typography gutterBottom variant="h5" component="div" className="card-text">
